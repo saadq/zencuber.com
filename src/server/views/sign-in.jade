@@ -1,0 +1,20 @@
+extends login
+
+block content
+  .container
+    .row
+      .register-wrapper.col.s10.m6.offset-s1.offset-m3
+        h2 #[a(href='/') Cube Graphs]
+        .divider
+        p Log in to your account
+        form
+          .input-field.col.s10.offset-s1
+            i.material-icons.prefix person
+            input(id='username' type='text', class='validate')
+            label(for='username') Username
+          .input-field.col.s10.offset-s1
+            i.material-icons.prefix vpn_key
+            input(id='password' type='password', class='validate')
+            label(for='password') Password
+          button.btn-large.waves-effect.waves-light.col.s4.offset-s4(type='submit') Register
+        p.col.s12 Need to make an account? #[a(href='/login/register') Register]
