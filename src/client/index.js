@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import Timer from './components/Timer'
 
 $(() => {
-  ReactDOM.render(<App />, $('#app')[0])
   $('.button-collapse').sideNav()
   $('select').material_select()
 })

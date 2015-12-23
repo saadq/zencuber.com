@@ -1,0 +1,55 @@
+$primary-color: #0097A7
+$light-color: lighten($primary-color, 5%)
+$dark-color: darken($primary-color, 5%)
+$box-color: #ECEFF1
+
+body#register
+  background-color: $primary-color
+  .register-wrapper
+    margin-top: 40px
+    padding-bottom: 30px
+    background-color: #fff
+    box-shadow: 10px 16px 38px 10px rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21)
+
+    .divider
+      margin-bottom: 20px
+    h2
+      text-align: center
+      color: #000
+      transition: color .2s ease-in-out
+      &:hover
+        color: $primary-color
+    p
+      text-align: center
+      margin: 0
+      a
+        color: $primary-color
+        &:hover
+          color: $light-color
+    a
+      color: #000
+      transition: color .25s ease-in-out
+      &:hover
+        color: $primary-color
+    button
+      background-color: $primary-color
+      margin-top: 30px
+      margin-bottom: 30px
+      &:hover
+        background-color: $light-color
+
+input[type=text]:focus:not([readonly])+label,
+input[type=password]:focus:not([readonly])+label,
+input[type=email]:focus:not([readonly])+label,
+textarea.materialize-textarea:focus:not([readonly])+label
+  color: $primary-color
+
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly])
+  box-shadow: 0 1px 0 0 $primary-color
+  border-bottom: 1px solid $primary-color
+
+.input-field .prefix.active
+  color: $primary-color
