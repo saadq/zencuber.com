@@ -1,0 +1,45 @@
+*
+  -moz-user-select: none
+  -khtml-user-select: none
+  -webkit-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+body
+  font-family: 'Avenir'
+  background-color: #fcfcfc
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+
+main
+  flex: 1 0 auto
+
+strong
+  font-weight: bolder
+
+:focus
+  outline: none
+
+.hidden
+  display: none
+
+.container
+  width: 80%
+
+h1
+  font-size: 8em
+
+@media screen and (max-width: 992px)
+  h1
+    font-size: 6em
+
+@media screen and (max-width: 600px)
+  h1
+    font-size: 4.1em
+
+h3
+  margin: 10px
+  font-size: 2em
+  text-align: center
+

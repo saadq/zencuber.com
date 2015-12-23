@@ -15,17 +15,17 @@ const jsPaths = {
 }
 
 const sassDirs = {
-  src: 'src/client/styles/**/*.sass',
+  src: 'src/client/styles/main.sass',
   dest: 'dist/css'
 }
 
 const assetPaths = {
-  images: 'src/client/assets/images/**/*',
-  fonts: 'src/client/assets/font/**/*',
-  jquery: 'src/client/assets/vendor/jquery/jquery-1.11.3.js',
+  images: 'src/assets/images/**/*',
+  fonts: 'src/assets/font/**/*',
+  jquery: 'src/assets/vendor/jquery/jquery-1.11.3.js',
   materialize: {
-    css: 'src/client/assets/vendor/materialize/css/materialize.css',
-    js:  'src/client/assets/vendor/materialize/js/materialize.js'
+    css: 'src/assets/vendor/materialize/css/materialize.css',
+    js:  'src/assets/vendor/materialize/js/materialize.js'
   }
 }
 
@@ -61,8 +61,8 @@ gulp.task('lint', function () {
   return gulp.src(['src/**/*.js', '!node_modules/**', '!**/assets/**'])
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
+    .pipe(eslint.failAfterError())
+})
 
 gulp.task('scripts', () => {
   watch = false
