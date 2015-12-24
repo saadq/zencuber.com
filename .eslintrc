@@ -3,49 +3,54 @@
    * ESLint Plugins
    */
   "plugins": [
-    "react"                         // Use the react plugin to fix incorrect linting errors in JSX
+    "react"                               // Use the react plugin to fix incorrect linting errors in JSX
   ],
 
    /**
     * ES6 Custom Settings
     */
   "ecmaFeatures": {
-    "jsx": true,                    // Enable JSX syntax for React
-    "modules": true                 // Enable ES6 modules
+    "jsx": true,                          // Enable JSX syntax for React
+    "modules": true,                      // Enable ES6 modules
+    "experimentalObjectRestSpread": true  // Allow the usage of object rest/spread
   },
 
   /**
    * Environment Settings
    */
   "env": {
-    "browser": true,                // Enable browser globals
-    "es6": true,                    // Enable all other ES6 syntax
-    "jquery": true,                 // Recognize $ as a global variable
-    "node": true                    // Enable Node.js globals
+    "browser": true,                      // Enable browser globals
+    "es6": true,                          // Enable all other ES6 syntax
+    "jquery": true,                       // Recognize $ as a global variable
+    "node": true                          // Enable Node.js globals
   },
 
   /**
    * Linting Preferences
    */
   "rules": {
-    "comma-dangle": 2,              // Don't allow trailing commas
-    "no-bitwise": 2,                // Don't allow the use of bitwise operators
-    "curly": 2,                     // Require curly braces for control flow statements
-    "eqeqeq": 2,                    // Require the use of triple-equals comparison
-    "react/jsx-uses-vars": 2,       // Prevent variables in JSX to incorrectly be marked as unused
-    "react/jsx-uses-react": 2,      // Prevent 'React' in JSX to incorrectly be marked as unused
-    "react/jsx-no-undef": 2,        // Don't allow undeclared variables in JSX
-    "no-trailing-spaces": 1,        // Warn if trailing white space
-    "no-undef": 2,                  // Don't allow undefined variables to be used
-    "no-unused-vars": 1,            // Warn about variables that are not used
-    "quotes": [2, "single"],        // Use single-quotes
-    "semi": [2, "never"],           // Don't allow semicolons (except for a few cases like IIFE)
-    "arrow-spacing": 1,             // Warn if no spaces around =>
-    "space-after-keywords": 1,      // Warn if no space after keywords
-    "space-before-keywords": 1,     // Warn if no space before keywords
-    "space-before-blocks": 1,       // Warn if no space before blocks
-    "space-infix-ops": 1,           // Warn if no spaces around operators
-    "space-return-throw-case": 1,   // Warn if no space after return, throw, and case
-    "spaced-comment": 1             // Warn if no space after comment symbol
+    "comma-dangle": 2,                    // Don't allow trailing commas
+    "curly": 2,                           // Require curly braces for control flow statements
+    "eqeqeq": 2,                          // Require the use of triple-equals comparison
+    "key-spacing": 2,                     // Require space should be after colon, and not before it
+    "react/jsx-uses-vars": 2,             // Prevent variables in JSX to incorrectly be marked as unused
+    "react/jsx-uses-react": 2,            // Prevent 'React' in JSX to incorrectly be marked as unused
+    "react/jsx-no-undef": 2,              // Don't allow undeclared variables in JSX
+    "object-shorthand": 2,                // Require the use of object-shorthand notation where possible
+    "no-trailing-spaces": 1,              // Warn if trailing white space
+    "no-undef": 2,                        // Don't allow undefined variables to be used
+    "no-unused-vars": 1,                  // Warn about variables that are not used
+    "no-var": 2,                          // Require the use of 'let' and 'const' instead of var
+    "prefer-arrow-callback": 2,           // Suggest using arrow-functions for callbacks
+    "prefer-template": 2,                 // Suggest using template strings instead of string concatenation
+    "quotes": [2, "single"],              // Use single-quotes
+    "semi": [2, "never"],                 // Don't allow semicolons (except for a few cases like IIFE)
+    "arrow-spacing": 1,                   // Warn if no spaces around =>
+    "space-after-keywords": 1,            // Warn if no space after keywords
+    "space-before-keywords": 1,           // Warn if no space before keywords
+    "space-before-blocks": 1,             // Warn if no space before blocks
+    "space-infix-ops": 1,                 // Warn if no spaces around operators
+    "space-return-throw-case": 1,         // Warn if no space after return, throw, and case
+    "spaced-comment": 1                   // Warn if no space after comment symbol
   }
 }
