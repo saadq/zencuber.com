@@ -6,7 +6,7 @@ const initialState = {
   time: formatTime(0)
 }
 
-const TimerReducer = (state = initialState, action) => {
+function TimerReducer(state = initialState, action) {
   switch (action.type) {
     case types.START_TIMER:
       return {
