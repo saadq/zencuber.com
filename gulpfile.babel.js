@@ -25,7 +25,7 @@ const assetPaths = {
   jquery: 'src/assets/vendor/jquery/jquery-1.11.3.js',
   materialize: {
     css: 'src/assets/vendor/materialize/css/materialize.css',
-    js:  'src/assets/vendor/materialize/js/materialize.js'
+    js: 'src/assets/vendor/materialize/js/materialize.js'
   }
 }
 
@@ -51,7 +51,14 @@ function browserifyScript() {
 }
 
 function bundle(b) {
+  let start = Date.now()
   b.bundle()
+    .on('error', (err) => { console.error(err.stack) })
+    .on('end', () => {
+      let end = Date.now()
+      let totalTime = end - start
+      console.log(`finished scripts in ${totalTime} ms`)
+    })
     .pipe(source('bundle.js'))
     .pipe(gulp.dest(jsPaths.dest))
     .pipe(gulpif(watch, livereload()))
