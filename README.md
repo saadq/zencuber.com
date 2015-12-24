@@ -10,7 +10,7 @@ There are two ways to download this project to your local machine.
 
 2. You can run the following command:
 ```
-$ git clone git@github.com:saadq/cube-stats.git
+$ git clone git@github.com:saadq/flow-timer.git
 ```
 
 ## Building
