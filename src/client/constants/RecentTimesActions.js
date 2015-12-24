@@ -1,0 +1,9 @@
+const ADD_TIME = 'ADD_TIME'
+const REMOVE_TIME = 'REMOVE_TIME'
+const CLEAR_TIMES = 'CLEAR_TIMES'
+
+export {
+  ADD_TIME,
+  REMOVE_TIME,
+  CLEAR_TIMES
+}
