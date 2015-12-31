@@ -48,10 +48,18 @@ function createBundler() {
   return bundler
 }
 
+function printError(err) {
+  gutil.log(gutil.colors.red(err.name));
+  console.log(err.message);
+  console.log(err.codeFrame);
+  this.emit('end');
+}
+
 gulp.task('scripts', () =>  {
   watch = false
   createBundler()
     .bundle()
+    .on('error', printError)
     .pipe(source('bundle.js'))
     .pipe(gulp.dest(jsPaths.dest))
 })
@@ -61,14 +69,14 @@ gulp.task('watch-scripts', () =>  {
   let watcher = watchify(createBundler())
   rebundle()
   return watcher
-    .on('error', gutil.log)
+    .on('error', printError)
     .on('update', rebundle)
 
   function rebundle() {
     gutil.log('Update JavaScript bundle')
     watcher
     .bundle()
-    .on('error', gutil.log)
+    .on('error', printError)
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(gulp.dest(jsPaths.dest))
