@@ -49,10 +49,10 @@ function createBundler() {
 }
 
 function printError(err) {
-  gutil.log(gutil.colors.red(err.name));
-  console.log(err.message);
-  console.log(err.codeFrame);
-  this.emit('end');
+  gutil.log(gutil.colors.red(err.name))
+  console.log(err.message)
+  console.log(err.codeFrame)
+  this.emit('end')
 }
 
 gulp.task('scripts', () =>  {
