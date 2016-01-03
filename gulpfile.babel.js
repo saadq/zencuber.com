@@ -17,7 +17,7 @@ const jsPaths = {
   dest: './dist/js'
 }
 
-const sassDirs = {
+const sassPaths = {
   src: './src/client/styles/main.sass',
   dest: './dist/css'
 }
