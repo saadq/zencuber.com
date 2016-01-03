@@ -50,8 +50,8 @@ function createBundler() {
 
 function printError(err) {
   gutil.log(gutil.colors.red(err.name))
-  console.log(err.message)
-  console.log(err.codeFrame)
+  console.error(err.message)
+  console.error(err.codeFrame)
   this.emit('end')
 }
 
@@ -75,11 +75,11 @@ gulp.task('watch-scripts', () =>  {
   function rebundle() {
     gutil.log('Update JavaScript bundle')
     watcher
-    .bundle()
-    .on('error', printError)
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-    .pipe(gulp.dest(jsPaths.dest))
+      .bundle()
+      .on('error', printError)
+      .pipe(source('bundle.js'))
+      .pipe(buffer())
+      .pipe(gulp.dest(jsPaths.dest))
   }
 })
 
@@ -115,7 +115,7 @@ gulp.task('lint', () => {
     .pipe(eslint.failAfterError())
 })
 
-gulp.task('copy', () => {
+gulp.task('assets', () => {
   gulp
     .src(assetPaths.fonts)
     .pipe(gulp.dest('dist/font'))
@@ -134,7 +134,7 @@ gulp.task('copy', () => {
 })
 
 gulp.task('clean', () => { del(['dist']) })
-gulp.task('build', ['lint', 'scripts', 'styles', 'copy'])
+gulp.task('build', ['lint', 'scripts', 'styles', 'assets'])
 gulp.task('watch', ['watch-server', 'watch-scripts', 'watch-styles'])
 
 gulp.task('default', ['build'])
