@@ -36,7 +36,7 @@ let isProd = process.env.NODE_ENV === 'production'
   , watch = false
 
 function createBundler() {
-  let bundler = browserify({
+  const bundler = browserify({
     entries: [jsPaths.src],
     transform: [ [babelify, {}], [envify, {}] ],
     plugin: (isProd || !watch) ? [] : [ livereactload ],
@@ -55,7 +55,7 @@ function printError(err) {
   this.emit('end')
 }
 
-gulp.task('scripts', () =>  {
+gulp.task('scripts', () => {
   watch = false
   createBundler()
     .bundle()
@@ -64,9 +64,9 @@ gulp.task('scripts', () =>  {
     .pipe(gulp.dest(jsPaths.dest))
 })
 
-gulp.task('watch-scripts', () =>  {
+gulp.task('watch-scripts', () => {
   watch = true
-  let watcher = watchify(createBundler())
+  const watcher = watchify(createBundler())
   rebundle()
   return watcher
     .on('error', printError)
@@ -83,7 +83,7 @@ gulp.task('watch-scripts', () =>  {
   }
 })
 
-gulp.task('watch-server', () =>  {
+gulp.task('watch-server', () => {
   nodemon({
     script: './src/server/index.js',
     exec: './node_modules/.bin/babel-node',
@@ -91,16 +91,16 @@ gulp.task('watch-server', () =>  {
     ignore: ['gulpfile.js', 'bundle.js', 'node_modules/*']
   })
   .on('change', [])
-  .on('restart',  () =>  {
+  .on('restart',  () => {
     console.log('Server restarted')
   })
 })
 
 gulp.task('styles', () => {
   gulp
-    .src(sassDirs.src)
+    .src(sassPaths.src)
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(sassDirs.dest))
+    .pipe(gulp.dest(sassPaths.dest))
 })
 
 gulp.task('watch-styles', () => {
@@ -133,7 +133,7 @@ gulp.task('assets', () => {
     .pipe(gulp.dest('dist/css'))
 })
 
-gulp.task('clean', () => { del(['dist']) })
+gulp.task('clean', () => del(['dist']))
 gulp.task('build', ['lint', 'scripts', 'styles', 'assets'])
 gulp.task('watch', ['watch-server', 'watch-scripts', 'watch-styles'])
 
