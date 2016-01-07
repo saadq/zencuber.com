@@ -1,7 +1,7 @@
-# Cube Stats
+# Flow
 A sleek, minimal Rubik's Cube timer that provides data-visualization for a user's stats.
 
-![](cube-stats.png)
+![](flow.png)
 
 ## Downloading
 There are two ways to download this project to your local machine.
