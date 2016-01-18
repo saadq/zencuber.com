@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { startTimer, stopTimer, resetTimer } from '../actions'
 import { timeFormatter, getElapsedTime } from '../../util'
@@ -6,6 +7,14 @@ import { timeFormatter, getElapsedTime } from '../../util'
 class Timer extends React.Component {
   componentDidMount() {
     setInterval(this.forceUpdate.bind(this), 1)
+    document.addEventListener('keypress', (e) => {
+      e.preventDefault()
+      const spaceKey = 32
+      if (e.which === spaceKey) {
+        const btn = ReactDOM.findDOMNode(this.refs.btn)
+        btn.click()
+      }
+    })
   }
 
   componentWillUnmount() {
@@ -31,7 +40,7 @@ class Timer extends React.Component {
     return (
       <div>
         <h1 id="timer">{timeFormatter(elapsed)}</h1>
-        <button ref="timerButton" onClick={this.click.bind(this)} id="timer-button" className={btnClasses}>
+        <button ref="btn" onClick={this.click.bind(this)} id="timer-button" className={btnClasses}>
           {isOn ? 'Stop' : 'Start'}
         </button>
       </div>

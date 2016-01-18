@@ -2,7 +2,10 @@ import React from 'react'
 
 const Nav = () => (
   <nav role="navigation">
-    <div className="nav-wrapper container"><a id="logo-container" href="/" className="brand-logo">Flow</a>
+    <div className="nav-wrapper container">
+      <a id="logo-container" href="/" className="brand-logo">
+        Flow <i className="material-icons left hide-on-med-and-down">apps</i>
+      </a>
       <ul id="dropdown" className="dropdown-content">
         <li><a href="/login/register">Register</a></li>
         <li className="divider"></li>
