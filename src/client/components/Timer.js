@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { findDOMNode } from 'react-dom'
 import { connect } from 'react-redux'
 import { startTimer, stopTimer, resetTimer } from '../actions'
 import { timeFormatter, getElapsedTime } from '../../util'
@@ -11,7 +11,7 @@ class Timer extends React.Component {
       e.preventDefault()
       const spaceKey = 32
       if (e.which === spaceKey) {
-        const btn = ReactDOM.findDOMNode(this.refs.btn)
+        const btn = findDOMNode(this.refs.btn)
         btn.click()
       }
     })
