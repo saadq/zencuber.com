@@ -2,10 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const Scramble = ({ algorithm }) => (
-  <div>
-    <br />
-    <p id="scramble">{algorithm}</p>
-  </div>
+  <p id="scramble">{algorithm}</p>
 )
 
 const mapStateToProps = (state) => ({

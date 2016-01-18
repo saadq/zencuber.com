@@ -25,11 +25,9 @@ class Timer extends React.Component {
     const { isOn, time, startedAt, stoppedAt } = this.props
     const elapsed = getElapsedTime(time, startedAt, stoppedAt)
 
-    if (!isOn) {
-      this.props.startTimer(elapsed)
-    } else {
-      this.props.stopTimer()
-    }
+    isOn
+      ? this.props.stopTimer()
+      : this.props.startTimer(elapsed)
   }
 
   render() {
