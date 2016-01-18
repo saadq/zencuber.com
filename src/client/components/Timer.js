@@ -12,29 +12,38 @@ class Timer extends React.Component {
     clearInterval(this.interval)
   }
 
+  click() {
+    const { isOn, time, startedAt, stoppedAt } = this.props
+    const elapsed = getElapsedTime(time, startedAt, stoppedAt)
+
+    if (!isOn) {
+      this.props.startTimer(elapsed)
+    } else {
+      this.props.stopTimer()
+    }
+  }
+
   render() {
-    const { baseTime, startedAt, stoppedAt } = this.props
-    const elapsed = getElapsedTime(baseTime, startedAt, stoppedAt)
+    const { isOn, time, startedAt, stoppedAt } = this.props
+    const elapsed = getElapsedTime(time, startedAt, stoppedAt)
     const btnClasses = 'btn-large waves-effect waves-light'
 
     return (
       <div>
         <h1 id="timer">{timeFormatter(elapsed)}</h1>
-        <button ref="timerButton" onClick={() => this.props.startTimer(elapsed)} id="timer-button" className={btnClasses}>
-          Start
+        <button ref="timerButton" onClick={this.click.bind(this)} id="timer-button" className={btnClasses}>
+          {isOn ? 'Stop' : 'Start'}
         </button>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  baseTime: state.baseTime,
-  startedAt: state.startedAt,
-  stoppedAt: state.stoppedAt
-})
+function mapStateToProps(state) {
+  const { isOn, time, startedAt, stoppedAt } = state
+  return { isOn, time, startedAt, stoppedAt }
+}
 
 export default connect(mapStateToProps, {
   startTimer, stopTimer, resetTimer
 })(Timer)
-

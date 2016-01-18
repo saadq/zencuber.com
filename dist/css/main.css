@@ -44,7 +44,7 @@ h3 {
   text-align: center; }
 
 nav {
-  background-color: #0097A7;
+  background-color: #009688;
   height: 75px;
   line-height: 75px; }
   nav #logo-container {
@@ -72,7 +72,7 @@ nav {
         height: 75px; } }
 
 .side-nav {
-  background-color: #00808e; }
+  background-color: #007d71; }
   .side-nav a {
     color: #fff;
     transition: color .3s ease; }
@@ -84,13 +84,12 @@ nav {
 
 #scramble {
   margin-top: 5%;
-  word-spacing: 5px; }
-  #scramble span {
-    -moz-user-select: text;
-    -khtml-user-select: text;
-    -webkit-user-select: text;
-    -ms-user-select: text;
-    user-select: text; }
+  word-spacing: 5px;
+  -moz-user-select: text;
+  -khtml-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text; }
 
 #timer {
   color: #000;
@@ -103,11 +102,11 @@ nav {
   user-select: text; }
 
 #timer-button {
-  background-color: #0097A7;
+  background-color: #009688;
   width: 200px;
   font-size: 1.5em; }
   #timer-button:hover {
-    background-color: #00aec1; }
+    background-color: #00b09f; }
 
 @media screen and (min-width: 768px) {
   #timer-button {
@@ -126,7 +125,7 @@ nav {
     padding: 0; }
 
 .dropdown-content li > a, .dropdown-content li > span {
-  color: #0097A7; }
+  color: #009688; }
 
 ul#times {
   padding: 20px 0;
@@ -161,7 +160,7 @@ hr.hide-on-med-and-up {
   margin-top: 55px; }
 
 footer {
-  background-color: #006974;
+  background-color: #00635a;
   margin-top: 4%;
   text-align: center; }
   footer li {
@@ -175,7 +174,7 @@ footer {
     padding-bottom: 10px;
     text-align: center;
     color: #ccc;
-    background-color: #00606a;
+    background-color: #005951;
     margin: 0; }
     footer p a {
       color: #efefef; }
@@ -186,13 +185,13 @@ table.striped > tbody > tr:nth-child(odd) {
   background-color: #F2F0F2; }
 
 table.highlight > tbody > tr:hover {
-  background-color: #a7f7ff;
+  background-color: #96fff5;
   cursor: pointer; }
 
 table .btn {
-  background-color: #00808e; }
+  background-color: #007d71; }
   table .btn:hover {
-    background-color: #0097A7; }
+    background-color: #009688; }
 
 body#register {
   background-color: #0097A7; }

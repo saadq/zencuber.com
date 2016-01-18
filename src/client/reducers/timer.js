@@ -1,5 +1,9 @@
+import { generateScramble } from '../../util'
+
 const initialState = {
-  baseTime: 0,
+  isOn: false,
+  algorithm: generateScramble(),
+  time: 0,
   startedAt: undefined,
   stoppedAt: undefined
 }
@@ -9,7 +13,7 @@ const timer = (state = initialState, action) => {
     case 'START_TIMER':
       return {
         ...state,
-        baseTime: action.baseTime,
+        isOn: true,
         startedAt: Date.now(),
         stoppedAt: undefined
       }
@@ -18,7 +22,8 @@ const timer = (state = initialState, action) => {
       return {
         ...state,
         isOn: false,
-        stoppedAt: Date.now()
+        stoppedAt: Date.now(),
+        algorithm: generateScramble()
       }
 
     case 'RESET_TIMER':
