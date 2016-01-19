@@ -3,7 +3,8 @@ import { generateScramble } from '../../util'
 const initialState = {
   isOn: false,
   algorithm: generateScramble(),
-  time: 0
+  time: 0,
+  allTimes: ['00 : 30 . 23']
 }
 
 const timer = (state = initialState, action) => {
