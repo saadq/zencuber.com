@@ -6,13 +6,29 @@ import { timeFormatter, getElapsedTime } from '../../util'
 
 class Timer extends React.Component {
   componentDidMount() {
-    setInterval(this.forceUpdate.bind(this), 1)
-    document.addEventListener('keypress', (e) => {
-      e.preventDefault()
-      const spaceKey = 32
-      if (e.which === spaceKey) {
-        const btn = findDOMNode(this.refs.btn)
-        btn.click()
+    setInterval(() => this.forceUpdate(), 1)
+
+    const button = findDOMNode(this.refs.btn)
+    let justStopped = false
+
+    // Start timer as soon as space bar is released
+    window.addEventListener('keyup', (event) => {
+      event.preventDefault()
+      if (event.which === 32 && !this.props.isOn) {
+        if (justStopped) {
+          justStopped = false
+          return
+        }
+        button.click()
+      }
+    })
+
+    // Stop timer as soon as spacebar is pressed
+    window.addEventListener('keydown', (event) => {
+      event.preventDefault()
+      if (event.which === 32 && this.props.isOn) {
+        justStopped = true
+        button.click()
       }
     })
   }
@@ -34,7 +50,6 @@ class Timer extends React.Component {
     const { isOn, time, startedAt, stoppedAt } = this.props
     const elapsed = getElapsedTime(time, startedAt, stoppedAt)
     const btnClasses = 'btn-large waves-effect waves-light'
-
     return (
       <div>
         <h1 id="timer">{timeFormatter(elapsed)}</h1>
