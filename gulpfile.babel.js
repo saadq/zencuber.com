@@ -107,13 +107,13 @@ gulp.task('watch-styles', () => {
   gulp.watch('src/client/styles/**/*.sass', ['styles'])
 })
 
-gulp.task('lint', () => {
-  return gulp
+gulp.task('lint', () => (
+  gulp
     .src(['src/**/*.js', '!node_modules/**', '!**/assets/**'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
-})
+))
 
 gulp.task('assets', () => {
   gulp
@@ -134,7 +134,7 @@ gulp.task('assets', () => {
 })
 
 gulp.task('clean', () => del(['dist']))
-gulp.task('build', ['lint', 'scripts', 'styles', 'assets'])
+gulp.task('build', ['assets', 'styles', 'lint', 'scripts'])
 gulp.task('watch', ['watch-scripts', 'watch-styles'])
 
 gulp.task('default', ['build'])

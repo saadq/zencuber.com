@@ -32,7 +32,7 @@
     "comma-dangle": 2,                    // Don't allow trailing commas
     "curly": 2,                           // Require curly braces for control flow statements
     "eqeqeq": 2,                          // Require the use of triple-equals comparison
-    "key-spacing": 2,                     // Require space should be after colon, and not before it
+    "key-spacing": 1,                     // Warn if space before colon
     "react/jsx-uses-vars": 2,             // Prevent variables in JSX to incorrectly be marked as unused
     "react/jsx-uses-react": 2,            // Prevent 'React' in JSX to incorrectly be marked as unused
     "react/jsx-no-undef": 2,              // Don't allow undeclared variables in JSX
