@@ -7,7 +7,7 @@ import TimerMode from '../components/TimerMode'
 import InspectionTime from '../components/InspectionTime'
 import RecentTimes from '../components/RecentTimes'
 
-const App = ({ algorithm }) => (
+const App = ({ algorithm, allTimes }) => (
   <div>
     <Nav />
     <div className="container">
@@ -21,7 +21,7 @@ const App = ({ algorithm }) => (
           <InspectionTime />
         </div>
         <div className="col s10 offset-s1 l3">
-          <RecentTimes />
+          <RecentTimes allTimes={allTimes} />
         </div>
       </div>
     </div>
@@ -29,11 +29,13 @@ const App = ({ algorithm }) => (
 )
 
 App.propTypes = {
-  algorithm: PropTypes.string.isRequired
+  algorithm: PropTypes.string.isRequired,
+  allTimes: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  algorithm: state.algorithm
+  algorithm: state.algorithm,
+  allTimes: state.allTimes
 })
 
 export default connect(mapStateToProps)(App)

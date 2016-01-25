@@ -1,19 +1,24 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { PropTypes } from 'react'
+
+const buttonClasses = 'btn-large waves-effect <waves-light></waves-light>'
+const iconClasses = 'material-icons right'
+const icon = 'close'
 
 const RecentTimes = ({ allTimes }) => (
   <div>
     <ul id="times">
       <h3>Recent Times</h3>
       <hr />
-      {allTimes.map((time, i) => <li key={i}>{time}</li>)}
+      {allTimes.map((time, i) => (
+        <li key={i}>{time}<i data-key={i} className={iconClasses}>{icon}</i></li>)
+      )}
     </ul>
-    <button id="clear" className="btn-large waves-effect waves-light">Clear</button>
+    <button id="clear" className={buttonClasses}>Clear</button>
   </div>
 )
 
-const mapStateToProps = (state) => ({
-  allTimes: state.allTimes
-})
+RecentTimes.propTypes = {
+  allTimes: PropTypes.array.isRequired
+}
 
-export default connect(mapStateToProps)(RecentTimes)
+export default RecentTimes
