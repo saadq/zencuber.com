@@ -1,20 +1,11 @@
-import { START_TIMER, STOP_TIMER, RESET_TIMER } from '../constants'
+import { startTimer, stopTimer, resetTimer } from './TimerActions'
+import { addTime, removeTime, clearTimes } from './RecentTimesActions'
 
-export function startTimer(time) {
-  return {
-    type: START_TIMER,
-    time
-  }
-}
-
-export function stopTimer() {
-  return {
-    type: STOP_TIMER
-  }
-}
-
-export function resetTimer() {
-  return {
-    type: RESET_TIMER
-  }
+export {
+  startTimer,
+  stopTimer,
+  resetTimer,
+  addTime,
+  removeTime,
+  clearTimes
 }
