@@ -4,7 +4,7 @@ const initialState = {
   isOn: false,
   algorithm: generateScramble(),
   time: 0,
-  allTimes: ['00 : 30 . 23']
+  allTimes: []
 }
 
 const timer = (state = initialState, action) => {
@@ -26,7 +26,10 @@ const timer = (state = initialState, action) => {
       }
 
     case 'RESET_TIMER':
-      return initialState
+      return {
+        ...initialState,
+        allTimes: state.allTimes
+      }
 
     default:
       return state

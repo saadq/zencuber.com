@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { startTimer, stopTimer, resetTimer } from '../actions'
+import * as TimerActions from '../actions'
 import { timeFormatter, getElapsedTime } from '../../util'
 
 class Timer extends React.Component {
@@ -11,7 +12,6 @@ class Timer extends React.Component {
     const button = findDOMNode(this.refs.btn)
     let justStopped = false
 
-    // Start timer as soon as space bar is released
     window.addEventListener('keyup', (event) => {
       event.preventDefault()
       if (event.which === 32 && !this.props.isOn) {
@@ -23,12 +23,13 @@ class Timer extends React.Component {
       }
     })
 
-    // Stop timer as soon as spacebar is pressed
     window.addEventListener('keydown', (event) => {
-      event.preventDefault()
-      if (event.which === 32 && this.props.isOn) {
-        justStopped = true
-        button.click()
+      if (event.which === 32) {
+        event.preventDefault()
+        if (this.props.isOn) {
+          justStopped = true
+          button.click()
+        }
       }
     })
   }
@@ -38,12 +39,12 @@ class Timer extends React.Component {
   }
 
   click() {
-    const { isOn, time, startedAt, stoppedAt } = this.props
+    const { isOn, time, startedAt, stoppedAt, actions } = this.props
     const elapsed = getElapsedTime(time, startedAt, stoppedAt)
 
     isOn
-      ? this.props.stopTimer()
-      : this.props.startTimer(elapsed)
+      ? actions.stopTimer()
+      : actions.startTimer(elapsed)
   }
 
   render() {
@@ -61,11 +62,26 @@ class Timer extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { isOn, time, startedAt, stoppedAt } = state
-  return { isOn, time, startedAt, stoppedAt }
+Timer.propTypes = {
+  actions: PropTypes.object.isRequired,
+  isOn: PropTypes.bool.isRequired,
+  time: PropTypes.number.isRequired,
+  startedAt: PropTypes.number,
+  stoppedAt: PropTypes.number
 }
 
-export default connect(mapStateToProps, {
-  startTimer, stopTimer, resetTimer
-})(Timer)
+const mapStateToProps = (state) => ({
+  isOn: state.isOn,
+  time: state.time,
+  startedAt: state.startedAt,
+  stoppedAt: state.stoppedAt
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(TimerActions, dispatch)
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Timer)

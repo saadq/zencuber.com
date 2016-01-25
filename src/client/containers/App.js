@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import Timer from './Timer'
 import Nav from '../components/Nav'
 import Scramble from '../components/Scramble'
-import Timer from '../components/Timer'
 import TimerMode from '../components/TimerMode'
 import InspectionTime from '../components/InspectionTime'
 import RecentTimes from '../components/RecentTimes'
 
-const App = () => (
+const App = ({ algorithm }) => (
   <div>
     <Nav />
     <div className="container">
       <div className="row center">
         <div className="col s12 l9">
-          <Scramble />
+          <Scramble algorithm={algorithm} />
           <Timer />
         </div>
         <div id="settings">
@@ -27,4 +28,12 @@ const App = () => (
   </div>
 )
 
-export default App
+App.propTypes = {
+  algorithm: PropTypes.string.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  algorithm: state.algorithm
+})
+
+export default connect(mapStateToProps)(App)
