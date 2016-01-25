@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const buttonClasses = 'btn-large waves-effect <waves-light></waves-light>'
+const buttonClasses = 'btn-large waves-effect waves-light'
 const iconClasses = 'material-icons right'
 const icon = 'close'
 
