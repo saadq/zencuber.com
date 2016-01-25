@@ -58,3 +58,7 @@ export function generateScramble() {
 
   return scramble.join(' ')
 }
+
+export function isSpaceKey(keyCode) {
+  return keyCode === 32
+}
