@@ -1,38 +1,13 @@
-import React, { PropTypes } from 'react'
-import { findDOMNode } from 'react-dom'
+import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import Stopwatch from '../components/Stopwatch'
 import * as TimerActions from '../actions'
-import { timeFormatter, getElapsedTime } from '../../util'
+import { getElapsedTime } from '../../util'
 
-class Timer extends React.Component {
+class Timer extends Component {
   componentDidMount() {
     setInterval(() => this.forceUpdate(), 1)
-
-    const button = findDOMNode(this.refs.btn)
-    let { isOn } = this.props
-    let pause = false
-
-    window.addEventListener('keyup', (event) => {
-      event.preventDefault()
-      if (event.which === 32 && !isOn) {
-        if (pause) {
-          pause = false
-          return
-        }
-        button.click()
-      }
-    })
-
-    window.addEventListener('keydown', (event) => {
-      if (event.which === 32) {
-        event.preventDefault()
-        if (isOn) {
-          pause = true
-          button.click()
-        }
-      }
-    })
   }
 
   componentWillUnmount() {
@@ -51,14 +26,9 @@ class Timer extends React.Component {
   render() {
     const { isOn, time, startedAt, stoppedAt } = this.props
     const elapsed = getElapsedTime(time, startedAt, stoppedAt)
-    const btnClasses = 'btn-large waves-effect waves-light'
+
     return (
-      <div>
-        <h1 id="timer">{timeFormatter(elapsed)}</h1>
-        <button ref="btn" onClick={this.click.bind(this)} id="timer-button" className={btnClasses}>
-          {isOn ? 'Stop' : 'Start'}
-        </button>
-      </div>
+      <Stopwatch click={this.click.bind(this)} elapsed={elapsed} isOn={isOn} />
     )
   }
 }
