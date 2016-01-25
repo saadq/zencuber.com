@@ -11,13 +11,13 @@ class Timer extends React.Component {
 
     const button = findDOMNode(this.refs.btn)
     let { isOn } = this.props
-    let justStopped = false
+    let pause = false
 
     window.addEventListener('keyup', (event) => {
       event.preventDefault()
       if (event.which === 32 && !isOn) {
-        if (justStopped) {
-          justStopped = false
+        if (pause) {
+          pause = false
           return
         }
         button.click()
@@ -28,7 +28,7 @@ class Timer extends React.Component {
       if (event.which === 32) {
         event.preventDefault()
         if (isOn) {
-          justStopped = true
+          pause = true
           button.click()
         }
       }
