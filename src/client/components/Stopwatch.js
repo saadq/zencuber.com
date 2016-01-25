@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
 import { timeFormatter } from '../../util'
 
@@ -42,6 +42,12 @@ class Stopwatch extends Component {
       </div>
     )
   }
+}
+
+Stopwatch.propTypes = {
+  isOn: PropTypes.bool.isRequired,
+  elapsed: PropTypes.number.isRequired,
+  click: PropTypes.func.isRequired
 }
 
 export default Stopwatch
