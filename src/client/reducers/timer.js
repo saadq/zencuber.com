@@ -3,7 +3,6 @@ import { generateScramble } from '../../util'
 const initialState = {
   isOn: false,
   algorithm: generateScramble(),
-  time: 0,
   allTimes: []
 }
 
@@ -23,12 +22,6 @@ const timer = (state = initialState, action) => {
         isOn: false,
         stoppedAt: Date.now(),
         algorithm: generateScramble()
-      }
-
-    case 'RESET_TIMER':
-      return {
-        ...initialState,
-        allTimes: state.allTimes
       }
 
     default:

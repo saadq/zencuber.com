@@ -1,11 +1,15 @@
-import { startTimer, stopTimer, resetTimer } from './TimerActions'
+import { startTimer, stopTimer } from './TimerActions'
 import { addTime, removeTime, clearTimes } from './RecentTimesActions'
+import { changeMode, changeInspection } from './RecentTimesActions'
 
 export {
   startTimer,
   stopTimer,
-  resetTimer,
+
   addTime,
   removeTime,
-  clearTimes
+  clearTimes,
+
+  changeMode,
+  changeInspection
 }

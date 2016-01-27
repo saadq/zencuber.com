@@ -23,8 +23,8 @@ export function timeFormatter(milliseconds) {
   return `${minutes} : ${seconds} . ${centiseconds}`
 }
 
-export function getElapsedTime(time, startedAt, stoppedAt = Date.now()) {
-   return startedAt ? (stoppedAt - startedAt + time) : 0
+export function getElapsedTime(startedAt, stoppedAt = Date.now()) {
+  return startedAt ? (stoppedAt - startedAt) : 0
 }
 
 export function generateScramble() {

@@ -15,16 +15,24 @@ class Timer extends Component {
     clearInterval(this.interval)
   }
 
-  click() {
-    const { isOn, actions } = this.props
-    const { startTimer, stopTimer } = actions
+  start() {
+    const { actions } = this.props
+    actions.startTimer()
+  }
 
-    isOn ? stopTimer() : startTimer()
+  stop() {
+    const { actions } = this.props
+    actions.stopTimer()
+  }
+
+  click() {
+    const { isOn } = this.props
+    isOn ? this.stop() : this.start()
   }
 
   render() {
-    const { isOn, time, startedAt, stoppedAt } = this.props
-    const elapsed = getElapsedTime(time, startedAt, stoppedAt)
+    const { isOn, startedAt, stoppedAt } = this.props
+    const elapsed = getElapsedTime(startedAt, stoppedAt)
 
     return (
       <div>
@@ -38,14 +46,12 @@ class Timer extends Component {
 Timer.propTypes = {
   actions: PropTypes.object.isRequired,
   isOn: PropTypes.bool.isRequired,
-  time: PropTypes.number.isRequired,
   startedAt: PropTypes.number,
   stoppedAt: PropTypes.number
 }
 
 const mapStateToProps = (state) => ({
   isOn: state.isOn,
-  time: state.time,
   startedAt: state.startedAt,
   stoppedAt: state.stoppedAt
 })
