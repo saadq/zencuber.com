@@ -16,11 +16,10 @@ class Timer extends Component {
   }
 
   click() {
-    const { isOn, time, startedAt, stoppedAt, actions } = this.props
+    const { isOn, actions } = this.props
     const { startTimer, stopTimer } = actions
-    const elapsed = getElapsedTime(time, startedAt, stoppedAt)
 
-    isOn ? stopTimer() : startTimer(elapsed)
+    isOn ? stopTimer() : startTimer()
   }
 
   render() {

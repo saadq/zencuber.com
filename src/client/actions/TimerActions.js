@@ -1,9 +1,8 @@
 import { START_TIMER, STOP_TIMER, RESET_TIMER } from '../constants'
 
-export function startTimer(time) {
+export function startTimer() {
   return {
-    type: START_TIMER,
-    time
+    type: START_TIMER
   }
 }
 
