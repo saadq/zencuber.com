@@ -37,7 +37,7 @@ class Timer extends Component {
     return (
       <div>
         <ElapsedTime elapsed={elapsed} />
-        <TimerButton isOn={isOn} click={this.click.bind(this)} />
+        <TimerButton isOn={isOn} click={() => this.click()} />
       </div>
     )
   }
