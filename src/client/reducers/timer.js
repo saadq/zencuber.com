@@ -4,7 +4,7 @@ const initialState = {
   isOn: false,
   algorithm: generateScramble(),
   time: 0,
-  allTimes: ['00 : 32 . 14']
+  allTimes: []
 }
 
 const timer = (state = initialState, action) => {
@@ -13,7 +13,8 @@ const timer = (state = initialState, action) => {
       return {
         ...state,
         isOn: true,
-        startedAt: Date.now()
+        startedAt: Date.now(),
+        stoppedAt: undefined
       }
 
     case 'STOP_TIMER':
