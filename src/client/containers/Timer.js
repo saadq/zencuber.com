@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Stopwatch from '../components/Stopwatch'
+import ElapsedTime from '../components/ElapsedTime'
+import TimerButton from '../components/TimerButton'
 import * as TimerActions from '../actions'
 import { getElapsedTime } from '../../util'
 
 class Timer extends Component {
   componentDidMount() {
-    setInterval(() => this.forceUpdate(), 1)
+    this.interval = setInterval(() => this.forceUpdate(), 1)
   }
 
   componentWillUnmount() {
@@ -16,11 +17,10 @@ class Timer extends Component {
 
   click() {
     const { isOn, time, startedAt, stoppedAt, actions } = this.props
+    const { startTimer, stopTimer } = actions
     const elapsed = getElapsedTime(time, startedAt, stoppedAt)
 
-    isOn
-      ? actions.stopTimer()
-      : actions.startTimer(elapsed)
+    isOn ? stopTimer() : startTimer(elapsed)
   }
 
   render() {
@@ -28,7 +28,10 @@ class Timer extends Component {
     const elapsed = getElapsedTime(time, startedAt, stoppedAt)
 
     return (
-      <Stopwatch click={this.click.bind(this)} elapsed={elapsed} isOn={isOn} />
+      <div>
+        <ElapsedTime elapsed={elapsed} />
+        <TimerButton isOn={isOn} click={this.click.bind(this)} />
+      </div>
     )
   }
 }

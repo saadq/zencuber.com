@@ -37,10 +37,11 @@ class TimerButton extends Component {
 
   render() {
     const btnClasses = 'btn-large waves-effect waves-light'
+    const btnId = 'timer-button'
     const { isOn, click } = this.props
 
     return (
-      <button ref="btn" onClick={click} id="timer-button" className={btnClasses}>
+      <button ref="btn" onClick={click} id={btnId} className={btnClasses}>
         {isOn ? 'Stop' : 'Start'}
       </button>
     )
