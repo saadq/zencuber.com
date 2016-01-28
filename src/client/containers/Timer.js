@@ -21,8 +21,10 @@ class Timer extends Component {
   }
 
   stop() {
-    const { actions } = this.props
+    const { actions, startedAt, stoppedAt } = this.props
+    const time = getElapsedTime(startedAt, stoppedAt)
     actions.stopTimer()
+    actions.addTime(time)
   }
 
   click() {
@@ -32,11 +34,11 @@ class Timer extends Component {
 
   render() {
     const { isOn, startedAt, stoppedAt } = this.props
-    const elapsed = getElapsedTime(startedAt, stoppedAt)
+    const time = getElapsedTime(startedAt, stoppedAt)
 
     return (
       <div>
-        <ElapsedTime elapsed={elapsed} />
+        <ElapsedTime elapsed={time} />
         <TimerButton isOn={isOn} click={() => this.click()} />
       </div>
     )
