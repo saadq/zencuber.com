@@ -17,18 +17,21 @@ class Timer extends Component {
 
   start() {
     const { actions } = this.props
+
     actions.startTimer()
   }
 
   stop() {
     const { actions, startedAt, stoppedAt } = this.props
     const time = getElapsedTime(startedAt, stoppedAt)
+
     actions.stopTimer()
     actions.addTime(time)
   }
 
   click() {
     const { isOn } = this.props
+
     isOn ? this.stop() : this.start()
   }
 
