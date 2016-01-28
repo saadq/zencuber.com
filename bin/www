@@ -3,14 +3,8 @@
 import server from '../src/server'
 const port = process.env.PORT || 3000
 
-/**
- * Set the port
- */
 server.set('port', port)
 
-/**
- * Start the server
- */
 server.listen(port, () => {
   console.log(`Server listening on port ${server.get('port')}...`)
 })
