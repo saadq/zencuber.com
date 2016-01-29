@@ -3,15 +3,15 @@ import { timeFormatter } from '../../util'
 
 const buttonClasses = 'btn-large waves-effect waves-light'
 const iconClasses = 'material-icons right'
-const icon = 'close'
 
-const RecentTimes = ({ allTimes }) => (
+const RecentTimes = ({ times, removeTime }) => (
   <div>
     <ul id="times">
       <h3>Recent Times</h3>
       <hr />
-      {allTimes.map((time, i) => (
-        <li key={i}>{timeFormatter(time)}<i data-key={i} className={iconClasses}>{icon}</i></li>)
+      {times.map((time, i) =>
+        <li key={i}>{timeFormatter(time)}
+        <i onClick={() => removeTime(i)} data-key={i} className={iconClasses}>close</i></li>
       )}
     </ul>
     <button id="clear" className={buttonClasses}>Clear</button>
@@ -19,7 +19,7 @@ const RecentTimes = ({ allTimes }) => (
 )
 
 RecentTimes.propTypes = {
-  allTimes: PropTypes.array.isRequired
+  times: PropTypes.array.isRequired
 }
 
 export default RecentTimes

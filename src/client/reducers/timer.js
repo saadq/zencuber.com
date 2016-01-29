@@ -1,10 +1,10 @@
-import { START_TIMER, STOP_TIMER, ADD_TIME } from '../constants'
+import { START_TIMER, STOP_TIMER, ADD_TIME, REMOVE_TIME } from '../constants'
 import { generateScramble } from '../../util'
 
 const initialState = {
   isOn: false,
   algorithm: generateScramble(),
-  allTimes: []
+  times: []
 }
 
 const timer = (state = initialState, action) => {
@@ -28,7 +28,16 @@ const timer = (state = initialState, action) => {
     case ADD_TIME:
       return {
         ...state,
-        allTimes: [action.time, ...state.allTimes]
+        times: [action.newTime, ...state.times]
+      }
+
+    case REMOVE_TIME:
+      return {
+        ...state,
+        times: [
+          ...state.times.slice(0, action.id),
+          ...state.times.slice(action.id + 1)
+        ]
       }
 
     default:

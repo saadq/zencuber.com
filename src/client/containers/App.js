@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Timer from './Timer'
 import Nav from '../components/Nav'
@@ -6,8 +7,9 @@ import Scramble from '../components/Scramble'
 import TimerMode from '../components/TimerMode'
 import InspectionTime from '../components/InspectionTime'
 import RecentTimes from '../components/RecentTimes'
+import * as TimerActions from '../actions'
 
-const App = ({ algorithm, allTimes }) => (
+const App = ({ actions, algorithm, times }) => (
   <div>
     <Nav />
     <div className="container">
@@ -21,7 +23,10 @@ const App = ({ algorithm, allTimes }) => (
           <InspectionTime />
         </div>
         <div className="col s10 offset-s1 l3">
-          <RecentTimes allTimes={allTimes} />
+          <RecentTimes
+            removeTime={actions.removeTime}
+            times={times}
+          />
         </div>
       </div>
     </div>
@@ -30,12 +35,20 @@ const App = ({ algorithm, allTimes }) => (
 
 App.propTypes = {
   algorithm: PropTypes.string.isRequired,
-  allTimes: PropTypes.array.isRequired
+  times: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => ({
   algorithm: state.algorithm,
-  allTimes: state.allTimes
+  times: state.times
 })
 
-export default connect(mapStateToProps)(App)
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(TimerActions, dispatch)
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
