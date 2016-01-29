@@ -1,4 +1,5 @@
 import { START_TIMER, STOP_TIMER, ADD_TIME, REMOVE_TIME } from '../constants'
+import * as constants from '../constants'
 import { generateScramble } from '../../util'
 
 const initialState = {
@@ -35,8 +36,8 @@ const timer = (state = initialState, action) => {
       return {
         ...state,
         times: [
-          ...state.times.slice(0, action.id),
-          ...state.times.slice(action.id + 1)
+          ...state.times.slice(0, action.timeId),
+          ...state.times.slice(action.timeId + 1)
         ]
       }
 

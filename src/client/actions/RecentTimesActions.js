@@ -10,7 +10,7 @@ export function addTime(newTime) {
 export function removeTime(timeId) {
   return {
     type: REMOVE_TIME,
-    id: timeId
+    timeId
   }
 }
 
