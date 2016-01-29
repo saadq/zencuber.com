@@ -1,5 +1,4 @@
 import { START_TIMER, STOP_TIMER, ADD_TIME, REMOVE_TIME } from '../constants'
-import * as constants from '../constants'
 import { generateScramble } from '../../util'
 
 const initialState = {
