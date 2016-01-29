@@ -115,6 +115,10 @@ gulp.task('lint', () => (
     .pipe(eslint.failAfterError())
 ))
 
+gulp.task('watch-lint', () => {
+  gulp.watch(['src/**/*.js', '!node_modules/**', '!**/assets/**'], ['lint'])
+})
+
 gulp.task('assets', () => {
   gulp
     .src(assetPaths.fonts)
@@ -135,6 +139,6 @@ gulp.task('assets', () => {
 
 gulp.task('clean', () => del(['dist']))
 gulp.task('build', ['assets', 'styles', 'lint', 'scripts'])
-gulp.task('watch', ['watch-scripts', 'watch-styles'])
+gulp.task('watch', ['watch-scripts', 'watch-styles', 'watch-lint'])
 
 gulp.task('default', ['build'])
