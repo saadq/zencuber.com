@@ -27,7 +27,10 @@ const Nav = () => (
         <li><a href="/login/register">Register</a></li>
         <li className="divider"></li>
         <li><a href="/login/sign-in">Sign In</a></li>
-      </ul><a href="#" data-activates="nav-mobile" className="button-collapse"><i className="material-icons">menu</i></a>
+      </ul>
+      <a href="#" data-activates="nav-mobile" className="button-collapse">
+        <i className="material-icons">menu</i>
+      </a>
     </div>
   </nav>
 )
