@@ -11,7 +11,7 @@ const RecentTimes = ({ times, removeTime }) => (
       <hr />
       {times.map((time, i) =>
         <li key={i}>{timeFormatter(time)}
-        <i onClick={() => removeTime(i)} data-key={i} className={iconClasses}>close</i></li>
+        <i onClick={() => removeTime(i)} className={iconClasses}>close</i></li>
       )}
     </ul>
     <button id="clear" className={buttonClasses}>Clear</button>
@@ -19,7 +19,8 @@ const RecentTimes = ({ times, removeTime }) => (
 )
 
 RecentTimes.propTypes = {
-  times: PropTypes.array.isRequired
+  times: PropTypes.array.isRequired,
+  removeTime: PropTypes.func.isRequired
 }
 
 export default RecentTimes
