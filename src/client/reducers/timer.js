@@ -1,4 +1,4 @@
-import { START_TIMER, STOP_TIMER, ADD_TIME, REMOVE_TIME } from '../constants'
+import { START_TIMER, STOP_TIMER, ADD_TIME, REMOVE_TIME, CLEAR_TIMES } from '../constants'
 import { generateScramble } from '../../util'
 
 const initialState = {
@@ -38,6 +38,12 @@ const timer = (state = initialState, action) => {
           ...state.times.slice(0, action.timeId),
           ...state.times.slice(action.timeId + 1)
         ]
+      }
+
+    case CLEAR_TIMES:
+      return {
+        ...state,
+        times: []
       }
 
     default:

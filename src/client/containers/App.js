@@ -25,6 +25,7 @@ const App = ({ actions, algorithm, times }) => (
         <div className="col s10 offset-s1 l3">
           <RecentTimes
             removeTime={actions.removeTime}
+            clearTimes={actions.clearTimes}
             times={times}
           />
         </div>
@@ -42,7 +43,6 @@ const mapStateToProps = (state) => ({
   algorithm: state.algorithm,
   times: state.times
 })
-
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(TimerActions, dispatch)
