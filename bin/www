@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import server from '../src/server'
+require('babel-core/register')
+const server = require('../src/server')
 const port = process.env.PORT || 3000
 
 server.set('port', port)
