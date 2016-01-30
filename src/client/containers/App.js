@@ -19,8 +19,8 @@ const App = ({ actions, algorithm, times }) => (
           <Timer />
         </div>
         <div id="settings">
-          <TimerMode />
-          <InspectionTime />
+          <TimerMode changeMode={actions.changeMode} />
+          <InspectionTime changeInspection={actions.changeInspection} />
         </div>
         <div className="col s10 offset-s1 l3">
           <RecentTimes
@@ -35,6 +35,7 @@ const App = ({ actions, algorithm, times }) => (
 )
 
 App.propTypes = {
+  actions: PropTypes.object.isRequired,
   algorithm: PropTypes.string.isRequired,
   times: PropTypes.array.isRequired
 }

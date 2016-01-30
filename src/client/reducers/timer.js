@@ -1,10 +1,14 @@
-import { START_TIMER, STOP_TIMER, ADD_TIME, REMOVE_TIME, CLEAR_TIMES } from '../constants'
+import { START_TIMER, STOP_TIMER } from '../constants'
+import { ADD_TIME, REMOVE_TIME, CLEAR_TIMES } from '../constants'
+import { CHANGE_MODE, CHANGE_INSPECTION } from '../constants'
 import { generateScramble } from '../../util'
 
 const initialState = {
   isOn: false,
   algorithm: generateScramble(),
-  times: []
+  times: [],
+  mode: 'normal',
+  inspectionTime: 0
 }
 
 const timer = (state = initialState, action) => {
@@ -44,6 +48,18 @@ const timer = (state = initialState, action) => {
       return {
         ...state,
         times: []
+      }
+
+    case CHANGE_MODE:
+      return {
+        ...state,
+        mode: action.mode
+      }
+
+    case CHANGE_INSPECTION:
+      return {
+        ...state,
+        inspectionTime: action.inspectionTime
       }
 
     default:

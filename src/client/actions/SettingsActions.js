@@ -1,13 +1,15 @@
 import { CHANGE_MODE, CHANGE_INSPECTION } from '../constants'
 
-export function changeMode() {
+export function changeMode(mode) {
   return {
-    type: CHANGE_MODE
+    type: CHANGE_MODE,
+    mode
   }
 }
 
-export function changeInspection() {
+export function changeInspection(inspectionTime) {
   return {
-    type: CHANGE_INSPECTION
+    type: CHANGE_INSPECTION,
+    inspectionTime
   }
 }

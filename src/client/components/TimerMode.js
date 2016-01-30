@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 class TimerMode extends React.Component {
   componentDidMount() {
-    $(this.refs.mode).material_select()
+    const timerMode = $(this.refs.timerMode)
+    $(timerMode).material_select()
+    $(timerMode).on('change', this.onChange.bind(this))
+  }
+
+  onChange(e) {
+    const mode = e.target.value
+    this.props.changeMode(mode)
   }
 
   render() {
-    let classes = 'input-field col s10 offset-s1 l3'
+    const classes = 'input-field col s10 offset-s1 l3'
 
     return (
       <div className={classes}>
-        <select ref="mode">
+        <select ref="timerMode">
           <option value='normal'>Normal</option>
           <option value='beginner'>Layer by Layer</option>
           <option value='cfop'>CFOP</option>
@@ -20,6 +27,10 @@ class TimerMode extends React.Component {
       </div>
     )
   }
+}
+
+TimerMode.propTypes = {
+  changeMode: PropTypes.func.isRequired
 }
 
 export default TimerMode
