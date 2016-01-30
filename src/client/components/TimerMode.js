@@ -1,10 +1,8 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
 class TimerMode extends React.Component {
   componentDidMount() {
-    let $modeDropdown = $(ReactDOM.findDOMNode(this.refs.mode))
-    $modeDropdown.on('change', this.props.change)
+    $(this.refs.mode).material_select()
   }
 
   render() {

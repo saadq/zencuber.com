@@ -1,8 +1,3 @@
-export function initMaterialize() {
-  $('select').material_select()
-  $('.button-collapse').sideNav()
-}
-
 export function repeat(times, callback) {
   for (let i = 0; i < times; i++) {
     callback(i)

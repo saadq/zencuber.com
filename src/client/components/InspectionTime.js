@@ -1,10 +1,8 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
 class InspectionTime extends React.Component {
   componentDidMount() {
-    let $inspectionDropdown = $(ReactDOM.findDOMNode(this.refs.inspection))
-    $inspectionDropdown.on('change', this.props.change)
+    $(this.refs.inspection).material_select()
   }
 
   render() {
