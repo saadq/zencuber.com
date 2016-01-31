@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Timer from './Timer'
+import TimerContainer from './TimerContainer'
 import Nav from '../components/Nav'
 import Scramble from '../components/Scramble'
 import TimerMode from '../components/TimerMode'
@@ -16,7 +16,7 @@ const App = ({ actions, algorithm, times }) => (
       <div className="row center">
         <div className="col s12 l9">
           <Scramble algorithm={algorithm} />
-          <Timer />
+          <TimerContainer />
         </div>
         <div id="settings">
           <TimerMode changeMode={actions.changeMode} />

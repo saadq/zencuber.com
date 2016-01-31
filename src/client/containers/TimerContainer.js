@@ -6,7 +6,7 @@ import TimerButton from '../components/TimerButton'
 import * as TimerActions from '../actions'
 import { getElapsedTime } from '../../util'
 
-class Timer extends Component {
+class TimerContainer extends Component {
   componentDidMount() {
     this.interval = setInterval(() => this.forceUpdate(), 1)
   }
@@ -48,7 +48,7 @@ class Timer extends Component {
   }
 }
 
-Timer.propTypes = {
+TimerContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   isOn: PropTypes.bool.isRequired,
   startedAt: PropTypes.number,
@@ -68,4 +68,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Timer)
+)(TimerContainer)
