@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react'
+const $ = window.$
 
 class InspectionTime extends React.Component {
   componentDidMount() {
-    const inspectionTime = $(this.refs.inspectionTime)
-    $(inspectionTime).material_select()
-    $(inspectionTime).on('change', this.onChange.bind(this))
+    const $inspectionTime = $(this.refs.inspectionTime)
+    $inspectionTime.material_select()
+    $inspectionTime.on('change', this.onChange.bind(this))
   }
 
   onChange(e) {

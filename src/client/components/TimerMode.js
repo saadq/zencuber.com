@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react'
+const $ = window.$
 
 class TimerMode extends React.Component {
   componentDidMount() {
-    const timerMode = $(this.refs.timerMode)
-    $(timerMode).material_select()
-    $(timerMode).on('change', this.onChange.bind(this))
+    const $timerMode = $(this.refs.timerMode)
+    $timerMode.material_select()
+    $timerMode.on('change', this.onChange.bind(this))
   }
 
   onChange(e) {
