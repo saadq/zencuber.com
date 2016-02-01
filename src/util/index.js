@@ -37,9 +37,9 @@ export function generateScramble() {
       let n = Math.floor(Math.random() * (numFaces - 1)) + 1
       randIndex = (lastIndex + n) % numFaces
     } while (
-      ((lastIndex % 3) === (randIndex % 3)) &&
+      (lastIndex % 3) === (randIndex % 3) &&
       turns[i - 2] &&
-      ((turns[i - 2].face % 3) === (randIndex % 3 ))
+      (turns[i - 2].face % 3) === (randIndex % 3)
     )
 
     lastIndex = randIndex
