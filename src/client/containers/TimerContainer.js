@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import ElapsedTime from '../components/ElapsedTime'
+import TimeDisplay from '../components/TimeDisplay'
 import TimerButton from '../components/TimerButton'
 import * as TimerActions from '../actions'
 import { getElapsedTime } from '../../util'
@@ -41,7 +41,7 @@ class TimerContainer extends Component {
 
     return (
       <div>
-        <ElapsedTime elapsed={time} />
+        <TimeDisplay elapsed={time} />
         <TimerButton isOn={isOn} click={() => this.click()} />
       </div>
     )
