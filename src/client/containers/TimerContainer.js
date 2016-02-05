@@ -34,14 +34,14 @@ class TimerContainer extends Component {
   }
 
   render() {
-    const { isOn, mode, startedAt, stoppedAt } = this.props
+    const { isOn, mode, breakpoints, startedAt, stoppedAt } = this.props
     const time = getElapsedTime(startedAt, stoppedAt)
 
     return (
       <div>
         <TimeDisplay elapsed={time} />
         <TimerButton isOn={isOn} click={() => this.click()} />
-        { mode !== 'normal' ? <Breakpoints mode={mode} /> : null }
+        { mode !== 'normal' ? <Breakpoints times={breakpoints} mode={mode} /> : null }
       </div>
     )
   }
@@ -51,6 +51,7 @@ TimerContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   isOn: PropTypes.bool.isRequired,
   mode: PropTypes.string.isRequired,
+  breakpoints: PropTypes.array.isRequired,
   startedAt: PropTypes.number,
   stoppedAt: PropTypes.number
 }
@@ -58,6 +59,7 @@ TimerContainer.propTypes = {
 const mapStateToProps = (state) => ({
   isOn: state.isOn,
   mode: state.mode,
+  breakpoints: state.breakpoints,
   startedAt: state.startedAt,
   stoppedAt: state.stoppedAt
 })

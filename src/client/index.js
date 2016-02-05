@@ -10,3 +10,6 @@ render(
   </Provider>,
   document.getElementById('app')
 )
+
+// Used for development
+window.s = () => console.log(store.getState())

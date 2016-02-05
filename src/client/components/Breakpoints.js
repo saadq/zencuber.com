@@ -12,7 +12,7 @@ class Breakpoints extends Component {
 
   render() {
     return (
-      <BreakpointsDisplay steps={this.getSteps()} />
+      <BreakpointsDisplay times={this.props.times} steps={this.getSteps()} />
     )
   }
 }

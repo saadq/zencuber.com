@@ -1,4 +1,4 @@
-import { START_TIMER, STOP_TIMER } from '../constants'
+import { START_TIMER, STOP_TIMER, START_BREAKPOINT } from '../constants'
 
 export function startTimer() {
   return {
@@ -9,5 +9,11 @@ export function startTimer() {
 export function stopTimer() {
   return {
     type: STOP_TIMER
+  }
+}
+
+export function startBreakpoint() {
+  return {
+    type: START_BREAKPOINT
   }
 }
