@@ -5,7 +5,6 @@ import TimerContainer from './TimerContainer'
 import Nav from '../components/Nav'
 import Scramble from '../components/Scramble'
 import TimerMode from '../components/TimerMode'
-import InspectionTime from '../components/InspectionTime'
 import RecentTimes from '../components/RecentTimes'
 import * as TimerActions from '../actions'
 
@@ -20,7 +19,6 @@ const App = ({ actions, algorithm, times }) => (
         </div>
         <div id="settings">
           <TimerMode changeMode={actions.changeMode} />
-          <InspectionTime changeInspection={actions.changeInspection} />
         </div>
         <div className="col s10 offset-s1 l3">
           <RecentTimes
