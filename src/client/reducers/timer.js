@@ -7,8 +7,7 @@ const initialState = {
   isOn: false,
   algorithm: generateScramble(),
   times: [],
-  mode: 'normal',
-  breakpoints: [{}, {}, {}, {}]
+  mode: 'normal'
 }
 
 const timer = (state = initialState, action) => {
@@ -79,7 +78,9 @@ const timer = (state = initialState, action) => {
     case CHANGE_MODE:
       return {
         ...state,
-        mode: action.mode
+        mode: action.mode,
+        breakpointsOn: action.mode !== 'normal',
+        currStep: action.mode !== 'normal' ? 0 : undefined
       }
 
     default:

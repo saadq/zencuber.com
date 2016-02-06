@@ -17,7 +17,7 @@ const BreakpointsDisplay = ({ steps, times }) => (
 
 BreakpointsDisplay.propTypes = {
   steps: PropTypes.array.isRequired,
-  times: PropTypes.array.isRequired
+  times: PropTypes.array
 }
 
 export default BreakpointsDisplay

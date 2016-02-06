@@ -4,12 +4,18 @@ import { getElapsedTime, timeFormatter } from '../../util'
 class BreakpointTimer extends Component {
   render() {
     const { times, timeId } = this.props
-    const { startedAt, stoppedAt } = times[timeId]
-    const elapsed = getElapsedTime(startedAt, stoppedAt)
-    const time = timeFormatter(elapsed)
+    let display
+
+    if (times) {
+      const { startedAt, stoppedAt } = times[timeId]
+      const elapsed = getElapsedTime(startedAt, stoppedAt)
+      display = timeFormatter(elapsed)
+    } else {
+      display = '00 : 00 . 00'
+    }
 
     return (
-      <span key={this.props.timeId}>{time}</span>
+      <span key={this.props.timeId}>{display}</span>
     )
   }
 }
