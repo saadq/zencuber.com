@@ -4,7 +4,7 @@
   "author": "Saad Quadri",
   "license": "MIT",
   "scripts": {
-    "start": "babel-node ./bin/www",
+    "start": "node ./bin/www",
     "rebuild": "gulp clean && gulp build"
   },
   "dependencies": {
