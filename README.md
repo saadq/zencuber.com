@@ -1,6 +1,8 @@
 # Flow
 A sleek, minimal Rubik's Cube timer that provides data-visualization for a user's stats.
 
+** Currently in development **
+
 ![](flow.png)
 
 ## Downloading
@@ -14,16 +16,11 @@ $ git clone git@github.com:saadq/flow-timer.git
 ```
 
 ## Building
-Inside the downloaded project folder, do the following:
+Inside the root project folder, do the following:
 ```
 $ npm install
-$ gulp clean
 $ gulp build
 ```
-You could also just run `gulp` to build all the necessary files.
-
-## Developing
-After running `gulp watch`, you can make modifications to the sass and js files, and they will create the appropriate output files automatically.
 
 ## Starting the App
 Run the following command from anywhere inside the project folder:
@@ -31,7 +28,10 @@ Run the following command from anywhere inside the project folder:
 $ npm run start
 ```
 
-Then just head over to `localhost:3000`.
+Then just head over to [`localhost:3000`](http://localhost:3000).
+
+## Developing
+After running `gulp watch`, you can make modifications to the sass and js files, and they will create the appropriate output files automatically.
 
 ## License
 MIT
