@@ -8,7 +8,6 @@ import browserify from 'browserify'
 import watchify from 'watchify'
 import babelify from 'babelify'
 import envify from 'envify'
-import livereactload from 'livereactload'
 import eslint from 'gulp-eslint'
 import del from 'del'
 
@@ -39,7 +38,6 @@ function createBundler() {
   const bundler = browserify({
     entries: [jsPaths.src],
     transform: [ [babelify, {}], [envify, {}] ],
-    plugin: (isProd || !watch) ? [] : [ livereactload ],
     debug: !isProd,
     cache: {},
     packageCache: {},
