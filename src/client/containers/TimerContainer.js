@@ -31,26 +31,28 @@ class TimerContainer extends Component {
   }
 
   click() {
-    const { actions, isOn, breakpoints, breakpointsOn, currStep } = this.props
+    const { actions, isOn, breakpoints, breakpointsOn, step } = this.props
     const finalStep = 3
+
+    console.log(`Step: ${step}`)
 
     if (!isOn) {
       this.start()
-    } else if (breakpointsOn && currStep !== finalStep) {
-      actions.startBreakpoint(currStep)
+    } else if (breakpointsOn && step !== finalStep) {
+      actions.startBreakpoint(step)
     } else {
       this.stop()
     }
   }
 
   render() {
-    const { actions, isOn, mode, breakpoints, startedAt, stoppedAt } = this.props
+    const { actions, isOn, mode, breakpoints, step, startedAt, stoppedAt } = this.props
     const time = getElapsedTime(startedAt, stoppedAt)
 
     return (
       <div>
         <TimeDisplay elapsed={time} />
-        <TimerButton isOn={isOn} click={() => this.click()} />
+        <TimerButton step={step} isOn={isOn} click={() => this.click()} />
         { mode !== 'normal' ?
           <Breakpoints start={actions.startBreakpoint} times={breakpoints} mode={mode} />
           : null }
@@ -65,7 +67,7 @@ TimerContainer.propTypes = {
   mode: PropTypes.string.isRequired,
   breakpoints: PropTypes.array,
   breakpointsOn: PropTypes.bool,
-  currStep: PropTypes.number,
+  step: PropTypes.number,
   startedAt: PropTypes.number,
   stoppedAt: PropTypes.number
 }
@@ -75,7 +77,7 @@ const mapStateToProps = (state) => ({
   mode: state.mode,
   breakpointsOn: state.breakpointsOn,
   breakpoints: state.breakpoints,
-  currStep: state.currStep,
+  step: state.step,
   startedAt: state.startedAt,
   stoppedAt: state.stoppedAt
 })

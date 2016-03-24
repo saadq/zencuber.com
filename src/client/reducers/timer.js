@@ -7,7 +7,8 @@ const initialState = {
   isOn: false,
   algorithm: generateScramble(),
   times: [],
-  mode: 'normal'
+  mode: 'normal',
+  step: 0
 }
 
 const timer = (state = initialState, action) => {
@@ -26,14 +27,14 @@ const timer = (state = initialState, action) => {
         isOn: false,
         stoppedAt: Date.now(),
         algorithm: generateScramble(),
-        currStep: state.mode !== 'normal' ? 0 : undefined
+        step: 0
       }
 
     case START_BREAKPOINT:
-      console.log(state.currStep)
       return {
         ...state,
-        currStep: state.currStep + 1
+        isOn: true,
+        step: state.step + 1
       }
 
     case STOP_BREAKPOINT:
@@ -75,7 +76,7 @@ const timer = (state = initialState, action) => {
         ...state,
         mode: action.mode,
         breakpointsOn: action.mode !== 'normal',
-        currStep: action.mode !== 'normal' ? 0 : undefined
+        step: 0
       }
 
     default:
