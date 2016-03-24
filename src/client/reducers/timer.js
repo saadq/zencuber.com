@@ -25,20 +25,15 @@ const timer = (state = initialState, action) => {
         ...state,
         isOn: false,
         stoppedAt: Date.now(),
-        algorithm: generateScramble()
+        algorithm: generateScramble(),
+        currStep: state.mode !== 'normal' ? 0 : undefined
       }
 
     case START_BREAKPOINT:
+      console.log(state.currStep)
       return {
         ...state,
-        breakpoints: [
-          ...state.breakpoints,
-          {
-            id: action.id,
-            startedAt: Date.now(),
-            stoppedAt: undefined
-          }
-        ]
+        currStep: state.currStep + 1
       }
 
     case STOP_BREAKPOINT:

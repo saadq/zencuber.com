@@ -1,20 +1,24 @@
-import React, { Component } from 'react'
-import BreakpointsDisplay from './BreakpointsDisplay'
+import React, { PropTypes } from 'react'
+import BreakpointTimer from './BreakpointTimer'
+import { getSteps } from '../../util'
 
-class Breakpoints extends Component {
-  getSteps() {
-    switch (this.props.mode) {
-      case 'beginner': return ['Layer 1', 'Layer 2', 'Edges', 'Corners']
-      case 'cfop': return ['Cross', 'F2L', 'OLL', 'PLL']
-      case 'roux': return ['Block 1', 'Block 2', 'CMLL', 'L6E']
-    }
-  }
+const classes = 'breakpoint col s6 m3'
 
-  render() {
-    return (
-      <BreakpointsDisplay times={this.props.times} steps={this.getSteps()} />
-    )
-  }
+const Breakpoints = ({ mode, times }) => (
+  <div>
+    {getSteps(mode).map((step, i) =>
+      <p key={i} className={classes}>
+        {step}
+        <br />
+        <BreakpointTimer times={times} timeId={i} />
+      </p>
+    )}
+  </div>
+)
+
+Breakpoints.propTypes = {
+  mode: PropTypes.string.isRequired,
+  times: PropTypes.array
 }
 
 export default Breakpoints

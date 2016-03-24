@@ -18,23 +18,26 @@ class TimerContainer extends Component {
 
   start() {
     const { actions } = this.props
+
     actions.startTimer()
   }
 
   stop() {
     const { actions, startedAt, stoppedAt } = this.props
     const time = getElapsedTime(startedAt, stoppedAt)
+
     actions.stopTimer()
     actions.addTime(time)
   }
 
   click() {
-    const { isOn, breakpointsOn, currStep } = this.props
+    const { actions, isOn, breakpoints, breakpointsOn, currStep } = this.props
+    const finalStep = 3
 
     if (!isOn) {
       this.start()
-    } else if (breakpointsOn) {
-
+    } else if (breakpointsOn && currStep !== finalStep) {
+      actions.startBreakpoint(currStep)
     } else {
       this.stop()
     }
@@ -61,6 +64,8 @@ TimerContainer.propTypes = {
   isOn: PropTypes.bool.isRequired,
   mode: PropTypes.string.isRequired,
   breakpoints: PropTypes.array,
+  breakpointsOn: PropTypes.bool,
+  currStep: PropTypes.number,
   startedAt: PropTypes.number,
   stoppedAt: PropTypes.number
 }
@@ -68,7 +73,9 @@ TimerContainer.propTypes = {
 const mapStateToProps = (state) => ({
   isOn: state.isOn,
   mode: state.mode,
+  breakpointsOn: state.breakpointsOn,
   breakpoints: state.breakpoints,
+  currStep: state.currStep,
   startedAt: state.startedAt,
   stoppedAt: state.stoppedAt
 })

@@ -57,3 +57,30 @@ export function generateScramble() {
 export function isSpaceKey(keyCode) {
   return keyCode === 32
 }
+
+export function getSteps(mode) {
+  switch (mode) {
+    case 'beginner':
+      return ['Layer 1', 'Layer 2', 'Edges', 'Corners']
+
+    case 'cfop':
+      return ['Cross', 'F2L', 'OLL', 'PLL']
+
+    case 'roux':
+      return ['Block 1', 'Block 2', 'CMLL', 'L6E']
+  }
+}
+
+export function getBreakpointDisplay(times, timeId) {
+  let display
+
+  if (times) {
+    const { startedAt, stoppedAt } = times[timeId]
+    const elapsed = getElapsedTime(startedAt, stoppedAt)
+    display = timeFormatter(elapsed)
+  } else {
+    display = '00 : 00 . 00'
+  }
+
+  return display
+}
