@@ -3,143 +3,54 @@
    * ESLint Plugins
    */
   "plugins": [
-    "react"
+    "react"                               // Use the react plugin to fix incorrect linting errors in JSX
   ],
 
    /**
     * ES6 Custom Settings
     */
   "ecmaFeatures": {
-    "jsx": true,
-    "modules": true,
-    "experimentalObjectRestSpread": true
+    "jsx": true,                          // Enable JSX syntax for React
+    "modules": true,                      // Enable ES6 modules
+    "experimentalObjectRestSpread": true  // Allow the usage of object rest/spread
   },
 
   /**
    * Environment Settings
    */
   "env": {
-    "browser": true,
-    "es6": true,
-    "jquery": true,
-    "node": true
+    "browser": true,                      // Enable browser globals
+    "es6": true,                          // Enable all other ES6 syntax
+    "jquery": true,                       // Recognize $ as a global variable
+    "node": true                          // Enable Node.js globals
   },
 
   /**
    * Linting Preferences
    */
   "rules": {
-    "react/jsx-uses-vars": 2,
-    "react/jsx-uses-react": 2,
-    "react/jsx-no-undef": 2,
-    "accessor-pairs": 2,
-    "arrow-parens": [2, "as-needed"],
-    "arrow-spacing": [2, { "before": true, "after": true }],
-    "block-spacing": [2, "always"],
-    "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
-    "comma-dangle": [2, "never"],
-    "comma-spacing": [2, { "before": false, "after": true }],
-    "comma-style": [2, "last"],
-    "constructor-super": 2,
-    "curly": [2, "multi-line"],
-    "dot-location": [2, "property"],
-    "eol-last": 2,
-    "eqeqeq": [2, "allow-null"],
-    "generator-star-spacing": [2, { "before": true, "after": true }],
-    "handle-callback-err": [2, "^(err|error)$" ],
-    "indent": [2, 2, { "SwitchCase": 1 }],
-    "jsx-quotes": [2, "prefer-single"],
-    "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
-    "keyword-spacing": [2, { "before": true, "after": true }],
-    "new-cap": [2, { "newIsCap": true, "capIsNew": false }],
-    "new-parens": 2,
-    "no-array-constructor": 2,
-    "no-caller": 2,
-    "no-class-assign": 2,
-    "no-cond-assign": 2,
-    "no-const-assign": 2,
-    "no-control-regex": 2,
-    "no-debugger": 2,
-    "no-delete-var": 2,
-    "no-dupe-args": 2,
-    "no-dupe-class-members": 2,
-    "no-dupe-keys": 2,
-    "no-duplicate-case": 2,
-    "no-empty-character-class": 2,
-    "no-empty-pattern": 2,
-    "no-eval": 2,
-    "no-ex-assign": 2,
-    "no-extend-native": 2,
-    "no-extra-bind": 2,
-    "no-extra-boolean-cast": 2,
-    "no-extra-parens": [2, "functions"],
-    "no-fallthrough": 2,
-    "no-floating-decimal": 2,
-    "no-func-assign": 2,
-    "no-implied-eval": 2,
-    "no-inner-declarations": [2, "functions"],
-    "no-invalid-regexp": 2,
-    "no-irregular-whitespace": 2,
-    "no-iterator": 2,
-    "no-label-var": 2,
-    "no-labels": [2, { "allowLoop": false, "allowSwitch": false }],
-    "no-lone-blocks": 2,
-    "no-mixed-spaces-and-tabs": 2,
-    "no-multi-spaces": 2,
-    "no-multi-str": 2,
-    "no-multiple-empty-lines": [2, { "max": 1 }],
-    "no-native-reassign": 2,
-    "no-negated-in-lhs": 2,
-    "no-new": 2,
-    "no-new-func": 2,
-    "no-new-object": 2,
-    "no-new-require": 2,
-    "no-new-symbol": 2,
-    "no-new-wrappers": 2,
-    "no-obj-calls": 2,
-    "no-octal": 2,
-    "no-octal-escape": 2,
-    "no-path-concat": 2,
-    "no-proto": 2,
-    "no-redeclare": 2,
-    "no-regex-spaces": 2,
-    "no-return-assign": [2, "except-parens"],
-    "no-self-assign": 2,
-    "no-self-compare": 2,
-    "no-sequences": 2,
-    "no-shadow-restricted-names": 2,
-    "no-spaced-func": 2,
-    "no-sparse-arrays": 2,
-    "no-this-before-super": 2,
-    "no-throw-literal": 2,
-    "no-trailing-spaces": 2,
-    "no-undef": 2,
-    "no-undef-init": 2,
-    "no-unexpected-multiline": 2,
-    "no-unneeded-ternary": [2, { "defaultAssignment": false }],
-    "no-unreachable": 2,
-    "no-unused-vars": [1, { "vars": "all", "args": "none" }],
-    "no-useless-call": 2,
-    "no-useless-constructor": 2,
-    "no-with": 2,
-    "one-var": [2, { "initialized": "never" }],
-    "operator-linebreak": [2, "after", { "overrides": { "?": "before", ":": "before" } }],
-    "padded-blocks": [2, "never"],
-    "quotes": [2, "single", "avoid-escape"],
-    "semi": [2, "never"],
-    "semi-spacing": [2, { "before": false, "after": true }],
-    "space-before-blocks": [2, "always"],
-    "space-before-function-paren": [2, "never"],
-    "space-in-parens": [2, "never"],
-    "space-infix-ops": 2,
-    "space-unary-ops": [2, { "words": true, "nonwords": false }],
-    "spaced-comment": [2, "always", { "markers": ["global", "globals", "eslint", "eslint-disable", "*package", "!", ","] }],
-    "template-curly-spacing": [2, "never"],
-    "use-isnan": 2,
-    "valid-typeof": 2,
-    "wrap-iife": [2, "any"],
-    "yield-star-spacing": [2, "both"],
-    "yoda": [2, "never"],
-    "promise/param-names": 2
+    "comma-dangle": 2,                    // Don't allow trailing commas
+    "curly": 2,                           // Require curly braces for control flow statements
+    "eqeqeq": 2,                          // Require the use of triple-equals comparison
+    "key-spacing": 1,                     // Warn if space before colon
+    "react/jsx-uses-vars": 2,             // Prevent variables in JSX to incorrectly be marked as unused
+    "react/jsx-uses-react": 2,            // Prevent 'React' in JSX to incorrectly be marked as unused
+    "react/jsx-no-undef": 2,              // Don't allow undeclared variables in JSX
+    "object-shorthand": 2,                // Require the use of object-shorthand notation where possible
+    "no-trailing-spaces": 1,              // Warn if trailing white space
+    "no-undef": 2,                        // Don't allow undefined variables to be used
+    "no-unused-vars": 1,                  // Warn about variables that are not used
+    "no-var": 2,                          // Require the use of 'let' and 'const' instead of var
+    "prefer-arrow-callback": 2,           // Suggest using arrow-functions for callbacks
+    "prefer-template": 2,                 // Suggest using template strings instead of string concatenation
+    "quotes": [2, "single"],              // Use single-quotes
+    "semi": [2, "never"],                 // Don't allow semicolons (except for a few cases like IIFE)
+    "arrow-spacing": 1,                   // Warn if no spaces around =>
+    "space-after-keywords": 1,            // Warn if no space after keywords
+    "space-before-keywords": 1,           // Warn if no space before keywords
+    "space-before-blocks": 1,             // Warn if no space before blocks
+    "space-infix-ops": 1,                 // Warn if no spaces around operators
+    "space-return-throw-case": 1,         // Warn if no space after return, throw, and case
+    "spaced-comment": 1                   // Warn if no space after comment symbol
   }
 }
