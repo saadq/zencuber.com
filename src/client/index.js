@@ -1,15 +1,6 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import store from './store'
-import App from './containers/App'
+import init from './timer/init'
+const $ = window.$
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('app')
-)
-
-// Used for development
-window.s = () => console.log(store.getState())
+$(document).ready(() => {
+  init()
+})
