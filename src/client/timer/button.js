@@ -1,4 +1,4 @@
-import { $timerButton } from './nodes'
+import { $scramble, $timer, $timerButton, $times } from './nodes'
 import { isSpaceKey } from '../../util/keys'
 const $ = window.$
 
@@ -46,6 +46,9 @@ function start(watch) {
 function stop(watch) {
   watch.stop()
   $timerButton.text('Start')
+
+  const time = $(`<li>${$timer.text()}</li>`)
+  $times.prepend(time)
 }
 
 export default initButton

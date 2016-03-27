@@ -36,10 +36,11 @@ html(lang='en')
             option(value='15') 15 Seconds
           label Inspection Time
         .col.s12.l3
-          ul#times.scroll-area
-            h3 Recent Times
-            hr
-          button#clear.btn-large.waves-effect.waves-light Clear
+            #recentTimes
+              h3 Recent Times
+              hr
+              ul#times.scroll-area
+            button#clear.btn-large.waves-effect.waves-light Clear
 
     include ./partials/footer.jade
     include ./partials/scripts.jade

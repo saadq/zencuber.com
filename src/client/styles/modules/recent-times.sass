@@ -1,14 +1,16 @@
-ul#times
-  padding: 20px 0
-  height: 300px
-  overflow: scroll
-  padding: 5px
-  margin-top: 20px
+#recentTimes
+  position: relative
   background-color: $box-color
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
   transition: box-shadow .3s ease-out
+  padding: 5px
+  height: 300px
   &:hover
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15)
+
+ul#times
+  overflow: scroll
+  height: 225px
 
 #times li
   display: table
@@ -20,6 +22,7 @@ ul#times
       color: #000
 
 #clear
+  margin-top: 25px
   height: 30px
   line-height: 30px
   background-color: darken($box-color, 4%)
