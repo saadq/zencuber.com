@@ -2,12 +2,7 @@ import express from 'express'
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  res.render('index', { tabName: 'timer' })
-})
-
-router.get('/:tabName', (req, res) => {
-  let tabName = req.params.tabName
-  res.render(tabName, { tabName })
+  res.render('index')
 })
 
 router.post('/solve', (req, res) => {
