@@ -1,46 +1,6 @@
-doctype html
-html(lang='en')
-  head
-    include ./partials/head.jade
+extends layout
 
-  body
-    include ./partials/nav.jade
-
-    .container
-      br
-      .row.center
-        //- Left Side
-        .col.s12.l9
-          p#scramble
-          h1#timer.stopwatch.header.center 00 : 00 . 00
-          button#timer-button.btn-large.waves-effect.waves-light Start
-          .row.stats
-            p.breakpoint.col.s6.m3
-            p.breakpoint.col.s6.m3
-            p.breakpoint.col.s6.m3
-            p.breakpoint.col.s6.m3
-
-        //- Right side
-        .input-field.col.s12.l3
-          select#mode
-            option(value='normal', selected) Normal
-            option(value='beginner') Layer by Layer
-            option(value='cfop') CFOP
-            option(value='roux') Roux
-          label Timer Mode
-        .input-field.col.s12.l3
-          select#inspection
-            option(value='0', selected) None
-            option(value='5') 5 Seconds
-            option(value='10') 10 Seconds
-            option(value='15') 15 Seconds
-          label Inspection Time
-        .col.s12.l3
-            #recentTimes
-              h3 Recent Times
-              hr
-              ul#times.scroll-area
-            button#clear.btn-large.waves-effect.waves-light Clear
-
-    include ./partials/footer.jade
-    include ./partials/scripts.jade
+block content
+  main
+    #app
+  include ./partials/footer.jade

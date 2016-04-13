@@ -1,20 +1,22 @@
 import gulp from 'gulp'
-import browserify from 'browserify'
-import babelify from 'babelify'
-import watchify from 'watchify'
+import gutil from 'gulp-util'
 import sass from 'gulp-sass'
-import eslint from 'gulp-eslint'
+import nodemon from 'gulp-nodemon'
 import source from 'vinyl-source-stream'
 import buffer from 'vinyl-buffer'
-import gutil from 'gulp-util'
+import browserify from 'browserify'
+import watchify from 'watchify'
+import babelify from 'babelify'
+import envify from 'envify'
+import eslint from 'gulp-eslint'
 import del from 'del'
 
-const scriptPaths = {
+const jsPaths = {
   src: './src/client/index.js',
   dest: './dist/js'
 }
 
-const stylePaths = {
+const sassPaths = {
   src: './src/client/styles/main.sass',
   dest: './dist/css'
 }
@@ -29,33 +31,39 @@ const assetPaths = {
   }
 }
 
-function printError(err) {
-  gutil.log(gutil.colors.red(err.name))
-  console.error(err.stack)
-  this.emit('end')
-}
+let isProd = process.env.NODE_ENV === 'production'
+  , watch = false
 
 function createBundler() {
   const bundler = browserify({
-    entries: [scriptPaths.src],
-    transform: [[babelify, {}]],
-    debug: true,
+    entries: [jsPaths.src],
+    transform: [ [babelify, {}], [envify, {}] ],
+    debug: !isProd,
     cache: {},
-    packageCache: {}
+    packageCache: {},
+    fullPaths: !isProd
   })
-
   return bundler
 }
 
+function printError(err) {
+  gutil.log(gutil.colors.red(err.name))
+  console.error(err.message)
+  console.error(err.codeFrame)
+  this.emit('end')
+}
+
 gulp.task('scripts', () => {
+  watch = false
   createBundler()
     .bundle()
     .on('error', printError)
     .pipe(source('bundle.js'))
-    .pipe(gulp.dest(scriptPaths.dest))
+    .pipe(gulp.dest(jsPaths.dest))
 })
 
 gulp.task('watch-scripts', () => {
+  watch = true
   const watcher = watchify(createBundler())
   rebundle()
   return watcher
@@ -69,15 +77,28 @@ gulp.task('watch-scripts', () => {
       .on('error', printError)
       .pipe(source('bundle.js'))
       .pipe(buffer())
-      .pipe(gulp.dest(scriptPaths.dest))
+      .pipe(gulp.dest(jsPaths.dest))
   }
+})
+
+gulp.task('watch-server', () => {
+  nodemon({
+    script: './src/server/index.js',
+    exec: './node_modules/.bin/babel-node',
+    ext: 'js',
+    ignore: ['gulpfile.js', 'bundle.js', 'node_modules/*']
+  })
+  .on('change', [])
+  .on('restart',  () => {
+    console.log('Server restarted')
+  })
 })
 
 gulp.task('styles', () => {
   gulp
-    .src(stylePaths.src)
+    .src(sassPaths.src)
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(stylePaths.dest))
+    .pipe(gulp.dest(sassPaths.dest))
 })
 
 gulp.task('watch-styles', () => {
@@ -115,6 +136,7 @@ gulp.task('assets', () => {
 })
 
 gulp.task('clean', () => del(['dist']))
-gulp.task('build', ['assets', 'lint', 'scripts', 'styles'])
+gulp.task('build', ['assets', 'styles', 'lint', 'scripts'])
 gulp.task('watch', ['watch-scripts', 'watch-styles', 'watch-lint'])
+
 gulp.task('default', ['build'])

@@ -2,6 +2,7 @@ import express from 'express'
 import path from 'path'
 import bodyParser from 'body-parser'
 import routes from './routes/index'
+import login from './routes/login'
 
 const app = express()
 
@@ -16,5 +17,6 @@ if (app.get('env') === 'development') {
 }
 
 app.use('/', routes)
+app.use('/login', login)
 
 export default app

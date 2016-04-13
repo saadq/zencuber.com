@@ -1,14 +1,10 @@
 {
   /**
-   * ESLint Parser Settings
+   * ESLint Plugins
    */
-  "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-          "jsx": true
-      }
-  },
+  "plugins": [
+    "react"                               // Use the react plugin to fix incorrect linting errors in JSX
+  ],
 
    /**
     * ES6 Custom Settings
@@ -25,6 +21,7 @@
   "env": {
     "browser": true,                      // Enable browser globals
     "es6": true,                          // Enable all other ES6 syntax
+    "jquery": true,                       // Recognize $ as a global variable
     "node": true                          // Enable Node.js globals
   },
 
@@ -36,6 +33,9 @@
     "curly": 2,                           // Require curly braces for control flow statements
     "eqeqeq": 2,                          // Require the use of triple-equals comparison
     "key-spacing": 1,                     // Warn if space before colon
+    "react/jsx-uses-vars": 2,             // Prevent variables in JSX to incorrectly be marked as unused
+    "react/jsx-uses-react": 2,            // Prevent 'React' in JSX to incorrectly be marked as unused
+    "react/jsx-no-undef": 2,              // Don't allow undeclared variables in JSX
     "object-shorthand": 2,                // Require the use of object-shorthand notation where possible
     "no-trailing-spaces": 1,              // Warn if trailing white space
     "no-undef": 2,                        // Don't allow undefined variables to be used
@@ -46,9 +46,11 @@
     "quotes": [2, "single"],              // Use single-quotes
     "semi": [2, "never"],                 // Don't allow semicolons (except for a few cases like IIFE)
     "arrow-spacing": 1,                   // Warn if no spaces around =>
-    "keyword-spacing": 2,                 // Warn if no space after keywords
+    "space-after-keywords": 1,            // Warn if no space after keywords
+    "space-before-keywords": 1,           // Warn if no space before keywords
     "space-before-blocks": 1,             // Warn if no space before blocks
     "space-infix-ops": 1,                 // Warn if no spaces around operators
+    "space-return-throw-case": 1,         // Warn if no space after return, throw, and case
     "spaced-comment": 1                   // Warn if no space after comment symbol
   }
 }
