@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react'
+import { findDOMNode } from 'react-dom'
 import { isSpaceKey } from '../../util'
 
 class TimerButton extends Component {
   componentDidMount() {
-    const { click, step, isOn } = this.props
+    const button = findDOMNode(this.refs.btn)
     let justStopped = false
 
     window.addEventListener('keyup', (e) => {
-      console.log(`keyup isOn: ${isOn}`)
       const key = e.which
 
       if (!this.props.isOn && justStopped) {
@@ -15,24 +15,22 @@ class TimerButton extends Component {
         return
       }
 
-      else if (isSpaceKey(key) && !isOn && step === 0) {
+      else if (isSpaceKey(key)) {
         e.preventDefault()
-        click()
+        button.click()
       }
     })
 
     window.addEventListener('keydown', (e) => {
-      console.log(`keydown isOn: ${isOn}`)
-
       const key = e.which
 
       if (isSpaceKey(key)) {
         e.preventDefault()
       }
 
-      if (isOn) {
+      if (this.props.isOn) {
         justStopped = true
-        click()
+        button.click()
       }
     })
   }
@@ -46,14 +44,13 @@ class TimerButton extends Component {
       <button ref="btn" onClick={click} id={btnId} className={btnClasses}>
         {isOn ? 'Stop' : 'Start'}
       </button>
-      )
+    )
   }
 }
 
 TimerButton.propTypes = {
   isOn: PropTypes.bool.isRequired,
-  click: PropTypes.func.isRequired,
-  step: PropTypes.number
+  click: PropTypes.func.isRequired
 }
 
 export default TimerButton

@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import TimeDisplay from '../components/TimeDisplay'
 import TimerButton from '../components/TimerButton'
-import Breakpoints from '../components/Breakpoints'
 import * as TimerActions from '../actions'
 import { getElapsedTime } from '../../util'
 
@@ -18,44 +17,29 @@ class TimerContainer extends Component {
 
   start() {
     const { actions } = this.props
-
     actions.startTimer()
   }
 
   stop() {
     const { actions, startedAt, stoppedAt } = this.props
     const time = getElapsedTime(startedAt, stoppedAt)
-
     actions.stopTimer()
     actions.addTime(time)
   }
 
   click() {
-    const { actions, isOn, breakpoints, breakpointsOn, step } = this.props
-    const finalStep = 3
-
-    console.log(`Step: ${step}`)
-
-    if (!isOn) {
-      this.start()
-    } else if (breakpointsOn && step !== finalStep) {
-      actions.startBreakpoint(step)
-    } else {
-      this.stop()
-    }
+    const { isOn } = this.props
+    isOn ? this.stop() : this.start()
   }
 
   render() {
-    const { actions, isOn, mode, breakpoints, step, startedAt, stoppedAt } = this.props
+    const { isOn, startedAt, stoppedAt } = this.props
     const time = getElapsedTime(startedAt, stoppedAt)
 
     return (
       <div>
         <TimeDisplay elapsed={time} />
-        <TimerButton step={step} isOn={isOn} click={() => this.click()} />
-        { mode !== 'normal' ?
-          <Breakpoints start={actions.startBreakpoint} times={breakpoints} mode={mode} />
-          : null }
+        <TimerButton isOn={isOn} click={() => this.click()} />
       </div>
     )
   }
@@ -65,9 +49,6 @@ TimerContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   isOn: PropTypes.bool.isRequired,
   mode: PropTypes.string.isRequired,
-  breakpoints: PropTypes.array,
-  breakpointsOn: PropTypes.bool,
-  step: PropTypes.number,
   startedAt: PropTypes.number,
   stoppedAt: PropTypes.number
 }
@@ -75,9 +56,6 @@ TimerContainer.propTypes = {
 const mapStateToProps = (state) => ({
   isOn: state.isOn,
   mode: state.mode,
-  breakpointsOn: state.breakpointsOn,
-  breakpoints: state.breakpoints,
-  step: state.step,
   startedAt: state.startedAt,
   stoppedAt: state.stoppedAt
 })
