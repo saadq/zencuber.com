@@ -1,14 +1,18 @@
-import { START_TIMER, STOP_TIMER, START_BREAKPOINT, STOP_BREAKPOINT } from '../constants'
-import { ADD_TIME, REMOVE_TIME, CLEAR_TIMES } from '../constants'
-import { CHANGE_MODE } from '../constants'
 import { generateScramble } from '../../util'
+import {
+  START_TIMER,
+  STOP_TIMER,
+  ADD_TIME,
+  REMOVE_TIME,
+  CLEAR_TIMES,
+  CHANGE_MODE
+} from '../constants'
 
 const initialState = {
   isOn: false,
   algorithm: generateScramble(),
   times: [],
-  mode: 'normal',
-  step: 0
+  mode: 'normal'
 }
 
 const timer = (state = initialState, action) => {
@@ -26,28 +30,7 @@ const timer = (state = initialState, action) => {
         ...state,
         isOn: false,
         stoppedAt: Date.now(),
-        algorithm: generateScramble(),
-        step: 0
-      }
-
-    case START_BREAKPOINT:
-      return {
-        ...state,
-        isOn: true,
-        step: state.step + 1
-      }
-
-    case STOP_BREAKPOINT:
-      return {
-        ...state,
-        breakpoints: [
-          ...state.breakpoints,
-          {
-            id: action.id,
-            startedAt: Date.now(),
-            stoppedAt: undefined
-          }
-        ]
+        algorithm: generateScramble()
       }
 
     case ADD_TIME:
@@ -74,9 +57,7 @@ const timer = (state = initialState, action) => {
     case CHANGE_MODE:
       return {
         ...state,
-        mode: action.mode,
-        breakpointsOn: action.mode !== 'normal',
-        step: 0
+        mode: action.mode
       }
 
     default:
