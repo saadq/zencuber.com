@@ -54,10 +54,10 @@ TimerContainer.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  isOn: state.isOn,
   mode: state.mode,
-  startedAt: state.startedAt,
-  stoppedAt: state.stoppedAt
+  isOn: state.timer.isOn,
+  startedAt: state.timer.startedAt,
+  stoppedAt: state.timer.stoppedAt
 })
 
 const mapDispatchToProps = (dispatch) => ({

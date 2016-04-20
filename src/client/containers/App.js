@@ -39,7 +39,7 @@ App.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  algorithm: state.algorithm,
+  algorithm: state.timer.algorithm,
   times: state.times
 })
 
