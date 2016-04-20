@@ -2,10 +2,7 @@ import React, { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import TimerContainer from './TimerContainer'
-import Nav from '../components/Nav'
-import Scramble from '../components/Scramble'
-import TimerMode from '../components/TimerMode'
-import RecentTimes from '../components/RecentTimes'
+import { Nav, Scramble, TimerMode, RecentTimes } from '../components'
 import * as TimerActions from '../actions'
 
 const App = ({ actions, algorithm, times }) => (

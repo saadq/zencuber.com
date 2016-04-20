@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import TimeDisplay from '../components/TimeDisplay'
-import TimerButton from '../components/TimerButton'
+import { TimeDisplay, TimerButton } from '../components'
 import * as TimerActions from '../actions'
 import { getElapsedTime } from '../../util'
 
