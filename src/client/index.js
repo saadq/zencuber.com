@@ -12,4 +12,4 @@ render(
 )
 
 // Used for development
-window.s = () => console.log(store.getState())
+window.s = () => store.getState

@@ -1,16 +1,12 @@
-import { startTimer, stopTimer, startBreakpoint } from './TimerActions'
+import { startTimer, stopTimer } from './TimerActions'
 import { addTime, removeTime, clearTimes } from './RecentTimesActions'
-import { changeMode, changeInspection } from './SettingsActions'
+import { changeMode } from './SettingsActions'
 
 export {
   startTimer,
   stopTimer,
-  startBreakpoint,
-
   addTime,
   removeTime,
   clearTimes,
-
-  changeMode,
-  changeInspection
+  changeMode
 }

@@ -21,8 +21,7 @@ const timer = (state = initialState, action) => {
         ...state,
         isOn: false,
         stoppedAt: Date.now(),
-        algorithm: generateScramble(),
-        step: 0
+        algorithm: generateScramble()
       }
 
     default:
