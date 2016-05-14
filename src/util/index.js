@@ -1,14 +1,14 @@
-export function repeat(times, callback) {
+export function repeat (times, callback) {
   for (let i = 0; i < times; i++) {
     callback(i)
   }
 }
 
-export function randEl(arr) {
+export function randEl (arr) {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
-export function timeFormatter(milliseconds) {
+export function timeFormatter (milliseconds) {
   const padZero = (time) => `0${time}`.slice(-2)
 
   const minutes = padZero(milliseconds / 60000 | 0)
@@ -18,15 +18,15 @@ export function timeFormatter(milliseconds) {
   return `${minutes} : ${seconds} . ${centiseconds}`
 }
 
-export function getElapsedTime(startedAt, stoppedAt = Date.now()) {
+export function getElapsedTime (startedAt, stoppedAt = Date.now()) {
   return startedAt ? (stoppedAt - startedAt) : 0
 }
 
-export function generateScramble() {
+export function generateScramble () {
   const faces = ['U', 'L', 'F', 'D', 'R', 'B']
   const numTurns = 25
   const numFaces = faces.length
-  const suffixes = ['', '\'', '2']
+  const suffixes = ['', "'", '2']
 
   let turns = []
   let lastIndex = Math.floor(Math.random() * numFaces)
@@ -54,11 +54,11 @@ export function generateScramble() {
   return scramble.join(' ')
 }
 
-export function isSpaceKey(keyCode) {
+export function isSpaceKey (keyCode) {
   return keyCode === 32
 }
 
-export function getSteps(mode) {
+export function getSteps (mode) {
   switch (mode) {
     case 'beginner':
       return ['Layer 1', 'Layer 2', 'Edges', 'Corners']
@@ -71,7 +71,7 @@ export function getSteps(mode) {
   }
 }
 
-export function getBreakpointDisplay(times, timeId) {
+export function getBreakpointDisplay (times, timeId) {
   let display
 
   if (times) {

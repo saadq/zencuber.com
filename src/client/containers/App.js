@@ -8,16 +8,16 @@ import * as TimerActions from '../actions'
 const App = ({ actions, algorithm, times }) => (
   <div>
     <Nav />
-    <div className="container">
-      <div className="row center">
-        <div className="col s12 l9">
+    <div className='container'>
+      <div className='row center'>
+        <div className='col s12 l9'>
           <Scramble algorithm={algorithm} />
           <TimerContainer />
         </div>
-        <div id="settings">
+        <div id='settings'>
           <TimerMode changeMode={actions.changeMode} />
         </div>
-        <div className="col s10 offset-s1 l3">
+        <div className='col s10 offset-s1 l3'>
           <RecentTimes
             removeTime={actions.removeTime}
             clearTimes={actions.clearTimes}
@@ -48,3 +48,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App)
+

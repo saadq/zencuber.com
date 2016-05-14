@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom'
 import { isSpaceKey } from '../../util'
 
 class TimerButton extends Component {
-  componentDidMount() {
+  componentDidMount () {
     const button = findDOMNode(this.refs.btn)
     let justStopped = false
 
@@ -13,9 +13,7 @@ class TimerButton extends Component {
       if (!this.props.isOn && justStopped) {
         justStopped = false
         return
-      }
-
-      else if (isSpaceKey(key)) {
+      } else if (isSpaceKey(key)) {
         e.preventDefault()
         button.click()
       }
@@ -35,13 +33,13 @@ class TimerButton extends Component {
     })
   }
 
-  render() {
+  render () {
     const btnClasses = 'btn-large waves-effect waves-light'
     const btnId = 'timer-button'
     const { isOn, click } = this.props
 
     return (
-      <button ref="btn" onClick={click} id={btnId} className={btnClasses}>
+      <button ref='btn' onClick={click} id={btnId} className={btnClasses}>
         {isOn ? 'Stop' : 'Start'}
       </button>
     )

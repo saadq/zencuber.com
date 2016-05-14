@@ -6,32 +6,32 @@ import * as TimerActions from '../actions'
 import { getElapsedTime } from '../../util'
 
 class TimerContainer extends Component {
-  componentDidMount() {
+  componentDidMount () {
     this.interval = setInterval(() => this.forceUpdate(), 1)
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     clearInterval(this.interval)
   }
 
-  start() {
+  start () {
     const { actions } = this.props
     actions.startTimer()
   }
 
-  stop() {
+  stop () {
     const { actions, startedAt, stoppedAt } = this.props
     const time = getElapsedTime(startedAt, stoppedAt)
     actions.stopTimer()
     actions.addTime(time)
   }
 
-  click() {
+  click () {
     const { isOn } = this.props
     isOn ? this.stop() : this.start()
   }
 
-  render() {
+  render () {
     const { isOn, startedAt, stoppedAt } = this.props
     const time = getElapsedTime(startedAt, stoppedAt)
 
