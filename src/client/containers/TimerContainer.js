@@ -22,12 +22,14 @@ class TimerContainer extends Component {
   stop () {
     const { actions, startedAt, stoppedAt } = this.props
     const time = getElapsedTime(startedAt, stoppedAt)
+
     actions.stopTimer()
     actions.addTime(time)
   }
 
   click () {
     const { isOn } = this.props
+
     isOn ? this.stop() : this.start()
   }
 

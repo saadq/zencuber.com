@@ -166,7 +166,7 @@ gulp.task('assets', () => {
 })
 
 gulp.task('clean', () => del(['dist']))
-gulp.task('build', ['assets', 'styles', 'scripts'])
-gulp.task('watch', ['watch-scripts', 'watch-styles'])
+gulp.task('build', ['assets', 'styles', 'lint', 'scripts'])
+gulp.task('watch', ['watch-lint', 'watch-scripts', 'watch-styles'])
 
 gulp.task('default', ['build'])
