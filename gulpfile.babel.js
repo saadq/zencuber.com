@@ -108,12 +108,13 @@ function printLintResults (err, data) {
 
   data.results.forEach(result => {
     const { filePath, messages } = result
-    const path = gutil.colors.yellow(filePath)
+    const path = gutil.colors.green(filePath)
 
     if (messages.length === 0) {
       return
     }
 
+    gutil.log()
     gutil.log(path)
 
     result.messages.forEach(messageObj => {
@@ -124,8 +125,6 @@ function printLintResults (err, data) {
 
       gutil.log(`${location} ${arrow} ${error}`)
     })
-
-    gutil.log()
   })
 }
 
