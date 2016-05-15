@@ -4,9 +4,9 @@
   "author": "Saad Quadri",
   "license": "MIT",
   "scripts": {
+    "rebuild": "gulp clean && gulp build",
     "start": "node ./bin/www",
-    "test": "standard",
-    "rebuild": "gulp clean && gulp build"
+    "test": "standard"
   },
   "dependencies": {
     "body-parser": "1.15.1",
@@ -46,6 +46,7 @@
   "standard": {
     "parser": "babel-eslint",
     "ignore": [
+      "dist/",
       "/src/client/assets/"
     ]
   }
