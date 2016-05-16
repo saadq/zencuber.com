@@ -6,7 +6,7 @@
   "scripts": {
     "rebuild": "gulp clean && gulp build",
     "start": "node ./bin/www",
-    "test": "standard"
+    "test": "standard --verbose | snazzy"
   },
   "dependencies": {
     "body-parser": "1.15.1",
@@ -38,6 +38,7 @@
     "livereactload": "2.2.3",
     "nodemon": "1.9.2",
     "react-proxy": "1.1.8",
+    "snazzy": "^4.0.0",
     "standard": "^7.0.1",
     "vinyl-buffer": "1.0.0",
     "vinyl-source-stream": "1.1.0",

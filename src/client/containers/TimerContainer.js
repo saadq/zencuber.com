@@ -16,6 +16,7 @@ class TimerContainer extends Component {
 
   start () {
     const { actions } = this.props
+
     actions.startTimer()
   }
 
