@@ -31,8 +31,7 @@ const assetPaths = {
   }
 }
 
-let isProd = process.env.NODE_ENV === 'production'
-let watch = false
+const isProd = process.env.NODE_ENV === 'production'
 
 function createBundler () {
   const bundler = browserify({
@@ -54,7 +53,6 @@ function printError (err) {
 }
 
 gulp.task('scripts', () => {
-  watch = false
   createBundler()
     .bundle()
     .on('error', printError)
@@ -63,7 +61,6 @@ gulp.task('scripts', () => {
 })
 
 gulp.task('watch-scripts', () => {
-  watch = true
   const watcher = watchify(createBundler())
   rebundle()
   return watcher
@@ -121,7 +118,7 @@ function printLintResults (err, data) {
       const { message, line, column } = messageObj
       const location = gutil.colors.red(`${line}:${column}`)
       const arrow = gutil.colors.yellow('=>')
-      const error =  gutil.colors.cyan(`${message}`)
+      const error = gutil.colors.cyan(`${message}`)
 
       gutil.log(`${location} ${arrow} ${error}`)
     })
@@ -129,7 +126,7 @@ function printLintResults (err, data) {
 }
 
 gulp.task('lint', () => {
-  return standard.lintFiles([`${__dirname}/src/**/*.js`], {
+  return standard.lintFiles(['./gulpfile.babel.js', `${__dirname}/src/**/*.js`], {
     parser: 'babel-eslint',
     ignore: [jsPaths.dest, './src/client/assets', './src/client/styles']
   }, printLintResults)
