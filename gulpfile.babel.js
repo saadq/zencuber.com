@@ -1,14 +1,15 @@
 import gulp from 'gulp'
 import gutil from 'gulp-util'
 import sass from 'gulp-sass'
+import standard from 'gulp-standard'
 import nodemon from 'gulp-nodemon'
 import source from 'vinyl-source-stream'
 import buffer from 'vinyl-buffer'
+import sourcemaps from 'gulp-sourcemaps'
 import browserify from 'browserify'
 import watchify from 'watchify'
 import babelify from 'babelify'
 import envify from 'envify'
-import standard from 'standard'
 import del from 'del'
 
 const jsPaths = {
@@ -30,6 +31,12 @@ const assetPaths = {
     js: './src/client/assets/vendor/materialize/js/materialize.js'
   }
 }
+
+const lintPaths = [
+  '!./src/client/assets/**/*.js',
+  './src/**/*.js',
+  './gulpfile.babel.js'
+]
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -57,18 +64,13 @@ gulp.task('scripts', () => {
     .bundle()
     .on('error', printError)
     .pipe(source('bundle.js'))
+    .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(gulp.dest(jsPaths.dest))
 })
 
 gulp.task('watch-scripts', () => {
   const watcher = watchify(createBundler())
-  rebundle()
-  return watcher
-    .on('error', printError)
-    .on('update', rebundle)
-
-  function rebundle () {
-    gutil.log('Update JavaScript bundle')
+  const rebundle = () => {
     watcher
       .bundle()
       .on('error', printError)
@@ -76,6 +78,24 @@ gulp.task('watch-scripts', () => {
       .pipe(buffer())
       .pipe(gulp.dest(jsPaths.dest))
   }
+
+  rebundle()
+
+  return watcher
+    .on('error', printError)
+    .on('update', rebundle)
+})
+
+gulp.task('lint', () => {
+  return gulp.src(lintPaths)
+    .pipe(standard())
+    .pipe(standard.reporter('default', {
+      breakOnError: true
+    }))
+})
+
+gulp.task('watch-lint', () => {
+  gulp.watch(lintPaths, ['lint'])
 })
 
 gulp.task('watch-server', () => {
@@ -89,51 +109,6 @@ gulp.task('watch-server', () => {
     .on('restart', () => {
       console.log('Server restarted')
     })
-})
-
-function printLintResults (err, data) {
-  if (err) {
-    printError(err)
-    return
-  }
-
-  if (data.errorCount === 0) {
-    const message = gutil.colors.green('All files linted successfully without errors!')
-    gutil.log(message)
-    return
-  }
-
-  data.results.forEach(result => {
-    const { filePath, messages } = result
-    const path = gutil.colors.green(filePath)
-
-    if (messages.length === 0) {
-      return
-    }
-
-    gutil.log()
-    gutil.log(path)
-
-    result.messages.forEach(messageObj => {
-      const { message, line, column } = messageObj
-      const location = gutil.colors.red(`${line}:${column}`)
-      const arrow = gutil.colors.yellow('=>')
-      const error = gutil.colors.cyan(`${message}`)
-
-      gutil.log(`${location} ${arrow} ${error}`)
-    })
-  })
-}
-
-gulp.task('lint', () => {
-  return standard.lintFiles(['./gulpfile.babel.js', `${__dirname}/src/**/*.js`], {
-    parser: 'babel-eslint',
-    ignore: [jsPaths.dest, './src/client/assets', './src/client/styles']
-  }, printLintResults)
-})
-
-gulp.task('watch-lint', () => {
-  gulp.watch('./src/**/*.js', ['lint'])
 })
 
 gulp.task('styles', () => {
@@ -166,7 +141,7 @@ gulp.task('assets', () => {
 })
 
 gulp.task('clean', () => del(['dist']))
-gulp.task('build', ['assets', 'styles', 'lint', 'scripts'])
+gulp.task('build', ['assets', 'lint', 'styles', 'scripts'])
 gulp.task('watch', ['watch-lint', 'watch-scripts', 'watch-styles'])
 
 gulp.task('default', ['build'])
