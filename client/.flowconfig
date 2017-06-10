@@ -1,0 +1,9 @@
+[ignore]
+
+[include]
+
+[libs]
+./flow
+
+[options]
+esproposal.export_star_as=enable
