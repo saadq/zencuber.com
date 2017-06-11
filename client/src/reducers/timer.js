@@ -2,18 +2,42 @@
  * @flow
  */
 
-import { INCREMENT, DECREMENT } from '../constants/counter'
-import type { Action } from '../actions/counter'
+import type { Action } from '../actions/timer'
 
-type State = number
+type State = {
+  isOn: boolean,
+  startTime?: number,
+  stopTime?: ?number
+}
 
-function counter(state: State = 0, action: Action): State {
+const initialState = {
+  isOn: false
+}
+
+function counter(state: State = initialState, action: Action): State {
   switch (action.type) {
-    case INCREMENT:
-      return state + 1
+    case 'START_TIMER':
+      return {
+        ...state,
+        isOn: true,
+        startTime: action.startTime,
+        stopTime: null
+      }
 
-    case DECREMENT:
-      return state - 1
+    case 'STOP_TIMER':
+      return {
+        ...state,
+        isOn: false,
+        stopTime: action.stopTime
+      }
+
+    case 'RESET_TIMER':
+      return {
+        ...state,
+        isOn: false,
+        startTime: 0,
+        stopTime: 0
+      }
 
     default:
       return state
@@ -21,3 +45,4 @@ function counter(state: State = 0, action: Action): State {
 }
 
 export default counter
+export type { State as TimerState }

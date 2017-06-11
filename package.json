@@ -13,7 +13,7 @@
     "lint": "npm run lint:client && npm run lint:server",
     "fix": "npm run fix:client && npm run fix:server",
     "format": "npm run format:client && npm run format:server",
-    "test": "npm run test:client && npm run test:server",
+    "test": "npm run test:client",
     "dist": "cd client && npm run build",
     "build:client": "cd client && npm install",
     "start:client": "cd client && npm start",

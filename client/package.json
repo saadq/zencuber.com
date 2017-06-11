@@ -10,11 +10,12 @@
     "lint": "blyss",
     "preinstall:types": "rm -rf flow/flow-typed",
     "install:types": "flow-typed install && mv flow-typed flow",
-    "test": "npm run lint --silent && npm run flow check --silent"
+    "test": "npm run lint --silent && npm run flow check --silent && cross-env NODE_ENV=test ava src/tests/**/*.js --fail-fast --verbose"
   },
   "author": "Saad Quadri",
   "license": "MIT",
   "devDependencies": {
+    "ava": "^0.19.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
@@ -57,5 +58,18 @@
     "ignore": [
       "flow/**/*.*"
     ]
+  },
+  "ava": {
+    "require": [
+      "babel-register",
+      "babel-polyfill"
+    ],
+    "babel": {
+      "presets": [
+        "es2015",
+        "stage-0",
+        "react"
+      ]
+    }
   }
 }

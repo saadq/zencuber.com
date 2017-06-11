@@ -4,28 +4,32 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { increment, decrement } from '../actions/counter'
+import { startTimer, stopTimer, resetTimer } from '../actions/timer'
+import type { State } from '../store'
 
-function App({ count, increment, decrement }) {
+function App({ startTimer, stopTimer, resetTimer }) {
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={decrement}>-</button>
-      <button onClick={increment}>+</button>
+      <h1>00 : 00 . 00</h1>
+      <button onClick={startTimer}>Start</button>
+      <button onClick={stopTimer}>Stop</button>
+      <button onClick={resetTimer}>Reset</button>
     </div>
   )
 }
 
-function mapStateToProps(state: number) {
+function mapStateToProps(state: State) {
   return {
-    count: state
+    startTime: state.timer.startTime,
+    stopTime: state.timer.stopTime
   }
 }
 
 function mapDispatchToProps(dispatch: Function) {
   return {
-    increment: () => dispatch(increment()),
-    decrement: () => dispatch(decrement())
+    startTimer: () => dispatch(startTimer()),
+    stopTimer: () => dispatch(stopTimer()),
+    resetTimer: () => dispatch(resetTimer())
   }
 }
 
