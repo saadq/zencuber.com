@@ -48,11 +48,7 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'stylus-loader'
-        ]
+        use: ['style-loader', 'css-loader', 'stylus-loader']
       },
       {
         test: /\.(jpg|jpeg|png|gif|ico|svg|pdf|eof|woff|ttf|woff2)$/,
@@ -68,10 +64,14 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new HtmlWebpackPlugin({ template: './index.html', inject: 'body' }),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      inject: 'body',
+      favicon: './assets/favicon.ico'
+    }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     })
   ],
@@ -82,9 +82,7 @@ module.exports = {
     hot: true,
     overlay: true,
     historyApiFallback: {
-      rewrites: [
-        { from: /^\/$/, to: './index.html' }
-      ]
+      rewrites: [{ from: /^\/$/, to: './index.html' }]
     },
     proxy: {
       '/api/**': {
