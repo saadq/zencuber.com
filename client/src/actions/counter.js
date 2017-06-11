@@ -2,23 +2,27 @@
  * @flow
  */
 
-import { INCREMENT, DECREMENT } from '../constants/counter'
+import type { Action } from './types'
 
-type Action =
-  | { type: 'INCREMENT' }
-  | { type: 'DECREMENT' }
-
-function increment(): Action {
+function startTimer(): Action {
   return {
-    type: INCREMENT
+    type: 'START_TIMER',
+    startTime: Date.now()
   }
 }
 
-function decrement(): Action {
+function stopTimer(): Action {
   return {
-    type: DECREMENT
+    type: 'STOP_TIMER',
+    stopTime: Date.now()
   }
 }
 
-export { increment, decrement }
+function resetTimer(): Action {
+  return {
+    type: 'RESET_TIMER'
+  }
+}
+
+export { startTimer, stopTimer, resetTimer }
 export type { Action }

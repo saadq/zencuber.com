@@ -1,0 +1,32 @@
+{
+  "name": "latexresu.me",
+  "version": "0.1.0",
+  "repository": "git@github.com:saadq/latexresu.me.git",
+  "author": {
+    "name": "Saad Quadri",
+    "email": "saad@saadq.com",
+    "url": "http://saadq.com"
+  },
+  "scripts": {
+    "build": "npm run build:client && npm run build:server",
+    "start": "npm run start:client",
+    "lint": "npm run lint:client && npm run lint:server",
+    "fix": "npm run fix:client && npm run fix:server",
+    "format": "npm run format:client && npm run format:server",
+    "test": "npm run test:client && npm run test:server",
+    "dist": "cd client && npm run build",
+    "build:client": "cd client && npm install",
+    "start:client": "cd client && npm start",
+    "lint:client": "cd client && npm run lint",
+    "fix:client": "cd client && npm run fix",
+    "format:client": "cd client && npm run format",
+    "test:client": "cd client && npm test",
+    "build:server": "cd server && npm install",
+    "start:server": "cd server && npm run watch",
+    "fix:server": "cd server && npm run fix",
+    "format:server": "cd server && npm run format",
+    "lint:server": "cd server && npm run lint",
+    "test:server": "cd server && npm test"
+  },
+  "license": "MIT"
+}

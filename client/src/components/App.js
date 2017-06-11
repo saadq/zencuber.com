@@ -6,13 +6,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { increment, decrement } from '../actions/counter'
 
-function App({ count, increment, decrement, reset }) {
+function App({ count, increment, decrement }) {
   return (
     <div>
       <h1>{count}</h1>
       <button onClick={decrement}>-</button>
       <button onClick={increment}>+</button>
-      <button onClick={reset}>Reset</button>
     </div>
   )
 }
