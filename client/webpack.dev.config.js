@@ -48,7 +48,18 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        use: ['style-loader', 'css-loader', 'stylus-loader']
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]--[hash:base64:5]'
+            }
+          },
+          'stylus-loader'
+        ]
       },
       {
         test: /\.(jpg|jpeg|png|gif|ico|svg|pdf|eof|woff|ttf|woff2)$/,

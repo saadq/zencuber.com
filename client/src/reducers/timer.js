@@ -31,14 +31,6 @@ function counter(state: State = initialState, action: Action): State {
         stopTime: action.stopTime
       }
 
-    case 'RESET_TIMER':
-      return {
-        ...state,
-        isOn: false,
-        startTime: 0,
-        stopTime: 0
-      }
-
     default:
       return state
   }

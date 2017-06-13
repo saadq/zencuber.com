@@ -1,4 +1,4 @@
-// flow-typed signature: 50552a82c232d36646dd9f70af97140c
+// flow-typed signature: afb4e75b06a331fa91f6ba95f05a6092
 // flow-typed version: <<STUB>>/extract-text-webpack-plugin_v^2.1.0/flow_v0.47.0
 
 /**
@@ -34,14 +34,6 @@ declare module 'extract-text-webpack-plugin/OrderUndefinedError' {
   declare module.exports: any;
 }
 
-declare module 'extract-text-webpack-plugin/schema/loader-schema' {
-  declare module.exports: any;
-}
-
-declare module 'extract-text-webpack-plugin/schema/validator' {
-  declare module.exports: any;
-}
-
 // Filename aliases
 declare module 'extract-text-webpack-plugin/ExtractedModule.js' {
   declare module.exports: $Exports<'extract-text-webpack-plugin/ExtractedModule'>;
@@ -57,10 +49,4 @@ declare module 'extract-text-webpack-plugin/loader.js' {
 }
 declare module 'extract-text-webpack-plugin/OrderUndefinedError.js' {
   declare module.exports: $Exports<'extract-text-webpack-plugin/OrderUndefinedError'>;
-}
-declare module 'extract-text-webpack-plugin/schema/loader-schema.js' {
-  declare module.exports: $Exports<'extract-text-webpack-plugin/schema/loader-schema'>;
-}
-declare module 'extract-text-webpack-plugin/schema/validator.js' {
-  declare module.exports: $Exports<'extract-text-webpack-plugin/schema/validator'>;
 }

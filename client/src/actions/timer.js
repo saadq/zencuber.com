@@ -18,11 +18,5 @@ function stopTimer(): Action {
   }
 }
 
-function resetTimer(): Action {
-  return {
-    type: 'RESET_TIMER'
-  }
-}
-
-export { startTimer, stopTimer, resetTimer }
+export { startTimer, stopTimer }
 export type { Action }
