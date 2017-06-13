@@ -14,7 +14,7 @@ const initialState = {
   isOn: false
 }
 
-function timer(state: State = initialState, action: Action): State {
+function counter(state: State = initialState, action: Action): State {
   switch (action.type) {
     case 'START_TIMER':
       return {
@@ -44,5 +44,5 @@ function timer(state: State = initialState, action: Action): State {
   }
 }
 
-export default timer
+export default counter
 export type { State as TimerState }
