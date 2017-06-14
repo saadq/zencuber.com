@@ -22,7 +22,6 @@ class Timer extends Component {
   interval: number
 
   componentDidMount() {
-    this.interval = setInterval(() => this.forceUpdate(), 1)
     window.addEventListener('keydown', this.onKeyDown)
   }
 
@@ -33,8 +32,8 @@ class Timer extends Component {
 
   onKeyDown = (e: SyntheticKeyboardEvent) => {}
 
-  timeFormatter(milliseconds: number) {
-    const time = new Date(milliseconds)
+  timeFormatter(elapsed: number) {
+    const time = new Date(elapsed)
     const minutes = time.getMinutes().toString().padStart(2, '0')
     const seconds = time.getSeconds().toString().padStart(2, '0')
     const milliseconds = time.getMilliseconds().toString().padStart(3, '0')
@@ -50,6 +49,7 @@ class Timer extends Component {
     }
 
     startTimer()
+    this.interval = setInterval(() => this.forceUpdate(), 10)
   }
 
   stop = () => {
@@ -60,6 +60,7 @@ class Timer extends Component {
     }
 
     stopTimer()
+    clearInterval(this.interval)
   }
 
   getElapsedTime(): string {
@@ -86,7 +87,7 @@ function mapStateToProps(state: State) {
   }
 }
 
-function mapDispatchToProps(dispatch: Function) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     startTimer: () => dispatch(startTimer()),
     stopTimer: () => dispatch(stopTimer())
