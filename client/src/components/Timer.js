@@ -23,10 +23,23 @@ class Timer extends Component {
 
   componentDidMount() {
     this.interval = setInterval(() => this.forceUpdate(), 1)
+    window.addEventListener('keydown', this.onKeyDown)
   }
 
   componentWillUnmount() {
     clearInterval(this.interval)
+    window.removeListener('keydown', this.onKeyDown)
+  }
+
+  onKeyDown = (e: SyntheticKeyboardEvent) => {}
+
+  timeFormatter(milliseconds: number) {
+    const time = new Date(milliseconds)
+    const minutes = time.getMinutes().toString().padStart(2, '0')
+    const seconds = time.getSeconds().toString().padStart(2, '0')
+    const milliseconds = time.getMilliseconds().toString().padStart(3, '0')
+
+    return `${minutes} : ${seconds} . ${milliseconds}`
   }
 
   start = () => {
@@ -49,18 +62,17 @@ class Timer extends Component {
     stopTimer()
   }
 
-  getElapsedTime(): number {
+  getElapsedTime(): string {
     const { startTime, stopTime } = this.props
+    const elapsed = startTime ? (stopTime || Date.now()) - startTime : 0
 
-    return startTime ? (stopTime || Date.now()) - startTime : 0
+    return this.timeFormatter(elapsed)
   }
 
   render() {
     return (
       <div className={styles.app}>
         <h1 className={styles.timer}>{this.getElapsedTime()}</h1>
-        <button className={styles.button} onClick={this.start}>Start</button>
-        <button className={styles.button} onClick={this.stop}>Stop</button>
       </div>
     )
   }
