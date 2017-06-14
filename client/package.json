@@ -33,7 +33,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "blyss": "^5.1.0",
+    "blyss": "^6.0.1",
     "blyss-loader": "^1.0.0",
     "cross-env": "^5.0.0",
     "css-loader": "^0.28.4",
