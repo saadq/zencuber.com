@@ -19,4 +19,3 @@ function stopTimer(): Action {
 }
 
 export { startTimer, stopTimer }
-export type { Action }
