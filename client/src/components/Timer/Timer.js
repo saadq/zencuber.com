@@ -86,7 +86,7 @@ class Timer extends Component {
 
   render() {
     return (
-      <h1 className={styles.timer}>{this.getElapsedTime()}</h1>
+      <span className={styles.timer}>{this.getElapsedTime()}</span>
     )
   }
 }
