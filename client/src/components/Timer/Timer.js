@@ -73,7 +73,7 @@ class Timer extends Component {
     const milliseconds = time.getMilliseconds().toString().padStart(3, '0')
 
     return this.props.isOn
-      ? `${seconds}.${milliseconds.slice(0, 2)}`
+      ? `${seconds}`
       : `${seconds}.${milliseconds.slice(0, 2)}`
   }
 
@@ -86,7 +86,9 @@ class Timer extends Component {
 
   render() {
     return (
-      <span className={styles.timer}>{this.getElapsedTime()}</span>
+      <h1 className={styles.timer}>
+        {this.getElapsedTime()}
+      </h1>
     )
   }
 }
