@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import { TopBar } from '..'
+import { Scramble } from '..'
 import type { Element } from 'react'
 import styles from './hero.styl'
 
@@ -15,7 +15,7 @@ function Hero({ children }: Props) {
   return (
     <section className={`hero is-fullheight ${styles.hero}`}>
       <div className="hero-head">
-        <TopBar />
+        <Scramble />
       </div>
       <div className="hero-body">
         <div className="container">
