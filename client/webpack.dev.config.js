@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const FlowtypePlugin = require('flowtype-loader/plugin')
 const { resolve } = require('path')
 const webpack = require('webpack')
 
@@ -29,12 +30,17 @@ module.exports = {
       {
         enforce: 'pre',
         test: /\.jsx?$/,
-        loader: 'blyss-loader',
         exclude: /(node_modules)/,
-        options: {
-          error: true,
-          parser: 'babel-eslint'
-        }
+        use: [
+          'flowtype-loader',
+          {
+            loader: 'blyss-loader',
+            options: {
+              error: true,
+              parser: 'babel-eslint'
+            }
+          }
+        ]
       },
       {
         test: /\.jsx?$/,
@@ -62,7 +68,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(jpg|jpeg|png|gif|ico|svg|pdf|eof|woff|ttf|woff2)$/,
+        test: /\.(jpg|jpeg|png|gif|ico|svg|pdf|eof|eot|woff|ttf|woff2)$/,
         loader: 'url-loader',
         options: {
           limit: 10000
@@ -72,13 +78,14 @@ module.exports = {
   },
 
   plugins: [
+    new FlowtypePlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: '../public/index.html',
       inject: 'body',
-      favicon: './assets/favicon.ico'
+      favicon: '../public/favicon.ico'
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -93,7 +100,7 @@ module.exports = {
     hot: true,
     overlay: true,
     historyApiFallback: {
-      rewrites: [{ from: /^\/$/, to: './index.html' }]
+      rewrites: [{ from: /^\/$/, to: '../public/index.html' }]
     },
     proxy: {
       '/api/**': {

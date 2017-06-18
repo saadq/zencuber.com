@@ -50,9 +50,9 @@ module.exports = {
     }),
     new ExtractTextPlugin('static/style.css'),
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: 'public/index.html',
       inject: 'body',
-      favicon: 'src/assets/favicon.ico'
+      favicon: 'public/favicon.ico'
     }),
     new webpack.DefinePlugin({
       'process.env': {

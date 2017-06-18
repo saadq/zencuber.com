@@ -3,7 +3,13 @@
  */
 
 import test from 'ava'
-import reducer from '../../reducers/timer'
+import reducer from '../reducers/timer'
+import { startTimer, stopTimer } from '../actions/timer'
+
+test('timer actions', async t => {
+  t.deepEqual(startTimer(), { type: 'START_TIMER', startTime: Date.now() })
+  t.deepEqual(stopTimer(), { type: 'STOP_TIMER', stopTime: Date.now() })
+})
 
 test('it can start the timer', async t => {
   const state = {
@@ -16,7 +22,7 @@ test('it can start the timer', async t => {
     stopTime: null
   }
 
-  const actual = reducer(state, { type: 'START_TIMER', startTime: Date.now() })
+  const actual = reducer(state, startTimer())
 
   t.deepEqual(expected, actual)
 })
@@ -33,7 +39,7 @@ test('it can stop the timer', async t => {
     stopTime: Date.now()
   }
 
-  const actual = reducer(state, { type: 'STOP_TIMER', stopTime: Date.now() })
+  const actual = reducer(state, stopTimer())
 
   t.deepEqual(expected, actual)
 })

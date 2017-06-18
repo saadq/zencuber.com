@@ -7,7 +7,6 @@
 
 [options]
 esproposal.export_star_as=enable
-module.name_mapper='.*\(.styl\)' -> 'CSSModule'
 module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json

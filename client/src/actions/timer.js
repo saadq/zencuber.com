@@ -2,7 +2,7 @@
  * @flow
  */
 
-import type { Action } from './types'
+import type { Action } from '../types'
 
 function startTimer(): Action {
   return {

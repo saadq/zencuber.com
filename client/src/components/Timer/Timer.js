@@ -4,49 +4,55 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { startTimer, stopTimer } from '../actions/timer'
-import type { State } from '../store'
-import styles from '../styles/timer.styl'
+import { startTimer, stopTimer } from '../../actions/timer'
+import type { State, Dispatch } from '../../types'
+import styles from './timer.styl'
 
 type Props = {
   isOn: boolean,
   startTime?: number,
   stopTime?: number,
   startTimer: Function,
-  stopTimer: Function,
-  resetTimer: Function
+  stopTimer: Function
 }
 
 class Timer extends Component {
   props: Props
-  interval: number
+  interval: *
+  justStopped: *
 
   componentDidMount() {
+    window.addEventListener('keyup', this.onKeyUp)
     window.addEventListener('keydown', this.onKeyDown)
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval)
-    window.removeListener('keydown', this.onKeyDown)
+    window.removeEventListener('keyup', this.onKeyUp)
+    window.removeEventListener('keydown', this.onKeyDown)
   }
 
-  onKeyDown = (e: SyntheticKeyboardEvent) => {}
+  onKeyUp = (e: SyntheticKeyboardEvent) => {
+    if (this.justStopped) {
+      this.justStopped = false
+      return
+    }
 
-  timeFormatter(elapsed: number) {
-    const time = new Date(elapsed)
-    const minutes = time.getMinutes().toString().padStart(2, '0')
-    const seconds = time.getSeconds().toString().padStart(2, '0')
-    const milliseconds = time.getMilliseconds().toString().padStart(3, '0')
+    if (e.keyCode === 32) {
+      this.props.isOn ? this.stop() : this.start()
+    }
+  }
 
-    return `${minutes} : ${seconds} . ${milliseconds}`
+  onKeyDown = (e: SyntheticKeyboardEvent) => {
+    if (this.props.isOn) {
+      this.stop()
+      this.justStopped = true
+    }
   }
 
   start = () => {
     const { isOn, startTimer } = this.props
 
-    if (isOn) {
-      return
-    }
+    if (isOn) return
 
     startTimer()
     this.interval = setInterval(() => this.forceUpdate(), 10)
@@ -55,12 +61,20 @@ class Timer extends Component {
   stop = () => {
     const { isOn, stopTimer } = this.props
 
-    if (!isOn) {
-      return
-    }
+    if (!isOn) return
 
     stopTimer()
     clearInterval(this.interval)
+  }
+
+  timeFormatter(elapsed: number) {
+    const time = new Date(elapsed)
+    const seconds = time.getSeconds().toString()
+    const milliseconds = time.getMilliseconds().toString().padStart(3, '0')
+
+    return this.props.isOn
+      ? `${seconds}.${milliseconds.slice(0, 2)}`
+      : `${seconds}.${milliseconds.slice(0, 2)}`
   }
 
   getElapsedTime(): string {
@@ -72,9 +86,7 @@ class Timer extends Component {
 
   render() {
     return (
-      <div className={styles.app}>
-        <h1 className={styles.timer}>{this.getElapsedTime()}</h1>
-      </div>
+      <h1 className={styles.timer}>{this.getElapsedTime()}</h1>
     )
   }
 }

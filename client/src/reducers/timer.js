@@ -2,13 +2,7 @@
  * @flow
  */
 
-import type { Action } from '../actions/timer'
-
-type State = {
-  isOn: boolean,
-  startTime?: number,
-  stopTime?: ?number
-}
+import type { TimerState as State, Action } from '../types'
 
 const initialState = {
   isOn: false
@@ -37,4 +31,3 @@ function counter(state: State = initialState, action: Action): State {
 }
 
 export default counter
-export type { State as TimerState }
