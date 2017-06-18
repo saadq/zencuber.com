@@ -8,14 +8,12 @@ import styles from './scramble.styl'
 
 function Scramble() {
   return (
-    <nav className={`nav ${styles.nav}`}>
-      <div className="nav-left" />
-      <div className="nav-center">
+    <nav className={styles.nav}>
+      <div className={styles['nav-center']}>
         <p className={styles.scramble}>
           {new Scrambo().type('333').get()}
         </p>
       </div>
-      <div className="nav-right is-flex" />
     </nav>
   )
 }
