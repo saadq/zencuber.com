@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const FlowtypePlugin = require('flowtype-loader/plugin')
 const { resolve } = require('path')
 const webpack = require('webpack')
 
@@ -69,7 +68,6 @@ module.exports = {
   },
 
   plugins: [
-    new FlowtypePlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
