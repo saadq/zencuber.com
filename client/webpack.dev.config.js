@@ -31,16 +31,7 @@ module.exports = {
         enforce: 'pre',
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
-        use: [
-          'flowtype-loader',
-          {
-            loader: 'blyss-loader',
-            options: {
-              error: true,
-              parser: 'babel-eslint'
-            }
-          }
-        ]
+        loader: 'blyss-loader'
       },
       {
         test: /\.jsx?$/,
