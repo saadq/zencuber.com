@@ -11,15 +11,23 @@ function Hero() {
     <section className="hero is-fullheight">
       <div className="hero-head">
         <nav className="nav">
-          <div className="nav-left" />
+          <div className="nav-left is-hidden-mobile" />
           <div className="nav-center">
-            <p className={`nav-item ${styles.logo}`}>VAV</p>
+            <div className="nav-item">
+              <div className={styles.logo}>VAV</div>
+            </div>
           </div>
-          <div className="nav-right" />
+          <div className="nav-right">
+            <span className={`nav-toggle ${styles.menu}`}>
+              <span />
+              <span />
+              <span />
+            </span>
+          </div>
         </nav>
       </div>
-      <div className={styles['hero-body']}>
-        <div className="container">
+      <div className="hero-body">
+        <div className="container has-text-centered">
           <Scramble />
           <Timer />
         </div>
