@@ -3,23 +3,25 @@
  */
 
 import React from 'react'
-import { Scramble } from '..'
-import type { Element } from 'react'
+import { Timer, Scramble } from '..'
 import styles from './hero.styl'
 
-type Props = {
-  children: Element<*>
-}
-
-function Hero({ children }: Props) {
+function Hero() {
   return (
-    <section className={`hero is-fullheight ${styles.hero}`}>
+    <section className="hero is-fullheight">
       <div className="hero-head">
-        <Scramble />
+        <nav className="nav">
+          <div className="nav-left" />
+          <div className="nav-center">
+            <p className={`nav-item ${styles.logo}`}>VAV</p>
+          </div>
+          <div className="nav-right" />
+        </nav>
       </div>
-      <div className="hero-body">
+      <div className={styles['hero-body']}>
         <div className="container">
-          {children}
+          <Scramble />
+          <Timer />
         </div>
       </div>
     </section>

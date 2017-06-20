@@ -1,4 +1,4 @@
-# latexresu.me
+# Timer
 A modern, minimal speedcubing webapp.
 
 ## Developing

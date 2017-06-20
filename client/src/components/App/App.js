@@ -3,14 +3,12 @@
  */
 
 import React from 'react'
-import { Hero, Timer } from '..'
+import { Hero } from '..'
 import './app.styl'
 
 function App() {
   return (
-    <Hero>
-      <Timer />
-    </Hero>
+    <Hero />
   )
 }
 
