@@ -9,7 +9,7 @@ import styles from './scramble.styl'
 function Scramble() {
   return (
     <p className={styles.scramble}>
-      {new Scrambo().type('333').get()}
+      {new Scrambo().type('333').length(20).get()}
     </p>
   )
 }

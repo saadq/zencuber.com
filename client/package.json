@@ -16,6 +16,7 @@
   "author": "Saad Quadri",
   "license": "MIT",
   "dependencies": {
+    "bulma-stylus": "^0.4.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
