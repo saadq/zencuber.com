@@ -4,8 +4,8 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { startTimer, stopTimer } from '../../actions/timer'
-import type { State, Dispatch } from '../../types'
+import { startTimer, stopTimer, updateScramble } from '../../actions'
+import type { State } from '../../types'
 import styles from './timer.styl'
 
 type Props = {
@@ -13,7 +13,8 @@ type Props = {
   startTime?: number,
   stopTime?: number,
   startTimer: Function,
-  stopTimer: Function
+  stopTimer: Function,
+  updateScramble: Function
 }
 
 class Timer extends Component {
@@ -59,11 +60,12 @@ class Timer extends Component {
   }
 
   stop = () => {
-    const { isOn, stopTimer } = this.props
+    const { isOn, stopTimer, updateScramble } = this.props
 
     if (!isOn) return
 
     stopTimer()
+    updateScramble()
     clearInterval(this.interval)
   }
 
@@ -102,11 +104,10 @@ function mapStateToProps(state: State) {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    startTimer: () => dispatch(startTimer()),
-    stopTimer: () => dispatch(stopTimer())
-  }
+const mapDispatchToProps = {
+  startTimer,
+  stopTimer,
+  updateScramble
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer)
