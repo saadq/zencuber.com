@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import { Timer, Scramble, TopBar } from '..'
+import { TopBar, Timer, Scramble, Stats } from '..'
 import styles from './hero.styl'
 
 function Hero() {
@@ -16,6 +16,7 @@ function Hero() {
         <div className={styles.container}>
           <Scramble />
           <Timer />
+          <Stats />
         </div>
       </div>
     </section>
