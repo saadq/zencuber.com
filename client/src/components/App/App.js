@@ -3,12 +3,12 @@
  */
 
 import React from 'react'
-import { Hero } from '..'
+import { Layout } from '..'
 import './app.styl'
 
 function App() {
   return (
-    <Hero />
+    <Layout />
   )
 }
 

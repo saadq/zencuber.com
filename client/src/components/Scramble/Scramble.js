@@ -25,9 +25,13 @@ class Scramble extends Component {
 
   render() {
     return (
-      <p className={styles.scramble}>
-        {this.props.scramble}
-      </p>
+      <div className={`columns is-gapless ${styles.row}`}>
+        <div className="column">
+          <p className={styles.scramble}>
+            {this.props.scramble}
+          </p>
+        </div>
+      </div>
     )
   }
 }

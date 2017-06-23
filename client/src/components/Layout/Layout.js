@@ -3,24 +3,23 @@
  */
 
 import React from 'react'
-import { TopBar, Timer, Scramble, Stats } from '..'
-import styles from './hero.styl'
+import { TopBar, Timer, Scramble } from '..'
+import styles from './layout.styl'
 
-function Hero() {
+function Layout() {
   return (
     <section className={styles.hero}>
       <div className={styles.head}>
         <TopBar />
       </div>
       <div className={styles.body}>
-        <div className={styles.container}>
-          <Scramble />
+        <div className="container">
           <Timer />
-          <Stats />
+          <Scramble />
         </div>
       </div>
     </section>
   )
 }
 
-export default Hero
+export default Layout
