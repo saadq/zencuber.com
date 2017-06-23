@@ -7,9 +7,7 @@ import { Layout } from '..'
 import './app.styl'
 
 function App() {
-  return (
-    <Layout />
-  )
+  return <Layout />
 }
 
 export default App

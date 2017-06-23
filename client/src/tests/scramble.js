@@ -7,7 +7,11 @@ import reducer from '../reducers/scramble'
 import { initializeScramble, updateScramble } from '../actions'
 
 test('timer actions', async t => {
-  const { type: initializeType, currScramble, nextScramble } = initializeScramble()
+  const {
+    type: initializeType,
+    currScramble,
+    nextScramble
+  } = initializeScramble()
   t.is(initializeType, 'INITIALIZE_SCRAMBLE')
   t.is(typeof currScramble, 'string')
   t.is(typeof nextScramble, 'string')
@@ -38,9 +42,9 @@ test('it can initialize the scrambles', async t => {
 
 test('it can update the scrambles', async t => {
   const prevState = {
-    prevScramble: 'B L B U2 F2 L\' B D\' L2 D R\' U2 R D B2 L2 U\' R2 B L',
-    currScramble: 'B2 L D2 F\' R D B U2 B2 D\' L\' B\' D R\' D R2 F2 D F D\'',
-    nextScramble: 'B D2 L\' D2 B2 U F U\' R2 B2 U F\' R D L U\' F D2 B2 U2'
+    prevScramble: "B L B U2 F2 L' B D' L2 D R' U2 R D B2 L2 U' R2 B L",
+    currScramble: "B2 L D2 F' R D B U2 B2 D' L' B' D R' D R2 F2 D F D'",
+    nextScramble: "B D2 L' D2 B2 U F U' R2 B2 U F' R D L U' F D2 B2 U2"
   }
 
   const newState = reducer(prevState, updateScramble())
