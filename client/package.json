@@ -9,6 +9,7 @@
     "flow": "flow",
     "typecheck": "cd src && flow status",
     "lint": "blyss",
+    "format": "prettier --single-quote --no-semi --write \"src/**/*.js\"",
     "preinstall:types": "rm -rf flow/flow-typed",
     "install:types": "flow-typed install && mv flow-typed flow",
     "test": "npm run lint --silent && flow check && cross-env NODE_ENV=test BABEL_ENV=test ava src/tests/**/*.js --fail-fast --verbose"
