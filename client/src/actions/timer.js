@@ -2,16 +2,16 @@
  * @flow
  */
 
-import type { Action } from '../types'
+import type { TimerAction } from '../types'
 
-function startTimer(): Action {
+function startTimer(): TimerAction {
   return {
     type: 'START_TIMER',
     startTime: Date.now()
   }
 }
 
-function stopTimer(): Action {
+function stopTimer(): TimerAction {
   return {
     type: 'STOP_TIMER',
     stopTime: Date.now()

@@ -15,5 +15,7 @@ export type {
   Dispatch,
   Action,
   TimerState,
-  ScrambleState
+  TimerAction,
+  ScrambleState,
+  ScrambleAction
 }

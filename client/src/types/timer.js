@@ -8,11 +8,10 @@ type TimerState = {
   stopTime?: ?number
 }
 
-type TimerAction =
- | { type: 'START_TIMER', startTime: number }
- | { type: 'STOP_TIMER', stopTime: number }
-
-export type {
-  TimerState,
-  TimerAction
+type TimerAction = {
+  type: 'START_TIMER' | 'STOP_TIMER',
+  startTime?: number,
+  stopTime?: number
 }
+
+export type { TimerState, TimerAction }
