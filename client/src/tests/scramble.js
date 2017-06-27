@@ -7,12 +7,8 @@ import reducer from '../reducers/scramble'
 import { initializeScramble, updateScramble } from '../actions'
 
 test('timer actions', async t => {
-  const {
-    type: initializeType,
-    currScramble,
-    nextScramble
-  } = initializeScramble()
-  t.is(initializeType, 'INITIALIZE_SCRAMBLE')
+  const { type: initType, currScramble, nextScramble } = initializeScramble()
+  t.is(initType, 'INITIALIZE_SCRAMBLE')
   t.is(typeof currScramble, 'string')
   t.is(typeof nextScramble, 'string')
   t.true(isValidScramble(currScramble))
