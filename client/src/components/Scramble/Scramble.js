@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { initializeScramble, updateScramble } from '../../actions'
+import { initializeScramble, updateScramble } from '../../actions/scramble'
 import type { State } from '../../types'
 import styles from './scramble.styl'
 

@@ -2,7 +2,7 @@
  * @flow
  */
 
-import { startTimer, stopTimer } from './timer'
-import { initializeScramble, updateScramble } from './scramble'
+import * as TimerActions from './timer'
+import * as ScrambleActions from './scramble'
 
-export { startTimer, stopTimer, initializeScramble, updateScramble }
+export { TimerActions, ScrambleActions }

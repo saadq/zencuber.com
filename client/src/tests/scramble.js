@@ -4,7 +4,7 @@
 
 import test from 'ava'
 import reducer from '../reducers/scramble'
-import { initializeScramble, updateScramble } from '../actions'
+import { initializeScramble, updateScramble } from '../actions/scramble'
 
 test('timer actions', async t => {
   const { type: initType, currScramble, nextScramble } = initializeScramble()
