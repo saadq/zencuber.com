@@ -53,10 +53,10 @@ function initializeTimerSuccess(): TimerAction {
  * Starts running the timer.
  */
 
-function startTimer(): TimerAction {
+function startTimer(startTime: number): TimerAction {
   return {
     type: 'START_TIMER',
-    startTime: Date.now()
+    startTime
   }
 }
 
@@ -64,11 +64,18 @@ function startTimer(): TimerAction {
  * Stops running the timer.
  */
 
-function stopTimer(): TimerAction {
+function stopTimer(stopTime: number): TimerAction {
   return {
     type: 'STOP_TIMER',
-    stopTime: Date.now()
+    stopTime
   }
 }
 
-export { startTimer, stopTimer, initializeTimer, cancelTimerInitialization }
+export {
+  startTimer,
+  stopTimer,
+  initializeTimer,
+  cancelTimerInitialization,
+  startInitializeTimer,
+  initializeTimerSuccess
+}

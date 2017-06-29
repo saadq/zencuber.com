@@ -15,8 +15,8 @@ type Props = {
   startTime?: number,
   stopTime?: number,
   actions: {
-    startTimer: () => any,
-    stopTimer: () => any,
+    startTimer: (startTime: number) => any,
+    stopTimer: (stopTime: number) => any,
     initializeTimer: () => any,
     cancelTimerInitialization: () => any,
     updateScramble: () => any
@@ -80,7 +80,7 @@ class Timer extends Component {
       return
     }
 
-    actions.startTimer()
+    actions.startTimer(Date.now())
     this.interval = setInterval(() => this.forceUpdate(), 10)
   }
 
@@ -91,7 +91,7 @@ class Timer extends Component {
       return
     }
 
-    actions.stopTimer()
+    actions.stopTimer(Date.now())
     actions.updateScramble()
     clearInterval(this.interval)
   }
