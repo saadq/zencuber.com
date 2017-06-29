@@ -13,13 +13,17 @@ test('timer actions', async t => {
 
 test('it can start the timer', async t => {
   const state = {
-    isOn: false
+    isOn: false,
+    initialization: {
+      status: 'success'
+    }
   }
 
   const expected = {
     isOn: true,
     startTime: Date.now(),
-    stopTime: null
+    stopTime: null,
+    initialization: {}
   }
 
   const actual = reducer(state, startTimer())
@@ -30,13 +34,15 @@ test('it can start the timer', async t => {
 test('it can stop the timer', async t => {
   const state = {
     isOn: true,
-    startTime: 1497207435325
+    startTime: 1497207435325,
+    initialization: {}
   }
 
   const expected = {
     isOn: false,
     startTime: 1497207435325,
-    stopTime: Date.now()
+    stopTime: Date.now(),
+    initialization: {}
   }
 
   const actual = reducer(state, stopTimer())
