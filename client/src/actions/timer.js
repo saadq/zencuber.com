@@ -4,56 +4,33 @@
 
 import type { TimerAction, AsyncAction } from '../types'
 
-/**
- * Starts running the timer.
- */
-
-function startTimer(): TimerAction {
-  return {
-    type: 'START_TIMER',
-    startTime: Date.now()
-  }
-}
+let timeoutId
 
 /**
- * Stops the running timer.
- */
-
-function stopTimer(): TimerAction {
-  return {
-    type: 'STOP_TIMER',
-    stopTime: Date.now()
-  }
-}
-
-/**
- * Attempts to initialize the timer. Initialization is cancelled
- * if the space bar is released too early.
+ * Initializes the timer after a small time period
+ * unless cancellation is requested.
  */
 
 function initializeTimer(): AsyncAction {
   return async (dispatch, getState) => {
     dispatch(startInitializeTimer())
-    await sleep(500)
-    getState().timer.initialization.shouldCancel
-      ? dispatch(initializeTimerFailure())
-      : dispatch(initializeTimerSuccess())
+    timeoutId = setTimeout(() => dispatch(initializeTimerSuccess()), 350)
   }
 }
 
 /**
- * Adds a cancellation token to the state in order to
- * signal the timer to fail the initialization.
+ * Cancels the timer initialization.
  */
 
-function cancelInitializeTimer(): TimerAction {
+function cancelTimerInitialization(): TimerAction {
+  clearTimeout(timeoutId)
   return {
-    type: 'CANCEL_INITIALIZE_TIMER'
+    type: 'CANCEL_TIMER_INITIALIZATION'
   }
 }
 
 /**
- * Starts the timer initialization.
+ * Triggers the timer to start initialization.
  */
 
 function startInitializeTimer(): TimerAction {
@@ -73,23 +50,25 @@ function initializeTimerSuccess(): TimerAction {
 }
 
 /**
- * Signals that the timer needs to be reinitialized.
+ * Starts running the timer.
  */
 
-function initializeTimerFailure(): TimerAction {
+function startTimer(): TimerAction {
   return {
-    type: 'INITIALIZE_TIMER_FAILURE'
+    type: 'START_TIMER',
+    startTime: Date.now()
   }
 }
 
 /**
- * A Promise wrapper around setTimeout.
+ * Stops running the timer.
  */
 
-function sleep(ms) {
-  return new Promise(resolve => {
-    setTimeout(resolve, ms)
-  })
+function stopTimer(): TimerAction {
+  return {
+    type: 'STOP_TIMER',
+    stopTime: Date.now()
+  }
 }
 
-export { startTimer, stopTimer, initializeTimer, cancelInitializeTimer }
+export { startTimer, stopTimer, initializeTimer, cancelTimerInitialization }

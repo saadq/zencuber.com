@@ -6,7 +6,9 @@ import type { TimerState as State, Action } from '../types'
 
 const initialState = {
   isOn: false,
-  initialization: {}
+  initialization: {
+    status: 'idle'
+  }
 }
 
 function counter(state: State = initialState, action: Action): State {
@@ -15,9 +17,7 @@ function counter(state: State = initialState, action: Action): State {
       return {
         ...state,
         isOn: true,
-        startTime: action.startTime,
-        stopTime: null,
-        initialization: {}
+        startTime: action.startTime
       }
 
     case 'STOP_TIMER':
@@ -25,7 +25,9 @@ function counter(state: State = initialState, action: Action): State {
         ...state,
         isOn: false,
         stopTime: action.stopTime,
-        initialization: {}
+        initialization: {
+          status: 'idle'
+        }
       }
 
     case 'START_INITIALIZE_TIMER':
@@ -41,23 +43,16 @@ function counter(state: State = initialState, action: Action): State {
         ...state,
         initialization: {
           status: 'success'
-        }
+        },
+        startTime: null,
+        stopTime: null
       }
 
-    case 'INITIALIZE_TIMER_FAILURE':
+    case 'CANCEL_TIMER_INITIALIZATION':
       return {
         ...state,
         initialization: {
           status: 'failure'
-        }
-      }
-
-    case 'CANCEL_INITIALIZE_TIMER':
-      return {
-        ...state,
-        initialization: {
-          ...state.initialization,
-          shouldCancel: true
         }
       }
 

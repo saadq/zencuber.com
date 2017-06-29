@@ -11,17 +11,14 @@ import styles from './timer.styl'
 
 type Props = {
   isOn: boolean,
-  initialization: {
-    status: string,
-    shouldCancel?: boolean
-  },
+  initialization: { status: string, shouldCancel?: boolean },
   startTime?: number,
   stopTime?: number,
   actions: {
     startTimer: () => any,
     stopTimer: () => any,
     initializeTimer: () => any,
-    cancelInitializeTimer: () => any,
+    cancelTimerInitialization: () => any,
     updateScramble: () => any
   }
 }
@@ -41,38 +38,47 @@ class Timer extends Component {
     window.removeEventListener('keydown', this.onKeyDown)
   }
 
+  onKeyDown = (e: SyntheticKeyboardEvent) => {
+    const { isOn, actions } = this.props
+    if (isOn) {
+      this.stop()
+      this.justStopped = true
+    } else if (e.keyCode === 32 && this.needsToInitialize()) {
+      actions.initializeTimer()
+    }
+  }
+
   onKeyUp = (e: SyntheticKeyboardEvent) => {
     const { initialization, actions } = this.props
-    const { status, shouldCancel } = initialization
+    const { status } = initialization
 
     if (this.justStopped) {
       this.justStopped = false
       return
     }
 
-    if (e.keyCode !== 32) return
+    if (e.keyCode !== 32) {
+      return
+    }
 
-    if (status === 'pending' && !shouldCancel) actions.cancelInitializeTimer()
-    else if (status === 'success') this.start()
+    if (status === 'pending') {
+      actions.cancelTimerInitialization()
+    } else if (status === 'success') {
+      this.start()
+    }
   }
 
-  onKeyDown = (e: SyntheticKeyboardEvent) => {
-    const { isOn, initialization, actions } = this.props
-    const { status } = initialization
-
-    if (isOn) {
-      this.stop()
-      this.justStopped = true
-    } else if (e.keyCode === 32) {
-      if (status === 'pending' || status === 'success') return
-      actions.initializeTimer()
-    }
+  needsToInitialize() {
+    const { status } = this.props.initialization
+    return !this.justStopped && status !== 'pending' && status !== 'success'
   }
 
   start = () => {
     const { isOn, actions } = this.props
 
-    if (isOn) return
+    if (isOn) {
+      return
+    }
 
     actions.startTimer()
     this.interval = setInterval(() => this.forceUpdate(), 10)
@@ -81,7 +87,9 @@ class Timer extends Component {
   stop = () => {
     const { isOn, actions } = this.props
 
-    if (!isOn) return
+    if (!isOn) {
+      return
+    }
 
     actions.stopTimer()
     actions.updateScramble()
@@ -106,8 +114,9 @@ class Timer extends Component {
   }
 
   render() {
+    const { status } = this.props.initialization
     return (
-      <h1 className={styles.timer}>
+      <h1 className={styles[`timer-${status}`]}>
         {this.getElapsedTime()}
       </h1>
     )
@@ -123,12 +132,14 @@ function mapStateToProps(state: State) {
   }
 }
 
+const actionCreators = {
+  ...TimerActions,
+  ...ScrambleActions
+}
+
 function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    actions: bindActionCreators(
-      { ...TimerActions, ...ScrambleActions },
-      dispatch
-    )
+    actions: bindActionCreators(actionCreators, dispatch)
   }
 }
 

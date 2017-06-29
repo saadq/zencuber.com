@@ -22,8 +22,9 @@ test('it can start the timer', async t => {
   const expected = {
     isOn: true,
     startTime: Date.now(),
-    stopTime: null,
-    initialization: {}
+    initialization: {
+      status: 'success'
+    }
   }
 
   const actual = reducer(state, startTimer())
@@ -35,14 +36,18 @@ test('it can stop the timer', async t => {
   const state = {
     isOn: true,
     startTime: 1497207435325,
-    initialization: {}
+    initialization: {
+      status: 'success'
+    }
   }
 
   const expected = {
     isOn: false,
     startTime: 1497207435325,
     stopTime: Date.now(),
-    initialization: {}
+    initialization: {
+      status: 'idle'
+    }
   }
 
   const actual = reducer(state, stopTimer())
