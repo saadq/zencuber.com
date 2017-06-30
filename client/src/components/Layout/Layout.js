@@ -15,8 +15,10 @@ function Layout() {
       <div className={styles.body}>
         <div className="container">
           <Timer />
-          <Scramble />
         </div>
+      </div>
+      <div className={styles.foot}>
+        <Scramble />
       </div>
     </section>
   )
