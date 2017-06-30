@@ -19,7 +19,7 @@ type Actions = {
 }
 
 type Props = {
-  status: 'uninitialized' | 'initializing' | 'ready' | 'running',
+  status: 'paused' | 'uninitialized' | 'initializing' | 'ready' | 'running',
   startTime?: number,
   stopTime?: number,
   actions: Actions
