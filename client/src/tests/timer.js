@@ -12,7 +12,8 @@ import {
   initializeTimer,
   cancelTimerInitialization,
   startTimerInitialization,
-  timerInitializationSuccess
+  timerInitializationSuccess,
+  unpauseTimer
 } from '../actions/timer'
 
 const middleware = [thunk]
@@ -25,7 +26,9 @@ test('timer actions', async t => {
   t.deepEqual(startTimerInitialization(), {
     type: 'START_TIMER_INITIALIZATION'
   })
-  t.deepEqual(timerInitializationSuccess(), { type: 'TIMER_INITIALIZATION_SUCCESS' })
+  t.deepEqual(timerInitializationSuccess(), {
+    type: 'TIMER_INITIALIZATION_SUCCESS'
+  })
   t.deepEqual(cancelTimerInitialization(), {
     type: 'CANCEL_TIMER_INITIALIZATION'
   })
@@ -96,10 +99,28 @@ test('it can stop the timer', async t => {
   const expected = {
     startTime: 1497207435325,
     stopTime: now,
-    status: 'uninitialized'
+    status: 'paused'
   }
 
   const actual = reducer(state, stopTimer(now))
+
+  t.deepEqual(expected, actual)
+})
+
+test('it can unpause the timer', async t => {
+  const state = {
+    startTime: 1498802490120,
+    stopTime: 1498802493388,
+    status: 'paused'
+  }
+
+  const expected = {
+    startTime: 1498802490120,
+    stopTime: 1498802493388,
+    status: 'uninitialized'
+  }
+
+  const actual = reducer(state, unpauseTimer())
 
   t.deepEqual(expected, actual)
 })

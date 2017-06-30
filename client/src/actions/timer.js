@@ -71,11 +71,27 @@ function stopTimer(stopTime: number): TimerAction {
   }
 }
 
+/**
+ * Unpauses the timer.
+ *
+ * After the timer has been stopped, it is then automatically paused so that it
+ * doesn't immediately start again if the space bar was pressed to stop the
+ * timer. Instead of starting it again, it is unpaused and the timer can be used
+ * again.
+ */
+
+function unpauseTimer() {
+  return {
+    type: 'UNPAUSE_TIMER'
+  }
+}
+
 export {
   startTimer,
   stopTimer,
   initializeTimer,
   cancelTimerInitialization,
   startTimerInitialization,
-  timerInitializationSuccess
+  timerInitializationSuccess,
+  unpauseTimer
 }

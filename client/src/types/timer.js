@@ -5,7 +5,7 @@
 type TimerState = {
   startTime?: ?number,
   stopTime?: ?number,
-  status: 'uninitialized' | 'initializing' | 'ready' | 'running'
+  status: 'paused' | 'uninitialized' | 'initializing' | 'ready' | 'running'
 }
 
 type TimerActionType =
@@ -14,6 +14,7 @@ type TimerActionType =
   | 'START_TIMER_INITIALIZATION'
   | 'TIMER_INITIALIZATION_SUCCESS'
   | 'CANCEL_TIMER_INITIALIZATION'
+  | 'UNPAUSE_TIMER'
 
 type TimerAction = {
   type: TimerActionType,

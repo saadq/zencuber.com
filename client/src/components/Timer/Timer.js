@@ -9,23 +9,25 @@ import { TimerActions, ScrambleActions } from '../../actions'
 import type { State } from '../../types'
 import styles from './timer.styl'
 
+type Actions = {
+  startTimer: (startTime: number) => any,
+  stopTimer: (stopTime: number) => any,
+  initializeTimer: () => any,
+  cancelTimerInitialization: () => any,
+  unpauseTimer: () => any,
+  updateScramble: () => any
+}
+
 type Props = {
   status: 'uninitialized' | 'initializing' | 'ready' | 'running',
   startTime?: number,
   stopTime?: number,
-  actions: {
-    startTimer: (startTime: number) => any,
-    stopTimer: (stopTime: number) => any,
-    initializeTimer: () => any,
-    cancelTimerInitialization: () => any,
-    updateScramble: () => any
-  }
+  actions: Actions
 }
 
 class Timer extends Component {
   props: Props
   interval: *
-  justStopped: *
 
   componentDidMount() {
     window.addEventListener('keyup', this.onKeyUp)
@@ -41,8 +43,7 @@ class Timer extends Component {
     const { status, actions } = this.props
     if (status === 'running') {
       this.stop()
-      this.justStopped = true
-    } else if (e.keyCode === 32 && this.needsToInitialize()) {
+    } else if (e.keyCode === 32 && status === 'uninitialized') {
       actions.initializeTimer()
     }
   }
@@ -50,8 +51,8 @@ class Timer extends Component {
   onKeyUp = (e: SyntheticKeyboardEvent) => {
     const { status, actions } = this.props
 
-    if (this.justStopped) {
-      this.justStopped = false
+    if (status === 'paused') {
+      actions.unpauseTimer()
       return
     }
 
@@ -64,11 +65,6 @@ class Timer extends Component {
     } else if (status === 'ready') {
       this.start()
     }
-  }
-
-  needsToInitialize() {
-    const { status } = this.props
-    return !this.justStopped && status !== 'initializing' && status !== 'ready'
   }
 
   start = () => {
@@ -99,7 +95,7 @@ class Timer extends Component {
     const seconds = time.getSeconds().toString()
     const milliseconds = time.getMilliseconds().toString().padStart(3, '0')
 
-    return this.props.isOn
+    return this.props.status === 'running'
       ? `${seconds}.${milliseconds[0]}`
       : `${seconds}.${milliseconds.slice(0, 2)}`
   }

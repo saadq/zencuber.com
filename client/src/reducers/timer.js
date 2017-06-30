@@ -21,6 +21,12 @@ function counter(state: State = initialState, action: Action): State {
       return {
         ...state,
         stopTime: action.stopTime,
+        status: 'paused'
+      }
+
+    case 'UNPAUSE_TIMER':
+      return {
+        ...state,
         status: 'uninitialized'
       }
 
