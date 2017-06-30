@@ -10,8 +10,7 @@ import type { State } from '../../types'
 import styles from './timer.styl'
 
 type Props = {
-  isOn: boolean,
-  initialization: { status: string, shouldCancel?: boolean },
+  status: 'uninitialized' | 'initializing' | 'ready' | 'running',
   startTime?: number,
   stopTime?: number,
   actions: {
@@ -39,8 +38,8 @@ class Timer extends Component {
   }
 
   onKeyDown = (e: SyntheticKeyboardEvent) => {
-    const { isOn, actions } = this.props
-    if (isOn) {
+    const { status, actions } = this.props
+    if (status === 'running') {
       this.stop()
       this.justStopped = true
     } else if (e.keyCode === 32 && this.needsToInitialize()) {
@@ -49,8 +48,7 @@ class Timer extends Component {
   }
 
   onKeyUp = (e: SyntheticKeyboardEvent) => {
-    const { initialization, actions } = this.props
-    const { status } = initialization
+    const { status, actions } = this.props
 
     if (this.justStopped) {
       this.justStopped = false
@@ -61,22 +59,22 @@ class Timer extends Component {
       return
     }
 
-    if (status === 'pending') {
+    if (status === 'initializing') {
       actions.cancelTimerInitialization()
-    } else if (status === 'success') {
+    } else if (status === 'ready') {
       this.start()
     }
   }
 
   needsToInitialize() {
-    const { status } = this.props.initialization
-    return !this.justStopped && status !== 'pending' && status !== 'success'
+    const { status } = this.props
+    return !this.justStopped && status !== 'initializing' && status !== 'ready'
   }
 
   start = () => {
-    const { isOn, actions } = this.props
+    const { status, actions } = this.props
 
-    if (isOn) {
+    if (status === 'running') {
       return
     }
 
@@ -85,9 +83,9 @@ class Timer extends Component {
   }
 
   stop = () => {
-    const { isOn, actions } = this.props
+    const { status, actions } = this.props
 
-    if (!isOn) {
+    if (status === 'uninitialized') {
       return
     }
 
@@ -114,7 +112,7 @@ class Timer extends Component {
   }
 
   render() {
-    const { status } = this.props.initialization
+    const { status } = this.props
     return (
       <h1 className={styles[`timer-${status}`]}>
         {this.getElapsedTime()}
@@ -125,10 +123,9 @@ class Timer extends Component {
 
 function mapStateToProps(state: State) {
   return {
-    isOn: state.timer.isOn,
     startTime: state.timer.startTime,
     stopTime: state.timer.stopTime,
-    initialization: state.timer.initialization
+    status: state.timer.status
   }
 }
 

@@ -11,8 +11,8 @@ import {
   stopTimer,
   initializeTimer,
   cancelTimerInitialization,
-  startInitializeTimer,
-  initializeTimerSuccess
+  startTimerInitialization,
+  timerInitializationSuccess
 } from '../actions/timer'
 
 const middleware = [thunk]
@@ -22,23 +22,25 @@ test('timer actions', async t => {
   const now = Date.now()
   t.deepEqual(startTimer(now), { type: 'START_TIMER', startTime: now })
   t.deepEqual(stopTimer(now), { type: 'STOP_TIMER', stopTime: now })
-  t.deepEqual(startInitializeTimer(), { type: 'START_INITIALIZE_TIMER' })
-  t.deepEqual(initializeTimerSuccess(), { type: 'INITIALIZE_TIMER_SUCCESS' })
+  t.deepEqual(startTimerInitialization(), {
+    type: 'START_TIMER_INITIALIZATION'
+  })
+  t.deepEqual(timerInitializationSuccess(), { type: 'TIMER_INITIALIZATION_SUCCESS' })
   t.deepEqual(cancelTimerInitialization(), {
     type: 'CANCEL_TIMER_INITIALIZATION'
   })
 })
 
 test.serial('async timer actions', async t => {
-  const initialState = { isOn: false, initialization: { status: 'idle' } }
+  const initialState = { status: 'uninitialized' }
   const store = mockStore({ timer: initialState })
 
   await store.dispatch(initializeTimer())
   await sleep(350) // Wait for timer to initialize
 
   const expectedActions = [
-    { type: 'START_INITIALIZE_TIMER' },
-    { type: 'INITIALIZE_TIMER_SUCCESS' }
+    { type: 'START_TIMER_INITIALIZATION' },
+    { type: 'TIMER_INITIALIZATION_SUCCESS' }
   ]
 
   const actualActions = store.getActions()
@@ -46,27 +48,22 @@ test.serial('async timer actions', async t => {
 })
 
 test('it can start initializing the timer', async t => {
-  const state = { isOn: false, initialization: { status: 'idle' } }
-  const expected = { isOn: false, initialization: { status: 'pending' } }
-  const actual = reducer(state, startInitializeTimer())
+  const state = { status: 'uninitialized' }
+  const expected = { status: 'initializing' }
+  const actual = reducer(state, startTimerInitialization())
   t.deepEqual(expected, actual)
 })
 
 test('it can succeed at initializing the timer', async t => {
-  const state = { isOn: false, initialization: { status: 'pending' } }
-  const expected = {
-    isOn: false,
-    startTime: null,
-    stopTime: null,
-    initialization: { status: 'success' }
-  }
-  const actual = reducer(state, initializeTimerSuccess())
+  const state = { status: 'initializing' }
+  const expected = { startTime: null, stopTime: null, status: 'ready' }
+  const actual = reducer(state, timerInitializationSuccess())
   t.deepEqual(expected, actual)
 })
 
 test('it can fail at initializing the timer', async t => {
-  const state = { isOn: false, initialization: { status: 'pending' } }
-  const expected = { isOn: false, initialization: { status: 'failure' } }
+  const state = { status: 'initializing' }
+  const expected = { status: 'uninitialized' }
   const actual = reducer(state, cancelTimerInitialization())
   t.deepEqual(expected, actual)
 })
@@ -75,18 +72,12 @@ test('it can start the timer', async t => {
   const now = Date.now()
 
   const state = {
-    isOn: false,
-    initialization: {
-      status: 'success'
-    }
+    status: 'ready'
   }
 
   const expected = {
-    isOn: true,
     startTime: now,
-    initialization: {
-      status: 'success'
-    }
+    status: 'running'
   }
 
   const actual = reducer(state, startTimer(now))
@@ -98,20 +89,14 @@ test('it can stop the timer', async t => {
   const now = Date.now()
 
   const state = {
-    isOn: true,
     startTime: 1497207435325,
-    initialization: {
-      status: 'success'
-    }
+    status: 'running'
   }
 
   const expected = {
-    isOn: false,
     startTime: 1497207435325,
     stopTime: now,
-    initialization: {
-      status: 'idle'
-    }
+    status: 'uninitialized'
   }
 
   const actual = reducer(state, stopTimer(now))

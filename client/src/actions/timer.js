@@ -13,8 +13,8 @@ let timeoutId
 
 function initializeTimer(): AsyncAction {
   return async (dispatch, getState) => {
-    dispatch(startInitializeTimer())
-    timeoutId = setTimeout(() => dispatch(initializeTimerSuccess()), 350)
+    dispatch(startTimerInitialization())
+    timeoutId = setTimeout(() => dispatch(timerInitializationSuccess()), 350)
   }
 }
 
@@ -33,9 +33,9 @@ function cancelTimerInitialization(): TimerAction {
  * Triggers the timer to start initialization.
  */
 
-function startInitializeTimer(): TimerAction {
+function startTimerInitialization(): TimerAction {
   return {
-    type: 'START_INITIALIZE_TIMER'
+    type: 'START_TIMER_INITIALIZATION'
   }
 }
 
@@ -43,9 +43,9 @@ function startInitializeTimer(): TimerAction {
  * Signals that the timer is ready for use.
  */
 
-function initializeTimerSuccess(): TimerAction {
+function timerInitializationSuccess(): TimerAction {
   return {
-    type: 'INITIALIZE_TIMER_SUCCESS'
+    type: 'TIMER_INITIALIZATION_SUCCESS'
   }
 }
 
@@ -76,6 +76,6 @@ export {
   stopTimer,
   initializeTimer,
   cancelTimerInitialization,
-  startInitializeTimer,
-  initializeTimerSuccess
+  startTimerInitialization,
+  timerInitializationSuccess
 }

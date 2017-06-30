@@ -8,14 +8,14 @@
   @media screen and (max-width 768px)
     font-size 8em
 
-.timer-idle, .timer-failure
+.timer-uninitialized, .timer-running
   composes timer
   color black
 
-.timer-success
-  composes timer
-  color lime
-
-.timer-pending
+.timer-initializing
   composes timer
   color red
+
+.timer-ready
+  composes timer
+  color lime

@@ -3,20 +3,16 @@
  */
 
 type TimerState = {
-  isOn: boolean,
   startTime?: ?number,
   stopTime?: ?number,
-  initialization: {
-    status: 'idle' | 'pending' | 'success' | 'failure',
-    shouldCancel?: boolean
-  }
+  status: 'uninitialized' | 'initializing' | 'ready' | 'running'
 }
 
 type TimerActionType =
   | 'START_TIMER'
   | 'STOP_TIMER'
-  | 'START_INITIALIZE_TIMER'
-  | 'INITIALIZE_TIMER_SUCCESS'
+  | 'START_TIMER_INITIALIZATION'
+  | 'TIMER_INITIALIZATION_SUCCESS'
   | 'CANCEL_TIMER_INITIALIZATION'
 
 type TimerAction = {
