@@ -1,5 +1,27 @@
-.table
-  box-shadow 0 0 3px 0 rgba(0, 0, 0, .08), 0 0px 0px 0 rgba(64, 78, 85, .09), 0 0px 0px 0 rgb(150, 162, 165, .5)
+.row
+  composes row from '../Layout/layout.styl'
+  height 500px
 
-  tr, th, td
-    border none
+.column
+  composes column from '../Layout/layout.styl'
+  text-align center
+
+.stats-list
+  font-family roboto
+  height 100%
+  display flex
+  flex-direction column
+  justify-content space-around
+  font-weight bold
+  border-right 2px solid #e6edf4
+
+  @media screen and (max-width: 769px)
+    margin-top 20px
+    border-bottom 2px solid #e6edf4
+
+  li
+    color #636E81
+
+    span
+      color black
+      font-size 4em

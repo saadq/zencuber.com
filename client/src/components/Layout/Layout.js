@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import { TopBar, Timer, Scramble } from '..'
+import { TopBar, Timer, Scramble, Stats } from '..'
 import styles from './layout.styl'
 
 function Layout() {
@@ -19,6 +19,7 @@ function Layout() {
       </div>
       <div className={styles.foot}>
         <Scramble />
+        <Stats />
       </div>
     </section>
   )
