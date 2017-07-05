@@ -25,7 +25,9 @@ function Stats() {
         </ul>
       </div>
       <div className={styles.column}>
-        <h1>times</h1>
+        <div className={styles.times}>
+          <h1>times</h1>
+        </div>
       </div>
     </div>
   )

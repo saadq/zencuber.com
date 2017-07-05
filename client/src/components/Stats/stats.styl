@@ -1,27 +1,33 @@
 .row
   composes row from '../Layout/layout.styl'
-  height 500px
 
 .column
   composes column from '../Layout/layout.styl'
   text-align center
 
 .stats-list
+  padding 10px 0
   font-family roboto
   height 100%
   display flex
   flex-direction column
   justify-content space-around
-  font-weight bold
   border-right 2px solid #e6edf4
 
   @media screen and (max-width: 769px)
-    margin-top 20px
     border-bottom 2px solid #e6edf4
 
   li
-    color #636E81
+    color #65737E
+    margin 10px
 
     span
       color black
-      font-size 4em
+      font-size 2.5em
+      font-weight bold
+
+.times
+  height 100%
+  display flex
+  flex-direction column
+  position relative
