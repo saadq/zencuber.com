@@ -24,11 +24,6 @@ function Stats() {
           </li>
         </ul>
       </div>
-      <div className={styles.column}>
-        <div className={styles.times}>
-          <h1>times</h1>
-        </div>
-      </div>
     </div>
   )
 }

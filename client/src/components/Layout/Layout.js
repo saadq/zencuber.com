@@ -3,10 +3,8 @@
  */
 
 import React from 'react'
-import { TopBar, Timer, Scramble, Stats } from '..'
+import { TopBar, Timer, Scramble, Stats, Drawing } from '..'
 import styles from './layout.styl'
-
-console.log(Stats)
 
 function Layout() {
   return (
@@ -21,7 +19,14 @@ function Layout() {
       </div>
       <div className={styles.foot}>
         <Scramble />
-        <Stats />
+        <div className={styles.row}>
+          <div className={styles.column}>
+            <Stats />
+          </div>
+          <div className={styles.column}>
+            <Drawing />
+          </div>
+        </div>
       </div>
     </section>
   )
