@@ -8,10 +8,12 @@ import { Layout } from '..'
 import { initializeScramble } from '../../actions/scramble'
 import './app.styl'
 
+type Props = {
+  initializeScramble: () => mixed
+}
+
 class App extends Component {
-  props: {
-    initializeScramble: () => mixed
-  }
+  props: Props
 
   componentWillMount() {
     this.props.initializeScramble()
