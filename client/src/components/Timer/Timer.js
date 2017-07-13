@@ -10,12 +10,12 @@ import type { State } from '../../types'
 import styles from './timer.styl'
 
 type Actions = {
-  startTimer: (startTime: number) => any,
-  stopTimer: (stopTime: number) => any,
-  initializeTimer: () => any,
-  cancelTimerInitialization: () => any,
-  unpauseTimer: () => any,
-  updateScramble: () => any
+  startTimer: (startTime: number) => mixed,
+  stopTimer: (stopTime: number) => mixed,
+  initializeTimer: () => mixed,
+  cancelTimerInitialization: () => mixed,
+  unpauseTimer: () => mixed,
+  updateScramble: () => mixed
 }
 
 type Props = {

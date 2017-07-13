@@ -8,7 +8,7 @@ const initialState = {
   status: 'uninitialized'
 }
 
-function counter(state: State = initialState, action: Action): State {
+function timer(state: State = initialState, action: Action): State {
   switch (action.type) {
     case 'START_TIMER':
       return {
@@ -55,4 +55,4 @@ function counter(state: State = initialState, action: Action): State {
   }
 }
 
-export default counter
+export default timer
