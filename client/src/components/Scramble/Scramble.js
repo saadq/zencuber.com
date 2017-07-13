@@ -9,7 +9,7 @@ import type { State } from '../../types'
 import styles from './scramble.styl'
 
 type Props = {
-  scramble: string,
+  scramble: { scrambleString: string, state: string },
   updateScramble: Function,
   initializeScramble: Function
 }
@@ -28,7 +28,7 @@ class Scramble extends Component {
       <div className={styles.row}>
         <div className={styles.column}>
           <p className={styles.scramble}>
-            {this.props.scramble}
+            {this.props.scramble.scrambleString}
           </p>
         </div>
       </div>

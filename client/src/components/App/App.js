@@ -2,12 +2,28 @@
  * @flow
  */
 
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Layout } from '..'
+import { initializeScramble } from '../../actions/scramble'
 import './app.styl'
 
-function App() {
-  return <Layout />
+class App extends Component {
+  props: {
+    initializeScramble: () => mixed
+  }
+
+  componentWillMount() {
+    this.props.initializeScramble()
+  }
+
+  render() {
+    return <Layout />
+  }
 }
 
-export default App
+const mapDispatchToProps = {
+  initializeScramble
+}
+
+export default connect(null, mapDispatchToProps)(App)

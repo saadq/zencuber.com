@@ -2,17 +2,21 @@
  * @flow
  */
 
+type Scramble = {
+  state: string,
+  scrambleString: string
+}
+
 type ScrambleState = {
-  prevScramble: ?string,
-  currScramble: ?string,
-  nextScramble: ?string
+  prevScramble: ?Scramble,
+  currScramble: ?Scramble,
+  nextScramble: ?Scramble
 }
 
 type ScrambleAction = {
   type: 'INITIALIZE_SCRAMBLE' | 'UPDATE_SCRAMBLE',
-  currScramble?: string,
-  nextScramble?: string,
-  newScramble?: string
+  currScramble?: Scramble,
+  nextScramble?: Scramble
 }
 
-export type { ScrambleState, ScrambleAction }
+export type { Scramble, ScrambleState, ScrambleAction }

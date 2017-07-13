@@ -23,7 +23,7 @@ function scramble(state: State = initialState, action: Action): State {
       return {
         prevScramble: state.currScramble,
         currScramble: state.nextScramble,
-        nextScramble: action.newScramble
+        nextScramble: action.nextScramble
       }
 
     default:
