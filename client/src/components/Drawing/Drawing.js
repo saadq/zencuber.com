@@ -10,9 +10,18 @@ import styles from './drawing.styl'
 
 class Drawing extends Component {
   componentDidMount() {
+    this.updateDrawing()
+  }
+
+  componentDidUpdate() {
+    this.updateDrawing()
+  }
+
+  updateDrawing() {
     const { state } = this.props
     const scrambler = scramby()
-
+    
+    this.refs.drawing.innerHTML = ''
     scrambler.drawScramble(this.refs.drawing, state, 300, 180)
   }
 
