@@ -3,26 +3,21 @@
  */
 
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { TimerActions, ScrambleActions } from '../../actions'
 import type { State } from '../../types'
 import styles from './timer.styl'
 
-type Actions = {
-  startTimer: (startTime: number) => any,
-  stopTimer: (stopTime: number) => any,
-  initializeTimer: () => any,
-  cancelTimerInitialization: () => any,
-  unpauseTimer: () => any,
-  updateScramble: () => any
-}
-
 type Props = {
   status: 'paused' | 'uninitialized' | 'initializing' | 'ready' | 'running',
   startTime?: number,
   stopTime?: number,
-  actions: Actions
+  startTimer: (startTime: number) => mixed,
+  stopTimer: (stopTime: number) => mixed,
+  initializeTimer: () => mixed,
+  cancelTimerInitialization: () => mixed,
+  unpauseTimer: () => mixed,
+  updateScramble: () => mixed
 }
 
 class Timer extends Component {
@@ -57,11 +52,11 @@ class Timer extends Component {
    */
 
   onKeyDown = (e: SyntheticKeyboardEvent) => {
-    const { status, actions } = this.props
+    const { status, initializeTimer } = this.props
     if (status === 'running') {
       this.stop()
     } else if (e.keyCode === 32 && status === 'uninitialized') {
-      actions.initializeTimer()
+      initializeTimer()
     }
   }
 
@@ -74,10 +69,10 @@ class Timer extends Component {
    */
 
   onKeyUp = (e: SyntheticKeyboardEvent) => {
-    const { status, actions } = this.props
+    const { status, unpauseTimer, cancelTimerInitialization } = this.props
 
     if (status === 'paused') {
-      actions.unpauseTimer()
+      unpauseTimer()
       return
     }
 
@@ -86,7 +81,7 @@ class Timer extends Component {
     }
 
     if (status === 'initializing') {
-      actions.cancelTimerInitialization()
+      cancelTimerInitialization()
     } else if (status === 'ready') {
       this.start()
     }
@@ -101,13 +96,13 @@ class Timer extends Component {
    */
 
   start = () => {
-    const { status, actions } = this.props
+    const { status, startTimer } = this.props
 
     if (status === 'running') {
       return
     }
 
-    actions.startTimer(Date.now())
+    startTimer(Date.now())
     this.interval = setInterval(() => this.forceUpdate(), 10)
   }
 
@@ -123,14 +118,14 @@ class Timer extends Component {
    */
 
   stop = () => {
-    const { status, actions } = this.props
+    const { status, stopTimer, updateScramble } = this.props
 
     if (status === 'uninitialized') {
       return
     }
 
-    actions.stopTimer(Date.now())
-    actions.updateScramble()
+    stopTimer(Date.now())
+    updateScramble()
     clearInterval(this.interval)
   }
 
@@ -156,11 +151,11 @@ class Timer extends Component {
   }
 
   /**
-  * Calculates how much time has passed since the timer has started.
-  * If the timer isn't running, just return 0.
-  *
-  * @return The elapsed time.
-  */
+   * Calculates how much time has passed since the timer has started.
+   * If the timer isn't running, just return 0.
+   *
+   * @return The elapsed time.
+   */
 
   getElapsedTime(): number {
     const { startTime, stopTime } = this.props
@@ -194,15 +189,9 @@ function mapStateToProps(state: State) {
   }
 }
 
-const actionCreators = {
+const mapDispatchToProps = {
   ...TimerActions,
   ...ScrambleActions
-}
-
-function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    actions: bindActionCreators(actionCreators, dispatch)
-  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer)
