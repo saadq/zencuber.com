@@ -140,9 +140,9 @@ class Timer extends Component {
    * If the timer is running, the format is like this: "32.7".
    * If the timer isn't running, the format is like this: "32.70".
    *
-   * @param elapsed - The amount of time that has passed in milliseconds.
+   * @param elapsed The amount of time that has passed in milliseconds.
    *
-   * @return - The amount of time that has passed.
+   * @return The amount of time that has passed.
    */
 
   timeFormatter(elapsed: number) {
@@ -159,14 +159,14 @@ class Timer extends Component {
   * Calculates how much time has passed since the timer has started.
   * If the timer isn't running, just return 0.
   *
-  * @return - The elapsed time.
+  * @return The elapsed time.
   */
 
-  getElapsedTime(): string {
+  getElapsedTime(): number {
     const { startTime, stopTime } = this.props
     const elapsed = startTime ? (stopTime || Date.now()) - startTime : 0
 
-    return this.timeFormatter(elapsed)
+    return elapsed
   }
 
   /**
@@ -175,9 +175,12 @@ class Timer extends Component {
 
   render() {
     const { status } = this.props
+    const elapsed = this.getElapsedTime()
+    const time = this.timeFormatter(elapsed)
+
     return (
       <h1 className={styles[`timer-${status}`]}>
-        {this.getElapsedTime()}
+        {time}
       </h1>
     )
   }
