@@ -36,7 +36,7 @@ function counter(state: State = initialState, action: Action): State {
         status: 'initializing'
       }
 
-    case 'TIMER_INITIALIZATION_SUCCESS':
+    case 'FINISH_TIMER_INITIALIZATION':
       return {
         ...state,
         status: 'ready',

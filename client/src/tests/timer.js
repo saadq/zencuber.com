@@ -12,7 +12,7 @@ import {
   initializeTimer,
   cancelTimerInitialization,
   startTimerInitialization,
-  timerInitializationSuccess,
+  finishTimerInitialization,
   unpauseTimer
 } from '../actions/timer'
 
@@ -26,8 +26,8 @@ test('timer actions', async t => {
   t.deepEqual(startTimerInitialization(), {
     type: 'START_TIMER_INITIALIZATION'
   })
-  t.deepEqual(timerInitializationSuccess(), {
-    type: 'TIMER_INITIALIZATION_SUCCESS'
+  t.deepEqual(finishTimerInitialization(), {
+    type: 'FINISH_TIMER_INITIALIZATION'
   })
   t.deepEqual(cancelTimerInitialization(), {
     type: 'CANCEL_TIMER_INITIALIZATION'
@@ -43,7 +43,7 @@ test.serial('async timer actions', async t => {
 
   const expectedActions = [
     { type: 'START_TIMER_INITIALIZATION' },
-    { type: 'TIMER_INITIALIZATION_SUCCESS' }
+    { type: 'FINISH_TIMER_INITIALIZATION' }
   ]
 
   const actualActions = store.getActions()
@@ -60,7 +60,7 @@ test('it can start initializing the timer', async t => {
 test('it can succeed at initializing the timer', async t => {
   const state = { status: 'initializing' }
   const expected = { startTime: null, stopTime: null, status: 'ready' }
-  const actual = reducer(state, timerInitializationSuccess())
+  const actual = reducer(state, finishTimerInitialization())
   t.deepEqual(expected, actual)
 })
 
