@@ -49,6 +49,8 @@ class Timer extends Component {
    * If the timer isn't running and it isn't "paused", it starts initialization.
    *
    * Initialization takes 350ms to complete.
+   *
+   * @param e The event object.
    */
 
   onKeyDown = (e: SyntheticKeyboardEvent) => {
@@ -66,6 +68,8 @@ class Timer extends Component {
    * If the timer was paused, unpause it.
    * If the timer hasn't finished initializing, cancel initialization.
    * If the timer is fully initialized, start the timer.
+   *
+   * @param e The event object.
    */
 
   onKeyUp = (e: SyntheticKeyboardEvent) => {
@@ -140,7 +144,7 @@ class Timer extends Component {
    * @return The amount of time that has passed.
    */
 
-  timeFormatter(elapsed: number) {
+  timeFormatter(elapsed: number): string {
     const time = new Date(elapsed)
     const seconds = time.getSeconds().toString()
     const milliseconds = time.getMilliseconds().toString().padStart(3, '0')
