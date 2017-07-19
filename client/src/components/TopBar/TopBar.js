@@ -5,6 +5,10 @@
 import React from 'react'
 import styles from './top-bar.styl'
 
+/**
+ * Renders the top navbar.
+ */
+
 function TopBar() {
   return (
     <nav className={styles.nav}>

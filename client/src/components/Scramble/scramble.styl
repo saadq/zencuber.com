@@ -1,18 +1,5 @@
-.row
-  padding 0
-  margin 0
-
-.column
-  display block
-  flex-basis 0
-  flex-grow 1
-  flex-shrink 1
-  margin 0
-  padding 0
-
 .scramble
   font-family 'Roboto'
-  // background #282b2e
   color #7e899b
   font-size 1.25em
   font-weight bold
@@ -21,9 +8,15 @@
   word-spacing 15px
   line-height 1.5
   text-align center
-  border 1px solid #e6edf4
+  border-top 1.25px solid #e6edf4
+  border-bottom 1.25px solid #e6edf4
   margin-bottom 0
 
-  @media screen and (max-width 768px)
-    font-size 1em
-    word-spacing 1px
+.row
+  composes row from '../Layout/layout.styl'
+  margin 0
+  padding 0
+
+.column
+  composes column from '../Layout/layout.styl'
+  padding 0

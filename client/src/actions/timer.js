@@ -14,7 +14,7 @@ let timeoutId
 function initializeTimer(): AsyncAction {
   return async (dispatch, getState) => {
     dispatch(startTimerInitialization())
-    timeoutId = setTimeout(() => dispatch(timerInitializationSuccess()), 350)
+    timeoutId = setTimeout(() => dispatch(finishTimerInitialization()), 350)
   }
 }
 
@@ -43,9 +43,9 @@ function startTimerInitialization(): TimerAction {
  * Signals that the timer is ready for use.
  */
 
-function timerInitializationSuccess(): TimerAction {
+function finishTimerInitialization(): TimerAction {
   return {
-    type: 'TIMER_INITIALIZATION_SUCCESS'
+    type: 'FINISH_TIMER_INITIALIZATION'
   }
 }
 
@@ -92,6 +92,6 @@ export {
   initializeTimer,
   cancelTimerInitialization,
   startTimerInitialization,
-  timerInitializationSuccess,
+  finishTimerInitialization,
   unpauseTimer
 }

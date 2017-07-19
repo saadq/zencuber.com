@@ -2,38 +2,35 @@
  * @flow
  */
 
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { initializeScramble, updateScramble } from '../../actions/scramble'
 import type { State } from '../../types'
 import styles from './scramble.styl'
 
 type Props = {
-  scramble: string,
-  updateScramble: Function,
-  initializeScramble: Function
+  scramble: {
+    scrambleString: string,
+    state: string
+  },
+  updateScramble: () => mixed,
+  initializeScramble: () => mixed
 }
 
-class Scramble extends Component {
-  props: Props
+/**
+ * Displays the Scramble component
+ */
 
-  componentWillMount() {
-    if (!this.props.scramble) {
-      this.props.initializeScramble()
-    }
-  }
-
-  render() {
-    return (
-      <div className={`columns is-gapless ${styles.row}`}>
-        <div className="column">
-          <p className={styles.scramble}>
-            {this.props.scramble}
-          </p>
-        </div>
+function Scramble({ scramble }: Props) {
+  return (
+    <div className={styles.row}>
+      <div className={styles.column}>
+        <p className={styles.scramble}>
+          {scramble.scrambleString}
+        </p>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 function mapStateToProps(state: State) {
