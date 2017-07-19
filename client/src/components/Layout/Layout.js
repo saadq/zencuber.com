@@ -6,6 +6,10 @@ import React from 'react'
 import { TopBar, Timer, Scramble, Stats, Drawing } from '..'
 import styles from './layout.styl'
 
+/**
+ * Renders the main structure for the app.
+ */
+
 function Layout() {
   return (
     <section className={styles.hero}>

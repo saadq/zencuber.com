@@ -5,6 +5,10 @@
 import React from 'react'
 import styles from './stats.styl'
 
+/**
+ * Renders the cube statistics such as mean/averages/etc.
+ */
+
 function Stats() {
   return (
     <div className={styles.row}>

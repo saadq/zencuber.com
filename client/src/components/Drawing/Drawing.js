@@ -15,17 +15,33 @@ type Props = {
 class Drawing extends Component {
   props: Props
 
+  /**
+   * Draw the scramble to the DOM when component has mounted.
+   */
+
   componentDidMount() {
     this.updateDrawing()
   }
+
+  /**
+   * Only update if the scramble has changed.
+   */
 
   shouldComponentUpdate(nextProps: Props) {
     return this.props.state !== nextProps.state
   }
 
+  /**
+   * Redraw to the DOM when the scramble has changed.
+   */
+
   componentDidUpdate() {
     this.updateDrawing()
   }
+
+  /**
+   * Clears the previous scramble and redraws it based on the new scramble.
+   */
 
   updateDrawing() {
     const { state } = this.props
@@ -34,6 +50,10 @@ class Drawing extends Component {
     this.refs.drawing.innerHTML = ''
     scrambler.drawScramble(this.refs.drawing, state, 300, 180)
   }
+
+  /**
+   * Display the drawing.
+   */
 
   render() {
     return <div ref="drawing" className={styles.wrapper} />
