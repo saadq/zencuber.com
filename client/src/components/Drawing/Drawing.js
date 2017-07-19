@@ -45,10 +45,11 @@ class Drawing extends Component {
 
   updateDrawing() {
     const { state } = this.props
+    const { drawing } = this.refs
     const scrambler = scramby()
 
-    this.refs.drawing.innerHTML = ''
-    scrambler.drawScramble(this.refs.drawing, state, 300, 180)
+    drawing.innerHTML = ''
+    scrambler.drawScramble(drawing, state, 300, 180)
   }
 
   /**
