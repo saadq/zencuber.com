@@ -21,7 +21,7 @@ class App extends Component {
   props: Props
 
   /**
-   * Generates the curr and next scrambles if they don't exist.
+   * Generates the current and next scrambles if they don't exist.
    */
 
   componentWillMount() {
@@ -43,7 +43,7 @@ class App extends Component {
 
 function mapStateToProps(state: State) {
   return {
-    scramble: state.scramble
+    scramble: state.scramble.currScramble
   }
 }
 
