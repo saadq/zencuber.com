@@ -8,13 +8,11 @@
   @media screen and (max-width 768px)
     font-size 8em
 
-.timer-paused, .timer-uninitialized, .timer-running
+.timer-paused, .timer-initializing, .timer-uninitialized, .timer-ready, .timer-running
   composes timer
 
 .timer-initializing
-  composes timer
   color red
 
 .timer-ready
-  composes timer
   color rgb(0, 221, 0)
