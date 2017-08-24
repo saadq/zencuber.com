@@ -27,19 +27,15 @@ const Main = styled.main`
   flex-direction: column
 `
 
-const Div = styled.div`
-  height: 100%;
-`
-
 function App() {
   return (
-    <Div>
+    <div>
       <TopBar />
       <Main>
         <Timer />
         <Scramble />
       </Main>
-    </Div>
+    </div>
   )
 }
 
