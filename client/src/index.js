@@ -6,22 +6,22 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
-import App from './components/App/App'
+import App from './components/App'
 import store from './store'
 
-function renderApp(Component) {
+function renderApp() {
   render(
     <AppContainer>
       <Provider store={store}>
-        <Component />
+        <App />
       </Provider>
     </AppContainer>,
     document.querySelector('#root')
   )
 }
 
-renderApp(App)
+renderApp()
 
 if (module.hot) {
-  module.hot.accept('./components/App/App', () => renderApp(App))
+  module.hot.accept('./components/App', () => renderApp())
 }

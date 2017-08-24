@@ -6,26 +6,30 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Nav = styled.nav`
-  display: flex;
-  align-items: center;
-  height: 75px;
+  height: 50px;
   width: 100%;
   background: #20232C;
+  color: #73e3ff;
   border-bottom: 1px solid #2a2e39;
 `
 
-const Logo = styled.h1`
-  padding-left: 25px;
-  color: #73e3ff;
-  font-size: 20px;
-  font-weight: 300;
-  letter-spacing: 1px;
+const Logo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 100%;
+  font-size: 1em;
 `
 
 function TopBar() {
   return (
     <Nav>
-      <Logo>zen</Logo>
+      <Logo>
+        <i className="mdi mdi-cube-outline" />
+        zen
+      </Logo>
     </Nav>
   )
 }
