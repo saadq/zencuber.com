@@ -5,7 +5,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const H1 = styled.h1`
+const Div = styled.div`
   width: 100%;
   background: #22262F;
   color: #56656C;
@@ -17,7 +17,7 @@ const H1 = styled.h1`
 
 function Scramble() {
   return (
-    <H1>B2 U' B2 F2 U' R2 F2 U R2 F2 U L' R B' U2 R' F R' D2 R' U'</H1>
+    <Div>B2 U' B2 F2 U' R2 F2 U R2 F2 U L' R B' U2 R' F R' D2 R' U'</Div>
   )
 }
 

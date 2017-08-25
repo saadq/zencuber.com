@@ -4,11 +4,13 @@
 
 import React from 'react'
 import styled from 'styled-components'
+import { primary } from '../helpers/colors'
 
 const H1 = styled.h1`
   font-size: 7em;
-  padding: .75em 0;
-  color: #6F8B98;
+  height: 27vh;
+  line-height: 27vh;
+  color: ${primary};
 `
 
 function Timer() {

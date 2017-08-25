@@ -7,6 +7,7 @@
     "build": "cross-env NODE_ENV=production webpack --optimize-minimize -p --config webpack.prod.config.js",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.config.js",
     "flow": "flow",
+    "coverage": "flow coverage",
     "typecheck": "cd src && flow status",
     "lint": "blyss | snazzy",
     "format": "prettier --single-quote --no-semi --write \"src/**/*.js\"",
