@@ -4,9 +4,15 @@
 
 import type { Dispatch as ReduxDispatch } from 'redux'
 import type { TimerState, TimerAction } from './timer'
-import type { ScrambleState, ScrambleAction } from './scramble'
+import type { Scramble, ScrambleState, ScrambleAction } from './scramble'
+import type { Solve, SolvesState, SolvesAction } from './solves'
 
-type State = { timer: TimerState, scramble: ScrambleState }
+type State = {
+  timer: TimerState,
+  scramble: ScrambleState,
+  solves: SolvesState
+}
+
 type GetState = () => State
 type Action = TimerAction | ScrambleAction
 type Dispatch = ReduxDispatch<Action>
@@ -19,6 +25,10 @@ export type {
   AsyncAction,
   TimerState,
   TimerAction,
+  Scramble,
   ScrambleState,
-  ScrambleAction
+  ScrambleAction,
+  Solve,
+  SolvesState,
+  SolvesAction
 }

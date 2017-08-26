@@ -4,5 +4,6 @@
 
 import * as TimerActions from './timer'
 import * as ScrambleActions from './scramble'
+import * as SolvesActions from './solves'
 
-export { TimerActions, ScrambleActions }
+export { TimerActions, ScrambleActions, SolvesActions }

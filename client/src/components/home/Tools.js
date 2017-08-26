@@ -5,7 +5,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Drawing from './Drawing'
-import Times from './Times'
+import Solves from './Solves'
 import { borders, subtle } from '../helpers/colors'
 
 const Wrapper = styled.div`
@@ -43,8 +43,8 @@ function Tools() {
         <Drawing />
       </Section>
       <Section>
-        <H1>Times</H1>
-        <Times />
+        <H1>Solves</H1>
+        <Solves />
       </Section>
     </Wrapper>
   )

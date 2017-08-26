@@ -5,9 +5,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { TimerActions, ScrambleActions } from '../../actions'
-import type { State } from '../../types'
-import { primary } from '../helpers/colors'
+import { TimerActions, ScrambleActions, SolvesActions } from '../../actions'
+import { foreground } from '../helpers/colors'
+import type { State, Scramble, Solve } from '../../types'
 
 const H1 = styled.h1`
   font-size: 7em;
@@ -15,15 +15,15 @@ const H1 = styled.h1`
   line-height: 27vh;
   color: ${props => {
     switch (props.status) {
-      case 'initializing': return 'red'
-      case 'ready': return 'lime'
-      case 'running': return 'white'
-      default: return primary
+      case 'initializing': return 'red;'
+      case 'ready': return 'lime;'
+      default: return foreground + ';'
     }
   }}
 `
 
 type Props = {
+  scramble: Scramble,
   status: 'paused' | 'uninitialized' | 'initializing' | 'ready' | 'running',
   startTime?: number,
   stopTime?: number,
@@ -32,7 +32,8 @@ type Props = {
   initializeTimer: () => mixed,
   cancelTimerInitialization: () => mixed,
   unpauseTimer: () => mixed,
-  updateScramble: () => mixed
+  updateScramble: () => mixed,
+  addSolve: (time: Solve) => mixed
 }
 
 class Timer extends Component {
@@ -53,8 +54,10 @@ class Timer extends Component {
     const { status, initializeTimer, updateScramble } = this.props
     if (status === 'running') {
       this.stop()
+      this.saveSolve()
       updateScramble()
     } else if (e.keyCode === 32 && status === 'uninitialized') {
+      e.preventDefault()
       initializeTimer()
     }
   }
@@ -100,6 +103,19 @@ class Timer extends Component {
     clearInterval(this.interval)
   }
 
+  saveSolve() {
+    const { scramble, addSolve } = this.props
+    const elapsed = this.getElapsedTime()
+    const time = this.timeFormatter(elapsed)
+
+    const solve = {
+      time,
+      scramble: scramble.scrambleString
+    }
+
+    addSolve(solve)
+  }
+
   timeFormatter(elapsed: number): string {
     const time = new Date(elapsed)
     const seconds = time.getSeconds().toString()
@@ -132,13 +148,15 @@ function mapStateToProps(state: State) {
   return {
     startTime: state.timer.startTime,
     stopTime: state.timer.stopTime,
-    status: state.timer.status
+    status: state.timer.status,
+    scramble: state.scramble.currScramble
   }
 }
 
 const mapDispatchToProps = {
   ...TimerActions,
-  ...ScrambleActions
+  ...ScrambleActions,
+  ...SolvesActions
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer)
