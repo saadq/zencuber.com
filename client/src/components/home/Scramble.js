@@ -6,6 +6,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { initializeScramble, updateScramble } from '../../actions/scramble'
+import { subtle } from '../helpers/colors'
 import type { State } from '../../types'
 
 type Props = {
@@ -20,7 +21,7 @@ type Props = {
 const Div = styled.div`
   width: 100%;
   background: #22262F;
-  color: #56656C;
+  color: ${subtle};
   text-align: center;
   padding: 2em 0;
   word-spacing: 1em;

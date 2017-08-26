@@ -4,8 +4,9 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import { borders } from '../helpers/colors'
 import Drawing from './Drawing'
+import Times from './Times'
+import { borders, subtle } from '../helpers/colors'
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,18 +20,16 @@ const Wrapper = styled.div`
 const Section = styled.section`
   background: #20232C;
   width: 50vh;
-  height: 45vh;
+  height: 40vh;
   border: 1px solid ${borders};
+  padding: 10px;
 `
 
 const H1 = styled.h1`
-  color: #56656C;
+  color: ${subtle};
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: lighter;
-  position: relative;
-  left: 15px;
-  top: 15px;
 `
 
 function Tools() {
@@ -45,6 +44,7 @@ function Tools() {
       </Section>
       <Section>
         <H1>Times</H1>
+        <Times />
       </Section>
     </Wrapper>
   )
