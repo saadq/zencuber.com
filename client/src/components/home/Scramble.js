@@ -3,7 +3,19 @@
  */
 
 import React from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
+import { initializeScramble, updateScramble } from '../../actions/scramble'
+import type { State } from '../../types'
+
+type Props = {
+  scramble: {
+    scrambleString: string,
+    state: string
+  },
+  updateScramble: () => mixed,
+  initializeScramble: () => mixed
+}
 
 const Div = styled.div`
   width: 100%;
@@ -15,10 +27,21 @@ const Div = styled.div`
   font-size: 1em;
 `
 
-function Scramble() {
+function Scramble({ scramble }: Props) {
   return (
-    <Div>B2 U' B2 F2 U' R2 F2 U R2 F2 U L' R B' U2 R' F R' D2 R' U'</Div>
+    <Div>{scramble.scrambleString}</Div>
   )
 }
 
-export default Scramble
+function mapStateToProps(state: State) {
+  return {
+    scramble: state.scramble.currScramble
+  }
+}
+
+const mapDispatchToProps = {
+  initializeScramble,
+  updateScramble
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Scramble)
