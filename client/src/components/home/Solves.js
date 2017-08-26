@@ -4,6 +4,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
+import Tooltip from 'react-tooltip'
 import styled from 'styled-components'
 import { SolvesActions } from '../../actions'
 import { foreground, primary, subtle, background } from '../helpers/colors'
@@ -72,9 +73,14 @@ function Solves({ solves, clearSolves }: Props) {
       <Table>
         <tbody>
           {solves.map((solve, i) =>
-            <tr>
+            <tr data-tip data-for={`${i}`}>
               <td>{solves.length - i}.</td>
-              <td>{solve.time}</td>
+              <td>
+                {solve.time}
+                <Tooltip id={`${i}`} effect="solid">
+                  <div>{solve.scramble}</div>
+                </Tooltip>
+              </td>
               <td><span>X</span></td>
             </tr>
           )}
