@@ -5,6 +5,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { borders } from '../helpers/colors'
+import Drawing from './Drawing'
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,23 +18,33 @@ const Wrapper = styled.div`
 
 const Section = styled.section`
   background: #20232C;
-  width: 30%;
-  height: 0;
-  padding-bottom: 27.5%;
+  width: 50vh;
+  height: 45vh;
   border: 1px solid ${borders};
+`
+
+const H1 = styled.h1`
+  color: #56656C;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: lighter;
+  position: relative;
+  left: 15px;
+  top: 15px;
 `
 
 function Tools() {
   return (
     <Wrapper>
       <Section>
-        stats
+        <H1>Stats</H1>
       </Section>
       <Section>
-        scramble
+        <H1>Scramble</H1>
+        <Drawing />
       </Section>
       <Section>
-        times
+        <H1>Times</H1>
       </Section>
     </Wrapper>
   )
