@@ -29,9 +29,12 @@ const H1 = styled.h1`
   line-height: 27vh;
   color: ${(props: Props) => {
     switch (props.status) {
-      case 'initializing': return 'red;'
-      case 'ready': return 'lime;'
-      default: return foreground + ';'
+      case 'initializing':
+        return 'red;'
+      case 'ready':
+        return 'lime;'
+      default:
+        return foreground + ';'
     }
   }}
 `
@@ -138,9 +141,7 @@ class Timer extends Component {
     const elapsed = this.getElapsedTime()
     const time = this.timeFormatter(elapsed)
 
-    return (
-      <H1 status={status}>{time}</H1>
-    )
+    return <H1 status={status}>{time}</H1>
   }
 }
 

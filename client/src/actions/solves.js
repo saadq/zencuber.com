@@ -24,8 +24,4 @@ function clearSolves(): SolvesAction {
   }
 }
 
-export {
-  addSolve,
-  removeSolve,
-  clearSolves
-}
+export { addSolve, removeSolve, clearSolves }

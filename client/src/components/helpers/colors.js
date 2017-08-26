@@ -9,11 +9,4 @@ const foreground = '#c0c5ce'
 const subtle = '#56656C'
 const borders = '#2a2e39'
 
-export {
-  primary,
-  accent,
-  background,
-  foreground,
-  subtle,
-  borders
-}
+export { primary, accent, background, foreground, subtle, borders }

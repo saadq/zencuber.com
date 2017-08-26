@@ -29,9 +29,7 @@ const Div = styled.div`
 `
 
 function Scramble({ scramble }: Props) {
-  return (
-    <Div>{scramble.scrambleString}</Div>
-  )
+  return <Div>{scramble.scrambleString}</Div>
 }
 
 function mapStateToProps(state: State) {
