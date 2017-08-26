@@ -9,19 +9,6 @@ import { TimerActions, ScrambleActions, SolvesActions } from '../../actions'
 import { foreground } from '../helpers/colors'
 import type { State, Scramble, Solve } from '../../types'
 
-const H1 = styled.h1`
-  font-size: 7em;
-  height: 27vh;
-  line-height: 27vh;
-  color: ${props => {
-    switch (props.status) {
-      case 'initializing': return 'red;'
-      case 'ready': return 'lime;'
-      default: return foreground + ';'
-    }
-  }}
-`
-
 type Props = {
   scramble: Scramble,
   status: 'paused' | 'uninitialized' | 'initializing' | 'ready' | 'running',
@@ -35,6 +22,19 @@ type Props = {
   updateScramble: () => mixed,
   addSolve: (time: Solve) => mixed
 }
+
+const H1 = styled.h1`
+  font-size: 7em;
+  height: 27vh;
+  line-height: 27vh;
+  color: ${(props: Props) => {
+    switch (props.status) {
+      case 'initializing': return 'red;'
+      case 'ready': return 'lime;'
+      default: return foreground + ';'
+    }
+  }}
+`
 
 class Timer extends Component {
   props: Props
