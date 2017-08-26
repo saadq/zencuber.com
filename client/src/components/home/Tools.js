@@ -8,7 +8,7 @@ import Drawing from './Drawing'
 import Solves from './Solves'
 import { borders, subtle } from '../helpers/colors'
 
-const Wrapper = styled.div`
+const Div = styled.div`
   display: flex;
   justify-content: space-between;
   width: 95%;
@@ -34,7 +34,7 @@ const H1 = styled.h1`
 
 function Tools() {
   return (
-    <Wrapper>
+    <Div>
       <Section>
         <H1>Stats</H1>
       </Section>
@@ -46,7 +46,7 @@ function Tools() {
         <H1>Solves</H1>
         <Solves />
       </Section>
-    </Wrapper>
+    </Div>
   )
 }
 
