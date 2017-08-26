@@ -7,14 +7,10 @@ import { connect } from 'react-redux'
 import Tooltip from 'react-tooltip'
 import styled from 'styled-components'
 import { SolvesActions } from '../../actions'
-import { foreground, primary, subtle, background } from '../helpers/colors'
+import { Flex, Button, primary, subtle } from '../helpers'
 import type { State, Solve } from '../../types'
 
-const FlexBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+const Flexbox = Flex.extend`
   height: 100%;
 `
 
@@ -26,7 +22,7 @@ const Table = styled.table`
   display: flex;
   flex-flow: column;
   border-radius: 3px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   tr {
     width: 100%;
@@ -47,29 +43,15 @@ const Table = styled.table`
   }
 `
 
-const Button = styled.button`
-  margin: 15px 5px;
-  padding: 10px 15px;
-  background: ${background};
-  color: ${foreground};
-  border: 0;
-  border-radius: 2px;
-  text-transform: uppercase;
-  transition: background-color .25s ease-in;
-  &:hover {
-    background: black;
-    cursor: pointer;
-  }
-`
-
 type Props = {
   solves: Array<Solve>,
-  clearSolves: () => mixed
+  clearSolves: () => mixed,
+  removeSolve: (solveId: number) => mixed
 }
 
-function Solves({ solves, clearSolves }: Props) {
+function Solves({ solves, clearSolves, removeSolve }: Props) {
   return (
-    <FlexBox>
+    <Flexbox direction="column" align="center" justify="center">
       <Table>
         <tbody>
           {solves.map((solve, i) =>
@@ -81,13 +63,13 @@ function Solves({ solves, clearSolves }: Props) {
                   <div>{solve.scramble}</div>
                 </Tooltip>
               </td>
-              <td><span>X</span></td>
+              <td><span onClick={() => removeSolve(i)}>X</span></td>
             </tr>
           )}
         </tbody>
       </Table>
       <Button onClick={clearSolves}>Clear Solves</Button>
-    </FlexBox>
+    </Flexbox>
   )
 }
 

@@ -11,14 +11,14 @@ function addSolve(solve: Solve): SolvesAction {
   }
 }
 
-function removeSolve(solve: Solve): SolvesAction {
+function removeSolve(solveId: number): SolvesAction {
   return {
     type: 'REMOVE_SOLVE',
-    solve
+    solveId
   }
 }
 
-function clearSolves(solve: Solve): SolvesAction {
+function clearSolves(): SolvesAction {
   return {
     type: 'CLEAR_SOLVES'
   }

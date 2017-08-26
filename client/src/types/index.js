@@ -14,7 +14,7 @@ type State = {
 }
 
 type GetState = () => State
-type Action = TimerAction | ScrambleAction
+type Action = TimerAction | ScrambleAction | SolvesAction
 type Dispatch = ReduxDispatch<Action>
 type AsyncAction = (dispatch: Dispatch, getState: GetState) => any
 

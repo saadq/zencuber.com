@@ -9,6 +9,12 @@ function solves(state: State = [], action: Action): State {
     case 'ADD_SOLVE':
       return [action.solve, ...state]
 
+    case 'REMOVE_SOLVE':
+      return [
+        ...state.slice(0, action.solveId),
+        ...state.slice(action.solveId + 1)
+      ]
+
     case 'CLEAR_SOLVES':
       return []
 
