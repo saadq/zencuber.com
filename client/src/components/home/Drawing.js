@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import scramby from 'scramby'
-import type { State } from '../../types'
+import type { State, Scramble } from '../../types'
 
 const FlexBox = styled.div`
   display: flex;
@@ -14,10 +14,11 @@ const FlexBox = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100%;
+  opacity: .85;
 `
 
 type Props = {
-  state: string
+  scramble: Scramble
 }
 
 class Drawing extends Component {
@@ -36,7 +37,7 @@ class Drawing extends Component {
    */
 
   shouldComponentUpdate(nextProps: Props) {
-    return this.props.state !== nextProps.state
+    return this.props.scramble.state !== nextProps.scramble.state
   }
 
   /**
@@ -52,12 +53,12 @@ class Drawing extends Component {
    */
 
   updateDrawing() {
-    const { state } = this.props
+    const { scramble } = this.props
     const { drawing } = this.refs
     const scrambler = scramby()
 
     drawing.innerHTML = ''
-    scrambler.drawScramble(drawing, state, 300, 180)
+    scrambler.drawScramble(drawing, scramble.state, 300, 180)
   }
 
   /**
@@ -74,12 +75,8 @@ class Drawing extends Component {
 }
 
 function mapStateToProps(state: State) {
-  if (!state.scramble.currScramble) {
-    return {}
-  }
-
   return {
-    state: state.scramble.currScramble.state
+    scramble: state.scramble.currScramble
   }
 }
 

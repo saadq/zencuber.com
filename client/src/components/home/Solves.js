@@ -13,7 +13,6 @@ import type { State, Solve } from '../../types'
 const Flexbox = Flex.extend`
   height: 100%;
 `
-
 const Table = styled.table`
   width: 80%;
   height: 70%;
@@ -23,23 +22,23 @@ const Table = styled.table`
   flex-flow: column;
   border-radius: 3px;
   overflow-y: auto;
+`
 
-  tr {
-    width: 100%;
-    display: table;
-    table-layout: fixed;
-    &:hover {
-      background: ${primary};
-      color: black;
-      cursor: pointer;
-    }
+const Row = styled.tr`
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  &:hover {
+    background: ${primary};
+    color: black;
+    cursor: pointer;
   }
+`
 
-  td {
-    padding: 10px 0;
-    &:nth-child(3) {
-      color: ${subtle};
-    }
+const Cell = styled.td`
+  padding: 10px 0;
+  &:nth-child(3) {
+    color: ${subtle};
   }
 `
 
@@ -55,16 +54,16 @@ function Solves({ solves, clearSolves, removeSolve }: Props) {
       <Table>
         <tbody>
           {solves.map((solve, i) =>
-            <tr data-tip data-for={`${i}`}>
-              <td>{solves.length - i}.</td>
-              <td>
-                {solve.time}
+            <Row key={i} data-tip data-for={`${i}`}>
+              <Cell>{solves.length - i}.</Cell>
+              <Cell>
+                {solve.formattedTime.slice(0, -1)}
                 <Tooltip id={`${i}`} effect="solid">
                   <div>{solve.scramble}</div>
                 </Tooltip>
-              </td>
-              <td><span onClick={() => removeSolve(i)}>X</span></td>
-            </tr>
+              </Cell>
+              <Cell><span onClick={() => removeSolve(i)}>X</span></Cell>
+            </Row>
           )}
         </tbody>
       </Table>

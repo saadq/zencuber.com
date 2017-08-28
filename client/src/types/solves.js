@@ -3,7 +3,8 @@
  */
 
 type Solve = {
-  time: string,
+  time: number,
+  formattedTime: string,
   scramble: string
 }
 

@@ -6,6 +6,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Drawing from './Drawing'
 import Solves from './Solves'
+import Stats from './Stats'
 import { borders, subtle } from '../helpers/colors'
 
 const Div = styled.div`
@@ -29,7 +30,8 @@ const H1 = styled.h1`
   color: ${subtle};
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-weight: lighter;
+  font-weight: 100;
+  font-family: 'Avenir Next';
 `
 
 function Tools() {
@@ -37,6 +39,7 @@ function Tools() {
     <Div>
       <Section>
         <H1>Stats</H1>
+        <Stats />
       </Section>
       <Section>
         <H1>Scramble</H1>

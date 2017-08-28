@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { TimerActions, ScrambleActions, SolvesActions } from '../../actions'
-import { foreground } from '../helpers/colors'
+import { foreground, primary } from '../helpers/colors'
 import type { State, Scramble, Solve } from '../../types'
 
 type Props = {
@@ -24,17 +24,17 @@ type Props = {
 }
 
 const H1 = styled.h1`
-  font-size: 7em;
+  font-size: 8em;
   height: 27vh;
   line-height: 27vh;
   color: ${(props: Props) => {
     switch (props.status) {
       case 'initializing':
-        return 'red;'
+        return '#e95a5a;'
       case 'ready':
-        return 'lime;'
+        return `${primary};`
       default:
-        return foreground + ';'
+        return `${foreground};`
     }
   }}
 `
@@ -108,11 +108,12 @@ class Timer extends Component {
 
   saveSolve() {
     const { scramble, addSolve } = this.props
-    const elapsed = this.getElapsedTime()
-    const time = this.timeFormatter(elapsed)
+    const time = this.getElapsedTime()
+    const formattedTime = this.timeFormatter(time)
 
     const solve = {
       time,
+      formattedTime,
       scramble: scramble.scrambleString
     }
 
@@ -124,9 +125,7 @@ class Timer extends Component {
     const seconds = time.getSeconds().toString()
     const milliseconds = time.getMilliseconds().toString().padStart(3, '0')
 
-    return this.props.status === 'running'
-      ? `${seconds}.${milliseconds[0]}`
-      : `${seconds}.${milliseconds.slice(0, 2)}`
+    return `${seconds}.${milliseconds}`
   }
 
   getElapsedTime(): number {
@@ -141,7 +140,11 @@ class Timer extends Component {
     const elapsed = this.getElapsedTime()
     const time = this.timeFormatter(elapsed)
 
-    return <H1 status={status}>{time}</H1>
+    return (
+      <H1 status={status}>
+        {status === 'running' ? time.slice(0, -2) : time.slice(0, -1)}
+      </H1>
+    )
   }
 }
 
