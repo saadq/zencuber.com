@@ -38,26 +38,6 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        enforce: 'pre',
-        test: /\.styl$/,
-        loader: 'stylint-loader'
-      },
-      {
-        test: /\.styl$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]__[local]--[hash:base64:5]'
-            }
-          },
-          'stylus-loader'
-        ]
-      },
-      {
         test: /\.(jpg|jpeg|png|gif|ico|svg|pdf|eof|eot|woff|ttf|woff2)$/,
         loader: 'url-loader',
         options: {
@@ -72,9 +52,9 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: '../public/index.html',
+      template: './assets/index.html',
       inject: 'body',
-      favicon: '../public/favicon.ico'
+      favicon: './assets/favicon.ico'
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -89,7 +69,7 @@ module.exports = {
     hot: true,
     overlay: true,
     historyApiFallback: {
-      rewrites: [{ from: /^\/$/, to: '../public/index.html' }]
+      rewrites: [{ from: /^\/$/, to: './assets/index.html' }]
     },
     proxy: {
       '/api/**': {
