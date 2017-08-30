@@ -3,7 +3,7 @@
  */
 
 import scramby from 'scramby'
-import type { ScrambleAction } from '../types'
+import type { ScrambleAction } from '../../shared/types'
 
 const scrambler = scramby()
 

@@ -2,7 +2,7 @@
  * @flow
  */
 
-import type { TimerState as State, Action } from '../types'
+import type { TimerState as State, Action } from '../../shared/types'
 
 const initialState = {
   status: 'uninitialized'

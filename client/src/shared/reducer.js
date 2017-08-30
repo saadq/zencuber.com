@@ -3,9 +3,9 @@
  */
 
 import { combineReducers } from 'redux'
-import timer from './timer'
-import scramble from './scramble'
-import solves from './solves'
+import timer from '../features/timer/reducer'
+import scramble from '../features/scramble/reducer'
+import solves from '../features/tools/reducer'
 
 const reducer = combineReducers({
   timer,

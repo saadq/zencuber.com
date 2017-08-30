@@ -5,12 +5,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import Timer from './Timer'
-import Scramble from './Scramble'
-import Tools from './Tools'
-import { SolvesActions } from '../../actions'
-import { accent, borders } from '../helpers/colors'
-import type { State, Solve } from '../../types'
+import Timer from '../features/timer/Timer'
+import Scramble from '../features/scramble/Scramble'
+import Tools from '../features/tools/Tools'
+import * as SolvesActions from '../features/tools/actions'
+import { accent, borders } from '../shared/colors'
+import type { State, Solve } from '../shared/types'
 
 const Main = styled.main`
   width: 95%;

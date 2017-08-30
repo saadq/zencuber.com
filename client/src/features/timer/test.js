@@ -5,7 +5,7 @@
 import test from 'ava'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import reducer from '../reducers/timer'
+import reducer from '../../features/timer/reducer'
 import {
   startTimer,
   stopTimer,
@@ -14,7 +14,7 @@ import {
   startTimerInitialization,
   finishTimerInitialization,
   unpauseTimer
-} from '../actions/timer'
+} from '../../features/timer/actions'
 
 const middleware = [thunk]
 const mockStore = configureMockStore(middleware)

@@ -4,9 +4,9 @@
 
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Flex } from '../helpers'
-import { timeFormatter } from '../../util'
-import type { Solve } from '../../types'
+import { Flex } from '../../../shared/components'
+import { timeFormatter } from '../../../shared/util'
+import type { Solve } from '../../../shared/types'
 
 const Flexbox = Flex.extend`
   height: 100%;

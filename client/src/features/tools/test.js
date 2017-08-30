@@ -3,8 +3,8 @@
  */
 
 import test from 'ava'
-import reducer from '../reducers/solves'
-import { addSolve, removeSolve, clearSolves } from '../actions/solves'
+import reducer from '../../features/tools/reducer'
+import { addSolve, removeSolve, clearSolves } from '../../features/tools/actions'
 
 test('solves actions', async t => {
   const solve = {

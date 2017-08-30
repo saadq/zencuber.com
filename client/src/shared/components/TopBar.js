@@ -4,7 +4,7 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import { primary, background, borders } from './helpers/colors'
+import { primary, background, borders } from '../colors'
 
 const Nav = styled.nav`
   height: 7vh;

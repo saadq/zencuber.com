@@ -5,11 +5,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { injectGlobal } from 'styled-components'
-import TopBar from './TopBar'
-import Home from './home/Home'
-import { initializeScramble } from '../actions/scramble'
-import { background, foreground } from './helpers/colors'
-import type { State } from '../types'
+import TopBar from './shared/components/TopBar'
+import Home from './pages/Home'
+import { initializeScramble } from './features/scramble/actions'
+import { background, foreground } from './shared/colors'
+import type { State } from './shared/types'
 
 injectGlobal`
   body {

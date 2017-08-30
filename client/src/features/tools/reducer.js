@@ -2,9 +2,9 @@
  * @flow
  */
 
-import type { SolvesState as State, Action } from '../types'
+import type { SolvesState as State, Action } from '../../shared/types'
 
-function solves(state: State = [], action: Action): State {
+function tools(state: State = [], action: Action): State {
   switch (action.type) {
     case 'ADD_SOLVE':
       return [action.solve, ...state]
@@ -23,4 +23,4 @@ function solves(state: State = [], action: Action): State {
   }
 }
 
-export default solves
+export default tools

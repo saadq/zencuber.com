@@ -5,8 +5,9 @@
 import React from 'react'
 import Tooltip from 'react-tooltip'
 import styled from 'styled-components'
-import { Flex, Button, primary, subtle } from '../helpers'
-import type { Solve } from '../../types'
+import { Flex, Button } from '../../../shared/components'
+import { primary, subtle } from '../../../shared/colors'
+import type { Solve } from '../../../shared/types'
 
 const Flexbox = Flex.extend`
   height: 100%;

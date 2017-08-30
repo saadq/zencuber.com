@@ -3,9 +3,9 @@
  */
 
 import test from 'ava'
-import reducer from '../reducers/scramble'
-import { initializeScramble, updateScramble } from '../actions/scramble'
-import type { Scramble } from '../types/scramble'
+import reducer from '../../features/scramble/reducer'
+import { initializeScramble, updateScramble } from '../../features/scramble/actions'
+import type { Scramble } from '../../shared/types'
 
 test('scramble actions', async t => {
   const initAction = initializeScramble()

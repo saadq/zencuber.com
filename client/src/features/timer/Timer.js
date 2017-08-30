@@ -5,9 +5,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { TimerActions, ScrambleActions, SolvesActions } from '../../actions'
-import { foreground, primary } from '../helpers/colors'
-import type { State, Scramble, Solve } from '../../types'
+import * as TimerActions from './actions'
+import * as ScrambleActions from '../scramble/actions'
+import * as SolvesActions from '../tools/actions'
+import { foreground, primary } from '../../shared/colors'
+import type { State, Scramble, Solve } from '../../shared/types'
 
 type Props = {
   scramble: Scramble,

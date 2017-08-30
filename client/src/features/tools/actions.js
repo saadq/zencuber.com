@@ -2,7 +2,7 @@
  * @flow
  */
 
-import type { Solve, SolvesAction } from '../types'
+import type { Solve, SolvesAction } from '../../shared/types'
 
 function addSolve(solve: Solve): SolvesAction {
   return {

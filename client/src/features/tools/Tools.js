@@ -4,11 +4,11 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import Drawing from './Drawing'
-import Solves from './Solves'
-import Stats from './Stats'
-import { borders, subtle } from '../helpers/colors'
-import type { Solve, Scramble } from '../../types'
+import Drawing from './components/Drawing'
+import Solves from './components/Solves'
+import Stats from './components/Stats'
+import { borders, subtle } from '../../shared/colors'
+import type { Solve, Scramble } from '../../shared/types'
 
 const Div = styled.div`
   display: flex;

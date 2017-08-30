@@ -3,7 +3,7 @@
  */
 
 import styled from 'styled-components'
-import { foreground } from './colors'
+import { foreground } from '../colors'
 
 const Button = styled.button`
   margin: 15px 5px;

@@ -2,7 +2,7 @@
  * @flow
  */
 
-import type { TimerAction, AsyncAction } from '../types'
+import type { TimerAction, AsyncAction } from '../../shared/types'
 
 let timeoutId
 
