@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import { foreground } from '../colors'
 
 const Button = styled.button`
-  margin: 15px 5px;
   padding: 10px 15px;
   background: #2a2e39;
   color: ${foreground};

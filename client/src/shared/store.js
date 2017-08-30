@@ -14,9 +14,7 @@ if (process.env.NODE_ENV === 'development') {
   middleware.push(createLogger())
 }
 
-const store = createStore(
-  reducer,
-  composeWithDevTools(applyMiddleware(...middleware))
-)
+const composedMiddleware = composeWithDevTools(applyMiddleware(...middleware))
+const store = createStore(reducer, composedMiddleware)
 
 export default store

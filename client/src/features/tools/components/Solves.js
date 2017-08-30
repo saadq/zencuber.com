@@ -12,6 +12,7 @@ import type { Solve } from '../../../shared/types'
 const Flexbox = Flex.extend`
   height: 100%;
 `
+
 const Table = styled.table`
   width: 80%;
   height: 70%;
@@ -41,6 +42,10 @@ const Cell = styled.td`
   }
 `
 
+const ClearButton = Button.extend`
+  margin: 15px;
+`
+
 type Props = {
   solves: Array<Solve>,
   clearSolves: () => mixed,
@@ -61,12 +66,14 @@ function Solves({ solves, clearSolves, removeSolve }: Props) {
                   <div>{solve.scramble}</div>
                 </Tooltip>
               </Cell>
-              <Cell><span onClick={() => removeSolve(i)}>X</span></Cell>
+              <Cell>
+                <span onClick={() => removeSolve(i)}>X</span>
+              </Cell>
             </Row>
           )}
         </tbody>
       </Table>
-      <Button onClick={clearSolves}>Clear Solves</Button>
+      <ClearButton onClick={clearSolves}>Clear Solves</ClearButton>
     </Flexbox>
   )
 }
