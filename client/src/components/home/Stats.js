@@ -25,13 +25,11 @@ const Table = styled.table`
   justify-content: center;
 `
 
-type RowProps = { disabled: boolean }
-
 const Row = styled.tr`
   width: 100%;
   display: table;
   table-layout: fixed;
-  opacity: ${(props: RowProps) => (props.disabled ? 0.5 : 1)};
+  opacity: ${props => (props.disabled ? 0.5 : 1)};
 `
 
 const Cell = styled.td`
@@ -65,9 +63,9 @@ class Stats extends Component {
    * returns the mathematical mean of the remaining solves
    * in the list.
    *
-   * @param solves The list of times
+   * @param times The list of times
    *
-   * @return The mean of the normalized set of times.
+   * @return The mean of the normalized set of times
    */
 
   getAverage(times: Array<number>): number {
@@ -84,8 +82,9 @@ class Stats extends Component {
    *
    * In the case that `n` is 3, simply return the mean.
    *
-   * @param count The amount of solves to calculate the statistic for.
-   * @return The formatted statistic.
+   * @param count The amount of solves to calculate the statistic for
+   *
+   * @return The formatted statistic
    */
 
   getStat(count: number): string {
