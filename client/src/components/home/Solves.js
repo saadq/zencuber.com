@@ -3,12 +3,10 @@
  */
 
 import React from 'react'
-import { connect } from 'react-redux'
 import Tooltip from 'react-tooltip'
 import styled from 'styled-components'
-import { SolvesActions } from '../../actions'
 import { Flex, Button, primary, subtle } from '../helpers'
-import type { State, Solve } from '../../types'
+import type { Solve } from '../../types'
 
 const Flexbox = Flex.extend`
   height: 100%;
@@ -72,14 +70,4 @@ function Solves({ solves, clearSolves, removeSolve }: Props) {
   )
 }
 
-function mapStateToProps(state: State) {
-  return {
-    solves: state.solves
-  }
-}
-
-const mapDispatchToProps = {
-  ...SolvesActions
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Solves)
+export default Solves

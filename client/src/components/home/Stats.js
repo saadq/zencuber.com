@@ -3,11 +3,10 @@
  */
 
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { Flex } from '../helpers'
 import { timeFormatter } from '../../util'
-import type { State, Solve } from '../../types'
+import type { Solve } from '../../types'
 
 const Flexbox = Flex.extend`
   height: 100%;
@@ -134,10 +133,4 @@ class Stats extends Component {
   }
 }
 
-function mapStateToProps(state: State) {
-  return {
-    solves: state.solves
-  }
-}
-
-export default connect(mapStateToProps)(Stats)
+export default Stats

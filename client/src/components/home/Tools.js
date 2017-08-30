@@ -8,6 +8,7 @@ import Drawing from './Drawing'
 import Solves from './Solves'
 import Stats from './Stats'
 import { borders, subtle } from '../helpers/colors'
+import type { Solve, Scramble } from '../../types'
 
 const Div = styled.div`
   display: flex;
@@ -34,20 +35,31 @@ const H1 = styled.h1`
   font-family: 'Avenir Next';
 `
 
-function Tools() {
+type Props = {
+  scramble: Scramble,
+  solves: Array<Solve>,
+  clearSolves: () => mixed,
+  removeSolve: (solveId: number) => mixed
+}
+
+function Tools({ scramble, solves, clearSolves, removeSolve }: Props) {
   return (
     <Div>
       <Section>
         <H1>Stats</H1>
-        <Stats />
+        <Stats solves={solves} />
       </Section>
       <Section>
         <H1>Scramble</H1>
-        <Drawing />
+        <Drawing scramble={scramble.state} />
       </Section>
       <Section>
         <H1>Solves</H1>
-        <Solves />
+        <Solves
+          solves={solves}
+          clearSolves={clearSolves}
+          removeSolve={removeSolve}
+        />
       </Section>
     </Div>
   )
