@@ -3,10 +3,8 @@
  */
 
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import styled from 'styled-components'
 import scramby from 'scramby'
-import type { State, Scramble } from '../../types'
 
 const FlexBox = styled.div`
   display: flex;
@@ -18,11 +16,12 @@ const FlexBox = styled.div`
 `
 
 type Props = {
-  scramble: Scramble
+  scramble: string
 }
 
 class Drawing extends Component {
   props: Props
+  scrambler: *
 
   /**
    * Draw the scramble to the DOM when component has mounted.
@@ -30,6 +29,7 @@ class Drawing extends Component {
 
   componentDidMount() {
     this.updateDrawing()
+    this.scrambler = scramby()
   }
 
   /**
@@ -37,7 +37,7 @@ class Drawing extends Component {
    */
 
   shouldComponentUpdate(nextProps: Props) {
-    return this.props.scramble.state !== nextProps.scramble.state
+    return this.props.scramble !== nextProps.scramble
   }
 
   /**
@@ -55,10 +55,9 @@ class Drawing extends Component {
   updateDrawing() {
     const { scramble } = this.props
     const { drawing } = this.refs
-    const scrambler = scramby()
 
     drawing.innerHTML = ''
-    scrambler.drawScramble(drawing, scramble.state, 300, 180)
+    this.scrambler.drawScramble(drawing, scramble, 300, 180)
   }
 
   /**
@@ -74,10 +73,4 @@ class Drawing extends Component {
   }
 }
 
-function mapStateToProps(state: State) {
-  return {
-    scramble: state.scramble.currScramble
-  }
-}
-
-export default connect(mapStateToProps)(Drawing)
+export default Drawing
