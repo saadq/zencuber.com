@@ -24,12 +24,19 @@ class Drawing extends Component {
   scrambler: *
 
   /**
+   * Initialize scrambler before the component has mounted.
+   */
+
+  componentWillMount() {
+    this.scrambler = scramby()
+  }
+
+  /**
    * Draw the scramble to the DOM when component has mounted.
    */
 
   componentDidMount() {
     this.updateDrawing()
-    this.scrambler = scramby()
   }
 
   /**
