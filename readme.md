@@ -1,5 +1,9 @@
-# Timer
-A modern, minimal speedcubing webapp.
+![](http://i.imgur.com/BuKebek.png)
+
+# Zen Cuber
+A modern, sleek speedcubing webapp. Currently a work in progress.
+
+![](http://i.imgur.com/sxXkTCJ.png)
 
 ## Developing
 
