@@ -25,9 +25,7 @@ const Table = styled.table`
   justify-content: center;
 `
 
-type RowProps = {
-  disabled: boolean
-}
+type RowProps = { disabled: boolean }
 
 const Row = styled.tr`
   width: 100%;
@@ -47,16 +45,48 @@ type Props = {
 class Stats extends Component {
   props: Props
 
-  getMean(solves: Array<Solve>): number {
-    const times = solves.map(solve => solve.time)
+  /**
+   * Calculates the mathematical mean of a list of times.
+   *
+   * @param times The list of times
+   *
+   * @return The mathematical mean of a list of times
+   */
+
+  getMean(times: Array<number>): number {
     const sum = times.reduce((acc, time) => acc + time, 0)
+    const mean = sum / times.length
 
-    return sum / times.length
+    return mean
   }
 
-  getAverage(solves: Array<Solve>): number {
-    return this.getMean(solves)
+  /**
+   * Removes the best 5% and worst 5% of solves and then
+   * returns the mathematical mean of the remaining solves
+   * in the list.
+   *
+   * @param solves The list of times
+   *
+   * @return The mean of the normalized set of times.
+   */
+
+  getAverage(times: Array<number>): number {
+    const count = times.length
+    const timesToRemove = Math.ceil(0.05 * count)
+    const truncated = times.sort().slice(timesToRemove, count - timesToRemove)
+
+    return this.getMean(truncated)
   }
+
+  /**
+   * Return the average of the most recent `n` solves,
+   * where `n` is either 3, 5, 12, 50, or 100.
+   *
+   * In the case that `n` is 3, simply return the mean.
+   *
+   * @param count The amount of solves to calculate the statistic for.
+   * @return The formatted statistic.
+   */
 
   getStat(count: number): string {
     const { solves } = this.props
@@ -65,7 +95,10 @@ class Stats extends Component {
       return '-- . --'
     }
 
-    return timeFormatter(this.getAverage(solves.slice(0, count)))
+    const times = solves.slice(0, count).map(solve => solve.time)
+    const average = count === 3 ? this.getMean(times) : this.getAverage(times)
+
+    return timeFormatter(average)
   }
 
   render() {
@@ -77,33 +110,23 @@ class Stats extends Component {
           <tbody>
             <Row disabled={solves.length < 3}>
               <Cell>Mo3</Cell>
-              <Cell>
-                {this.getStat(3)}
-              </Cell>
+              <Cell>{this.getStat(3)}</Cell>
             </Row>
             <Row disabled={solves.length < 5}>
               <Cell>Ao5</Cell>
-              <Cell>
-                {this.getStat(5)}
-              </Cell>
+              <Cell>{this.getStat(5)}</Cell>
             </Row>
             <Row disabled={solves.length < 12}>
               <Cell>Ao12</Cell>
-              <Cell>
-                {this.getStat(12)}
-              </Cell>
+              <Cell>{this.getStat(12)}</Cell>
             </Row>
             <Row disabled={solves.length < 50}>
               <Cell>Ao50</Cell>
-              <Cell>
-                {this.getStat(50)}
-              </Cell>
+              <Cell>{this.getStat(50)}</Cell>
             </Row>
             <Row disabled={solves.length < 100}>
               <Cell>Ao100</Cell>
-              <Cell>
-                {this.getStat(100)}
-              </Cell>
+              <Cell>{this.getStat(100)}</Cell>
             </Row>
           </tbody>
         </Table>

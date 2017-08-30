@@ -7,9 +7,7 @@ function timeFormatter(elapsed: number): string {
   const seconds = time.getSeconds().toString()
   const milliseconds = time.getMilliseconds().toString().padStart(3, '0')
 
-  return `${seconds}.${milliseconds}`
+  return `${seconds}.${milliseconds.slice(0, 2)}`
 }
 
-export {
-  timeFormatter
-}
+export { timeFormatter }
