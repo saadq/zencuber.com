@@ -6,7 +6,7 @@ import test from 'ava'
 import reducer from '../../features/tools/reducer'
 import { addSolve, removeSolve, clearSolves } from '../../features/tools/actions'
 
-test('solves actions', async t => {
+test('tools actions', async t => {
   const solve = {
     time: 7696,
     formattedTime: '7.696',
