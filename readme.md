@@ -1,4 +1,4 @@
-![](http://i.imgur.com/BuKebek.png)
+![](http://i.imgur.com/1bK8FyR.png)
 
 # Zen Cuber
 A modern, sleek speedcubing webapp. Currently a work in progress.
