@@ -1,0 +1,14 @@
+[ignore]
+.*/node_modules/styled-components/.*
+./dist
+
+[include]
+
+[libs]
+
+[options]
+esproposal.export_star_as=enable
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
+module.file_ext=.styl
