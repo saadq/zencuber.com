@@ -26,6 +26,7 @@ type Props = {
 }
 
 const H1 = styled.h1`
+  font-family: 'Avenir';
   font-size: 8em;
   height: 27vh;
   line-height: 27vh;

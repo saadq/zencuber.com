@@ -30,9 +30,8 @@ const Section = styled.section`
 const H1 = styled.h1`
   color: ${subtle};
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 100;
-  font-family: 'Avenir Next';
+  font-weight: lighter;
+  letter-spacing: 1px
 `
 
 type Props = {
