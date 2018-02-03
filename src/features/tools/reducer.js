@@ -2,7 +2,8 @@
  * @flow
  */
 
-import type { SolvesState as State, Action } from '../../shared/types'
+import type { SolvesState as State } from './types'
+import type { Action } from '../../app/types'
 
 function tools(state: State = [], action: Action): State {
   switch (action.type) {

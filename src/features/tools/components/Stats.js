@@ -4,11 +4,14 @@
 
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Flex } from '../../../shared/components'
-import { timeFormatter } from '../../../shared/util'
-import type { Solve } from '../../../shared/types'
+import { timeFormatter } from '../../../common/util'
+import type { Solve } from '../types'
 
-const Flexbox = Flex.extend`
+const Flexbox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100%;
 `
 
@@ -103,7 +106,7 @@ class Stats extends Component<*> {
     const { solves } = this.props
 
     return (
-      <Flexbox direction="column" align="center" justify="center">
+      <Flexbox>
         <Table>
           <tbody>
             <Row disabled={solves.length < 3}>

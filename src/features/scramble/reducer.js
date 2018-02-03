@@ -2,7 +2,8 @@
  * @flow
  */
 
-import type { ScrambleState as State, Action } from '../../shared/types'
+import type { ScrambleState as State  } from './types'
+import type { Action } from '../../app/types'
 
 const initialState = {
   prevScramble: null,

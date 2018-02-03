@@ -5,11 +5,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { injectGlobal } from 'styled-components'
-import TopBar from './shared/components/TopBar'
-import Home from './pages/Home'
-import { initializeScramble } from './features/scramble/actions'
-import { background, foreground } from './shared/colors'
-import type { State } from './shared/types'
+import { Header, Main } from './components'
+import { initializeScramble } from '../features/scramble/actions'
+import { background, foreground } from '../common/colors'
+import type { State } from './types'
 
 injectGlobal`
   body {
@@ -31,8 +30,8 @@ class App extends Component<*> {
   render() {
     return (
       <div>
-        <TopBar />
-        <Home />
+        <Header />
+        <Main />
       </div>
     )
   }

@@ -5,12 +5,16 @@
 import React from 'react'
 import Tooltip from 'react-tooltip'
 import styled from 'styled-components'
-import { Flex, Button } from '../../../shared/components'
-import { primary, subtle } from '../../../shared/colors'
-import type { Solve } from '../../../shared/types'
+import { Button } from '../../../common/components'
+import { primary, subtle } from '../../../common/colors'
+import type { Solve } from '../../../app/types'
 
-const Flexbox = Flex.extend`
+const Flexbox = styled.div`
+  display: flex;
   height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 const Table = styled.table`
@@ -54,7 +58,7 @@ type Props = {
 
 function Solves({ solves, clearSolves, removeSolve }: Props) {
   return (
-    <Flexbox direction="column" align="center" justify="center">
+    <Flexbox>
       <Table>
         <tbody>
           {solves.map((solve, i) =>

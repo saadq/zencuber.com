@@ -8,8 +8,10 @@ import styled from 'styled-components'
 import * as TimerActions from './actions'
 import * as ScrambleActions from '../scramble/actions'
 import * as SolvesActions from '../tools/actions'
-import { foreground, primary } from '../../shared/colors'
-import type { State, Scramble, Solve } from '../../shared/types'
+import { foreground, primary } from '../../common/colors'
+import type { Scramble } from '../scramble/types'
+import type { Solve } from '../tools/types'
+import type { State } from '../../app/types'
 
 type Props = {
   scramble: Scramble,

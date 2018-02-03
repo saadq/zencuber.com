@@ -4,7 +4,7 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import { subtle } from '../../shared/colors'
+import { subtle } from '../../common/colors'
 
 const Div = styled.div`
   width: 100%;

@@ -4,9 +4,9 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import { primary, background, borders } from '../colors'
+import { primary, background, borders } from '../../common/colors'
 
-const Nav = styled.nav`
+const Header = styled.header`
   height: 7vh;
   width: 100%;
   background: ${background};
@@ -26,12 +26,12 @@ const Logo = styled.div`
 
 function TopBar() {
   return (
-    <Nav>
+    <Header>
       <Logo>
         <i className="mdi mdi-cube-outline" />
         zen
       </Logo>
-    </Nav>
+    </Header>
   )
 }
 

@@ -2,15 +2,15 @@
  * @flow
  */
 
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import Timer from '../features/timer/Timer'
-import Scramble from '../features/scramble/Scramble'
-import Tools from '../features/tools/Tools'
-import * as SolvesActions from '../features/tools/actions'
-import { accent, borders } from '../shared/colors'
-import type { State, Solve } from '../shared/types'
+import Timer from '../../features/timer/Timer'
+import Scramble from '../../features/scramble/Scramble'
+import Tools from '../../features/tools/Tools'
+import * as SolvesActions from '../../features/tools/actions'
+import { accent, borders } from '../../common/colors'
+import type { State, Solve } from '../types'
 
 const Main = styled.main`
   width: 95%;
@@ -36,7 +36,7 @@ type Props = {
 
 function Home({ scramble, solves, clearSolves, removeSolve }: Props) {
   return (
-    <div>
+    <Fragment>
       <Main>
         <Timer />
         <Scramble scramble={scramble.scrambleString} />
@@ -47,7 +47,7 @@ function Home({ scramble, solves, clearSolves, removeSolve }: Props) {
         scramble={scramble}
         solves={solves}
       />
-    </div>
+    </Fragment>
   )
 }
 
