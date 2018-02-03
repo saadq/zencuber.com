@@ -18,7 +18,7 @@ const Flexbox = styled.div`
 const Table = styled.table`
   width: 80%;
   height: 70%;
-  background: #22262F;
+  background: #22262f;
   text-align: center;
   display: flex;
   flex-flow: column;

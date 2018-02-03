@@ -8,7 +8,7 @@ import { subtle } from '../../common/colors'
 
 const Div = styled.div`
   width: 100%;
-  background: #22262F;
+  background: #22262f;
   color: ${subtle};
   text-align: center;
   padding: 2em 0;

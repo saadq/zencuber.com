@@ -20,7 +20,7 @@ const Flexbox = styled.div`
 const Table = styled.table`
   width: 80%;
   height: 70%;
-  background: #22262F;
+  background: #22262f;
   text-align: center;
   display: flex;
   flex-flow: column;
@@ -61,7 +61,7 @@ function Solves({ solves, clearSolves, removeSolve }: Props) {
     <Flexbox>
       <Table>
         <tbody>
-          {solves.map((solve, i) =>
+          {solves.map((solve, i) => (
             <Row key={i} data-tip data-for={`${i}`}>
               <Cell>{solves.length - i}.</Cell>
               <Cell>
@@ -74,7 +74,7 @@ function Solves({ solves, clearSolves, removeSolve }: Props) {
                 <span onClick={() => removeSolve(i)}>X</span>
               </Cell>
             </Row>
-          )}
+          ))}
         </tbody>
       </Table>
       <ClearButton onClick={clearSolves}>Clear Solves</ClearButton>

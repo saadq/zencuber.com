@@ -24,7 +24,7 @@ const Div = styled.div`
 `
 
 const Section = styled.section`
-  background: #20232C;
+  background: #20232c;
   max-width: 95%;
   width: 50vh;
   height: 40vh;
@@ -44,7 +44,7 @@ const H1 = styled.h1`
   color: ${subtle};
   text-transform: uppercase;
   font-weight: lighter;
-  letter-spacing: 1px
+  letter-spacing: 1px;
 `
 
 type Props = {

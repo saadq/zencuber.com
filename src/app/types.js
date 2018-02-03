@@ -4,7 +4,11 @@
 
 import type { Dispatch as ReduxDispatch } from 'redux'
 import type { TimerState, TimerAction } from '../features/timer/types'
-import type { Scramble, ScrambleState, ScrambleAction } from '../features/scramble/types'
+import type {
+  Scramble,
+  ScrambleState,
+  ScrambleAction
+} from '../features/scramble/types'
 import type { Solve, SolvesState, SolvesAction } from '../features/tools/types'
 
 type State = {

@@ -28,7 +28,7 @@ type Props = {
 }
 
 const H1 = styled.h1`
-  font-family: 'Avenir';
+  font-family: Avenir;
   font-size: 8em;
   height: 27vh;
   line-height: 27vh;
@@ -41,7 +41,7 @@ const H1 = styled.h1`
       default:
         return `${foreground};`
     }
-  }}
+  }};
 `
 
 class Timer extends Component<*> {
@@ -187,7 +187,10 @@ class Timer extends Component<*> {
   timeFormatter(elapsed: number): string {
     const time = new Date(elapsed)
     const seconds = time.getSeconds().toString()
-    const milliseconds = time.getMilliseconds().toString().padStart(3, '0')
+    const milliseconds = time
+      .getMilliseconds()
+      .toString()
+      .padStart(3, '0')
 
     return `${seconds}.${milliseconds}`
   }

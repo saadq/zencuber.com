@@ -12,7 +12,7 @@ const FlexBox = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100%;
-  opacity: .85;
+  opacity: 0.85;
 `
 
 type Props = {

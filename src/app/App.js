@@ -9,12 +9,18 @@ import { Header, Main } from './components'
 import { initializeScramble } from '../features/scramble/actions'
 import { background, foreground } from '../common/colors'
 import type { State } from './types'
+import Avenir from './assets/fonts/avenir.ttf'
 
 injectGlobal`
   body {
     background: ${background};
     color: ${foreground};
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  @font-face {
+    font-family: Avenir;
+    src: url(${Avenir}) format('truetype');
   }
 `
 

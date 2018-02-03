@@ -12,7 +12,7 @@ const Button = styled.button`
   border: 0;
   border-radius: 2px;
   text-transform: uppercase;
-  transition: background-color .25s ease-in;
+  transition: background-color 0.25s ease-in;
   &:hover {
     background: black;
     cursor: pointer;
